@@ -1,4 +1,4 @@
-import {Action, AppearDisappearEvent, BaseAction, SettingsChanged} from "elgato-stream-deck-sdk";
+import {Action, AppearDisappearEvent, BaseAction, SettingsChanged} from "@stream-deck-for-node/sdk";
 import {sd} from "../index";
 
 const IMAGES = {

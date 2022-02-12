@@ -1,4 +1,4 @@
-import {Action, AppearDisappearEvent, BaseAction, KeyEvent, SettingsChanged} from "elgato-stream-deck-sdk";
+import {Action, AppearDisappearEvent, BaseAction, KeyEvent, SettingsChanged} from "@stream-deck-for-node/sdk";
 import {callExtension} from "../server";
 import {sd} from "../index";
 

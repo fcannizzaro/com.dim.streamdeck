@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "axios": "^0.24.0",
-    "elgato-stream-deck-sdk": "^1.0.0",
+    "@stream-deck-for-node/sdk": "^1.0.0",
     "ws": "^8.4.0"
   },
   "devDependencies": {

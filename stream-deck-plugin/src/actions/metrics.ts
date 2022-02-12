@@ -1,4 +1,4 @@
-import {Action, AppearDisappearEvent, BaseAction, SettingsChanged} from "elgato-stream-deck-sdk";
+import {Action, AppearDisappearEvent, BaseAction, SettingsChanged} from "@stream-deck-for-node/sdk";
 import axios from "axios";
 import {sd} from "../index";
 

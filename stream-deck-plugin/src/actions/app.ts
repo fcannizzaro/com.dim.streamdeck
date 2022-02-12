@@ -1,4 +1,4 @@
-import {Action, BaseAction, KeyEvent} from "elgato-stream-deck-sdk";
+import {Action, BaseAction, KeyEvent} from "@stream-deck-for-node/sdk";
 import {sd} from "../index";
 
 interface AppSettings {

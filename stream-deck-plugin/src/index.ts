@@ -7,7 +7,7 @@ import "./actions/app";
 import "./actions/postmaster";
 import "./actions/metrics";
 
-import {StreamDeck} from "elgato-stream-deck-sdk";
+import {StreamDeck} from "@stream-deck-for-node/sdk";
 
 interface DimSettings {
     loadouts: Record<string, string[]>

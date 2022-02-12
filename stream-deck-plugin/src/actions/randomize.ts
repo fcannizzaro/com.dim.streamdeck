@@ -1,4 +1,4 @@
-import {Action, BaseAction, KeyEvent} from "elgato-stream-deck-sdk";
+import {Action, BaseAction, KeyEvent} from "@stream-deck-for-node/sdk";
 import {callExtension} from "../server";
 
 interface RandomizeSettings {
