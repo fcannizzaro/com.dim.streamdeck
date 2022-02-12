@@ -28,7 +28,11 @@ export default function Home() {
         <div className="container">
             <Head>
                 <title>DIM Stream Deck</title>
-                <link rel="icon" href="/favicon.ico"/>
+                <meta name="description" content="A Stream Deck plugin to interact with Destiny Item Manager and Destiny 2"/>
+                <meta name="og:description" content="A Stream Deck plugin to interact with Destiny Item Manager and Destiny 2"/>
+                <meta name="og:title" content="DIM Stream Deck"/>
+                <meta name="og:image" content="https://dim-stream-deck.netlify.app/front.png"/>
+                <link rel="icon" type="image/png" href="/icon.png" />
             </Head>
 
             <main>
