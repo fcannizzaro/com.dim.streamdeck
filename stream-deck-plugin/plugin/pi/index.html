@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!--suppress XmlDuplicatedId -->
+<html lang="en">
+<head>
+    <title>DIM Settings</title>
+    <meta charset="utf-8">
+    <script src="stream-deck-state-pi.js"></script>
+    <link rel="stylesheet" href="sdpi.css">
+</head>
+<body>
+<div class="sdpi-wrapper">
+    <div id="com.dim.streamdeck.vault" class="hidden isAction">
+        <div type="select" class="sdpi-item">
+            <div class="sdpi-item-label">Item</div>
+            <select class="sdProperty full" id="item" oninput="setSettings()">
+                <option value=""></option>
+                <option value="vault">vault</option>
+                <option value="glimmer">glimmer</option>
+                <option value="shards">legendary shards</option>
+                <option value="brightDust">bright dust</option>
+            </select>
+        </div>
+        <details>
+            <summary>Guide</summary>
+            <p>Select a specific item from the vault.</p>
+        </details>
+    </div>
+    <div id="com.dim.streamdeck.search" class="hidden isAction">
+        <div class="sdpi-item">
+            <div class="sdpi-item-label">Query</div>
+            <textarea class="sdProperty" id="search" oninput="setSettings()"></textarea>
+        </div>
+        <details>
+            <summary>Guide</summary>
+            <p>Write your custom query.</p>
+        </details>
+    </div>
+    <div id="com.dim.streamdeck.randomize" class="hidden isAction">
+        <div type="select" class="sdpi-item">
+            <div class="sdpi-item-label">Character</div>
+            <select class="sdProperty full" id="character" oninput="setSettings()">
+            </select>
+        </div>
+        <details>
+            <summary>Guide</summary>
+            <p>Choose a character to randomize.</p>
+        </details>
+    </div>
+    <div id="com.dim.streamdeck.app" class="hidden isAction">
+        <div type="checkbox" class="sdpi-item">
+            <div class="sdpi-item-label">Version</div>
+            <input class="sdProperty sdCheckbox sdpi-item-value" id="beta" type="checkbox" value="beta"
+                   oninput="setSettings()">
+            <label for="beta"><span></span>beta</label>
+        </div>
+        <details>
+            <summary>Guide</summary>
+            <p>Choose which version of DIM open (stable or beta).</p>
+        </details>
+    </div>
+    <div id="com.dim.streamdeck.loadout" class="hidden isAction">
+        <div type="select" class="sdpi-item">
+            <div class="sdpi-item-label">Character</div>
+            <select class="sdProperty full" id="character" oninput="setSettings()">
+            </select>
+        </div>
+        <div class="sdpi-item" id="loadout-field">
+            <div class="sdpi-item-label">Loadout</div>
+            <select class="sdProperty full " id="loadout" oninput="setSettings()">
+            </select>
+        </div>
+        <details>
+            <summary>Guide</summary>
+            <p>Choose the character and the loadout if available.</p>
+            <p>If some loadout is missing refresh the DIM and wait some seconds.</p>
+        </details>
+    </div>
+    <div id="com.dim.streamdeck.postmaster" class="hidden isAction">
+        <div class="sdpi-item" id="loadout-field">
+            <div class="sdpi-item-label">Style</div>
+            <select class="sdProperty full" id="style" oninput="setSettings()">
+                <option value="percentage">percentage</option>
+                <option value="counter">counter</option>
+            </select>
+        </div>
+        <div class="sdpi-item">
+            <div class="sdpi-item-label">Item</div>
+            <select class="sdProperty full" id="postmasterItem" oninput="setSettings()">
+                <option value=""></option>
+                <option value="ascendantShards">Ascendant Shard</option>
+                <option value="enhancementPrisms">Enhancement Prism</option>
+                <option value="spoils">Spoils of Conquest</option>
+            </select>
+        </div>
+        <details>
+            <summary>Guide</summary>
+            <p>Choose the postmaster style / show a counter for a specif item.</p>
+        </details>
+    </div>
+    <div id="com.dim.streamdeck.metrics" class="hidden isAction">
+        <div class="sdpi-item" id="loadout-field">
+            <div class="sdpi-item-label">Metric</div>
+            <select class="sdProperty full" id="metric" oninput="setSettings()">
+                <option value=""></option>
+                <option value="battlePass">Battle Pass Level</option>
+                <option value="vanguard">Vanguard</option>
+                <option value="gambit">Gambit</option>
+                <option value="crucible">Crucible</option>
+                <option value="trials">Trials</option>
+            </select>
+        </div>
+        <details>
+            <summary>Guide</summary>
+            <p>Choose a metric to show.</p>
+        </details>
+    </div>
+</div>
+<script src="main.js"></script>
+</body>
+</html>
