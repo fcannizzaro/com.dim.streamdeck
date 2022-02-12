@@ -41,7 +41,7 @@ export default function Home() {
 
                 <p>This is an open source project.
                     <a className="github-button"
-                       href="https://github.com/fcannizzaro/destiny-item-manager-stream-deck">
+                       href="https://github.com/fcannizzaro/com.dim.streamdeck">
                         <Image src={Github}/> <span>STAR / CONTRIBUTE</span>
 
                     </a>
