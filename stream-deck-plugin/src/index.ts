@@ -36,4 +36,4 @@ interface DimSettings {
 
 export const sd = new StreamDeck<DimSettings>();
 
-process.on('uncaughtException', (e) => sd.logMessage('NodeSample:' + e.message));
+process.on('uncaughtException', (e) => sd.logMessage('Error: ' + e.message));
