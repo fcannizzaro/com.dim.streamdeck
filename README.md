@@ -2,6 +2,8 @@
 
 A Stream Deck plugin to interact with Destiny Item Manager and Destiny 2
 
+[![](https://img.shields.io/badge/Stream%20Deck%20SDK-for%20Node.js-green)](https://github.com/stream-deck-for-node/sdk)
+
 ## Installation
 
 Install the browser extension
