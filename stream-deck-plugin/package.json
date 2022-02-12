@@ -3,7 +3,7 @@
   "name": "dim-stream-deck-plugin",
   "version": "1.0.0",
   "author": "Francesco Saverio Cannizzaro (fcannizzaro)",
-  "license": "MIT",
+  "license": "GPL-3",
   "scripts": {
     "start": "npx ts-node ./src/index.ts -debug com.dim.streamdeck",
     "build": "npx ncc build -m ./src/index.ts -o ./plugin"
