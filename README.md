@@ -15,12 +15,6 @@ or from below:
 
 [![download](https://github.com/fcannizzaro/com.dim.streamdeck/blob/main/media/download.png?raw=true)](https://github.com/fcannizzaro/com.dim.streamdeck/releases/download/1.0.1/com.dim.streamdeck.streamDeckPlugin)
 
-## WIP (ready for next release)
-- [x] Maximize Power
-- [x] Make Room for Postmaster
-- [x] Farming Mode (toggle)
-
-
 ## Features
 
 Go to [dim-stream-deck.netlify.app](https://dim-stream-deck.netlify.app) to see the available actions.
