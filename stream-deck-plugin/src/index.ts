@@ -6,10 +6,12 @@ import "./actions/vault";
 import "./actions/app";
 import "./actions/postmaster";
 import "./actions/metrics";
+import "./actions/max-power";
+import "./actions/farming-mode";
 
 import {StreamDeck} from "@stream-deck-for-node/sdk";
 
-interface DimSettings {
+export interface DimSettings {
     loadouts: Record<string, string[]>
     membershipId: string
     membershipType: string
@@ -18,6 +20,11 @@ interface DimSettings {
         ascendantShards?: number
         enhancementPrisms?: number
         spoils ?: number
+    }
+    maxPower: {
+        total: string
+        base: string
+        artifact: string
     }
     metrics: {
         battlePass: number;
@@ -31,9 +38,13 @@ interface DimSettings {
         glimmer: string
         shards: string
         brightDust: string
-    }
+    },
+    farmingMode: boolean
 }
 
 export const sd = new StreamDeck<DimSettings>();
 
-process.on('uncaughtException', (e) => sd.logMessage('Error: ' + e.message));
+process.on('uncaughtException', (e) => {
+    console.log(e);
+    sd.logMessage('Error: ' + e.message);
+});

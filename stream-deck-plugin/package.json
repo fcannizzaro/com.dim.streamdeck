@@ -6,7 +6,7 @@
   "license": "GPL-3",
   "scripts": {
     "start": "npx ts-node ./src/index.ts -debug com.dim.streamdeck",
-    "build": "npx ncc build -m ./src/index.ts -o ./plugin"
+    "build": "npx ncc build -m ./src/index.ts -o ./plugin && cp -r src/actions/images plugin/"
   },
   "dependencies": {
     "axios": "^0.24.0",

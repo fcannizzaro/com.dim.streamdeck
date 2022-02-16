@@ -53,6 +53,7 @@ document.addEventListener('init', async ({settings, pluginSettings, action}) => 
     loadoutField = document.getElementById('loadout-field');
 
     // init variables
+    console.log(pluginSettings);
     loadouts = pluginSettings.loadouts;
     prevSettings = settings;
     await dimInit();

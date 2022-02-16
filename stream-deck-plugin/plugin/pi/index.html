@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!--suppress XmlDuplicatedId -->
+<!--suppress XmlDuplicatedId, HtmlFormInputWithoutLabel -->
 <html lang="en">
 <head>
     <title>DIM Settings</title>
@@ -112,6 +112,20 @@
         <details>
             <summary>Guide</summary>
             <p>Choose a metric to show.</p>
+        </details>
+    </div>
+    <div id="com.dim.streamdeck.power" class="hidden isAction">
+        <div class="sdpi-item" id="loadout-field">
+            <div class="sdpi-item-label">Metric</div>
+            <select class="sdProperty full" id="powerType" oninput="setSettings()">
+                <option value="total">Total</option>
+                <option value="base">Armor + Weapons</option>
+                <option value="artifact">Artifact</option>
+            </select>
+        </div>
+        <details>
+            <summary>Guide</summary>
+            <p>Choose a Power type to show.</p>
         </details>
     </div>
 </div>

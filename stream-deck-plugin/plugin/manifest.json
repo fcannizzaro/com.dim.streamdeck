@@ -3,7 +3,7 @@
   "Author": "fcannizzaro",
   "Description": "DIM actions",
   "Icon": "./icons/pluginIcon",
-  "Version": "1.0.0",
+  "Version": "1.0.1",
   "SDKVersion": 2,
   "Bundle": "index.js",
   "Engine": {
@@ -18,7 +18,7 @@
       "MinimumVersion": "10"
     }
   ],
-  "Category": "DIM",
+  "Category": "DIM / Destiny 2",
   "CategoryIcon": "icons/category",
   "CodePath": "com.dim.streamdeck.exe",
   "PropertyInspectorPath": "pi/index.html",
@@ -118,6 +118,33 @@
       "SupportedInMultiActions": false,
       "Tooltip": "Show a specific game metric",
       "UUID": "com.dim.streamdeck.metrics"
+    },
+    {
+      "Icon": "icons/maxPowerIcon",
+      "Name": "Max Power",
+      "States": [
+        {
+          "Image": "icons/loadoutState"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Show the current character Max Power and tap to apply",
+      "UUID": "com.dim.streamdeck.power"
+    },
+    {
+      "Icon": "icons/farmingIcon",
+      "Name": "Farming Mode",
+      "States": [
+        {
+          "Image": "icons/farming-mode-off"
+        },
+        {
+          "Image": "icons/farming-mode-on"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "Tooltip": "Turn on/off the DIM Farming mode",
+      "UUID": "com.dim.streamdeck.farming-mode"
     }
   ]
 }

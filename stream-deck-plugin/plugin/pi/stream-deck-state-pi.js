@@ -32,7 +32,6 @@ const sendToPlugin = (payload) => {
 const checkInit = () => {
     if (init || !state.settings || !state.pluginSettings) return;
     init = true;
-    console.log(state);
     emitEvent('init');
 }
 

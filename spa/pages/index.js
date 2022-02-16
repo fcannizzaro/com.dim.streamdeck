@@ -4,8 +4,11 @@ import Loadout2 from "./loadodut-2.png";
 import Postmaster1 from "./postmaster-1.png";
 import Postmaster2 from "./postmaster-2.png";
 import Search from "./search.png";
+import MaxPower from "./max-power.png";
 import Github from "./github.png";
 import Vault from "./vault.png";
+import Actions from "./actions.png";
+import FarmingMode from "./farming-mode.png";
 import Refresh from "./refresh.png";
 import Metrics from "./metrics.png";
 import Randomize from "./randomize.png";
@@ -66,7 +69,7 @@ export default function Home() {
                             </div>
                         </div>
                     </a>
-                    <a href=''
+                    <a href='https://github.com/fcannizzaro/com.dim.streamdeck/releases/download/1.0.1/com.dim.streamdeck.streamDeckPlugin'
                        target='_blank'>
                         <div className="download-button elgato">
                             <div className="download-icon">
@@ -79,10 +82,6 @@ export default function Home() {
                         </div>
                     </a>
                 </div>
-
-                <h2 className="header">Compatibility</h2>
-
-                <p>Currently this plugin works only with <strong><a href='https://beta.destinyitemmanager.com' target='_blank' rel='nofollow'>beta.destinyitemmanager.com</a></strong></p>
 
                 <h2 className="header">Features</h2>
 
@@ -156,6 +155,7 @@ export default function Home() {
                                     <p>Show some postmaster's stats</p>
                                 </div>
                                 <ul>
+                                    <li>Tap to collect obtainable items</li>
                                     <li><span>2 styles: <code>percentage</code> , <code>counter</code></span></li>
                                     <li><span><code>Ascendant Shards</code> counter</span></li>
                                     <li><span><code>Enhancement Prisms</code> counter</span></li>
@@ -184,6 +184,37 @@ export default function Home() {
                                 </ul>
                                 <div className="action-steps">
                                     <Image src={Metrics} alt="metrics-step"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="embla__slide">
+                            <div className="card">
+                                <div className="card-header">
+                                    <h3>Farming Mode</h3>
+                                    <p>Enable / disable the DIM Farming mode</p>
+                                </div>
+                                <ul>
+                                    <li>2 different states</li>
+                                </ul>
+                                <div className="action-steps">
+                                    <Image src={FarmingMode} alt="farming-step"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="embla__slide">
+                            <div className="card">
+                                <div className="card-header">
+                                    <h3>Max Power</h3>
+                                    <p>Show a specific power level</p>
+                                </div>
+                                <ul>
+                                    <li>3 different views</li>
+                                    <li>Tap to maximize your loadout</li>
+                                </ul>
+                                <div className="action-steps">
+                                    <Image src={MaxPower} alt="max-power-step"/>
                                 </div>
                             </div>
                         </div>
@@ -220,6 +251,10 @@ export default function Home() {
                 </div>
 
                 <h2 className="header">In-app Preview</h2>
+
+                <div style={{marginTop: 16}}>
+                    <Image alt="actions" src={Actions}/>
+                </div>
 
                 <div style={{marginTop: 16}}>
                     <Image alt="preview" src={Preview}/>

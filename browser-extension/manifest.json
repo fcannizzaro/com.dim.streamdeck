@@ -1,7 +1,7 @@
 {
   "name": "DIM Stream Deck",
   "description": "Extension that allows the Elgato Stream Deck to interact with DIM (Destiny Item Manager)",
-  "version": "1.0",
+  "version": "1.0.1",
   "author": "fcannizzaro",
   "manifest_version": 3,
   "icons": {
@@ -9,7 +9,8 @@
   },
   "content_scripts": [{
     "matches": [
-      "https://beta.destinyitemmanager.com/*"
+      "https://beta.destinyitemmanager.com/*",
+      "https://app.destinyitemmanager.com/*"
     ],
     "js": [
       "lib/jquery-3.6.0.min.js",

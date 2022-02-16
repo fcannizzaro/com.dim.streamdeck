@@ -11,8 +11,10 @@ const extractLoadout = async () => {
     $('div.character:not(.vault)').each((i, character) => {
 
         $(character).trigger("click");
-        const clazz = $('div[class*="class"]', character).text();
-        const race = $('div[class*="bottom"]', character).text();
+
+        const characterInfo =  $('div:nth-child(1) > div:last-of-type', character);
+        const clazz = $('> div:first-of-type > div:first-of-type', characterInfo).text();
+        const race = $('> div:last-of-type', characterInfo).text();
 
         loadouts[`${clazz} (${race})`] =
             $('.loadout-menu li:has(a)')
@@ -27,12 +29,36 @@ const extractLoadout = async () => {
 
 }
 
+const fractionToDecimal = value => {
+    if (value.includes('⁄')) {
+        const [base, fraction] = value.split(' ');
+        const [c, t] = value.split(' ')[1].split('⁄');
+        return `${base}${(c / t).toFixed(2).slice(1)}`;
+    }
+    return value;
+}
+
+const extractMaxPower = async () => {
+    const [total, base, artifact] = $('.store-cell:has(.character.current) .powerStat').toArray().map(it => $(it).text());
+    socket.send(JSON.stringify({
+        maxPower: {
+            total: fractionToDecimal(total),
+            base: fractionToDecimal(base),
+            artifact: artifact,
+        }
+    }));
+}
+
 const extractVault = async () => {
     try {
-        const vault = $(".vault div[class*=Capacity]:first + div").text() || "";
+        const vault = $(".vault div:has(img) + div:contains(500)").text() || "";
         const glimmer = $(`.vault img[src*=${GLIMMER}] + div`).text() || "";
         const shards = $(`.vault img[src*=${SHARDS}] + div`).text() || "";
         const brightDust = $(`.vault img[src*=${BRIGHT_DUST}] + div`).text() || "";
+
+        if(!glimmer && !shards && !brightDust) {
+            return;
+        }
 
         socket.send(JSON.stringify({
             vault: {
@@ -47,10 +73,23 @@ const extractVault = async () => {
     }
 }
 
+const sendFarmingModeState = () => {
+    const farmingDialog = $('.d2-farming');
+    socket.send(JSON.stringify({
+        farmingMode: farmingDialog.length > 0
+    }));
+}
+
+const clickCurrent = async () => {
+    $(`div.character.current`).trigger("click");
+    await delay(200);
+}
+
 const onMessage = async (event) => {
 
     const {action, args = {}} = JSON.parse(event.data);
     const {character, loadout, search} = args;
+
     const [clazz, race] = character?.replace(/[()]/g, '')?.split(' ') || [];
 
     const clickCharacter = async () => {
@@ -65,9 +104,34 @@ const onMessage = async (event) => {
             $(`span[title="${loadout}"]`).trigger("click");
             break
 
+        case "maxPower":
+            await clickCurrent();
+            $('span:has(svg[data-icon="dimPower"])').trigger("click");
+            break
+
+        case "farmingMode":
+            const exist = $('.d2-farming');
+            if (exist.length) {
+                $('button', exist).trigger("click");
+            } else {
+                await clickCurrent();
+                $('span:has(svg[data-icon="dimEngram"])').trigger("click");
+            }
+            await delay(500);
+            sendFarmingModeState();
+            break
+
         case "refresh":
             $(`a[role="button"] span.fa-sync`).trigger("click");
             break
+
+        case "collectPostmaster":
+            const index = $(`div.character`).toArray().map(it => $(it).attr('class')).findIndex(it => it.includes('current'));
+            const button = $(`.store-row:has(.dim-button) .store-cell:nth-child(${index + 1}) .dim-button`);
+            $(button).click();
+            await delay(500);
+            $('div', button).click();
+            break;
 
         case "randomize":
             await clickCharacter();
@@ -101,16 +165,19 @@ const sendBungieId = async () => {
     }));
 }
 
+
 const onOpen = () => {
     onDimReady().then(() => {
-      try {
-          sendBungieId().then();
-          extractLoadout().then();
-          extractVault().then();
-          setInterval(extractVault, 1000 * 30);
-      }catch (e){
-          console.log(e);
-      }
+        try {
+            sendBungieId().then();
+            extractMaxPower().then();
+            extractLoadout().then();
+            extractVault().then();
+            setInterval(extractVault, 1000 * 30);
+            setInterval(sendFarmingModeState, 1000 * 10);
+        } catch (e) {
+            console.log(e);
+        }
     });
 }
 

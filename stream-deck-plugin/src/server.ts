@@ -1,5 +1,5 @@
 import {WebSocket, WebSocketServer} from "ws";
-import {sd} from "./index";
+import {DimSettings, sd} from "./index";
 
 const wss = new WebSocketServer({port: 9119});
 
@@ -14,8 +14,7 @@ export const callExtension = (action: string, args: Record<string, any> = {}) =>
 
 wss.on('connection', (ws: WebSocket) => {
     ws.on('message', (data: string) => {
-        data = JSON.parse(data);
-        const settings = Object.assign(sd.pluginSettings || {}, data);
+        const settings: Partial<DimSettings> = JSON.parse(data);
         sd.setPluginSettings(settings);
     });
 });
