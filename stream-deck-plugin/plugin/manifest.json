@@ -3,7 +3,7 @@
   "Author": "fcannizzaro",
   "Description": "DIM actions",
   "Icon": "./icons/pluginIcon",
-  "Version": "1.0.1",
+  "Version": "1.0.2",
   "SDKVersion": 2,
   "Bundle": "index.js",
   "Engine": {

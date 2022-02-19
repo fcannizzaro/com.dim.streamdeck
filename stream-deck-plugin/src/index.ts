@@ -44,6 +44,9 @@ export interface DimSettings {
 
 export const sd = new StreamDeck<DimSettings>();
 
+// Reset Plugin (Development Only)
+// setTimeout(() => sd.resetPluginSettings(), 4000);
+
 process.on('uncaughtException', (e) => {
     console.log(e);
     sd.logMessage('Error: ' + e.message);

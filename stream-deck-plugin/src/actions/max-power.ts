@@ -31,7 +31,7 @@ export class MaxPower extends BaseAction<PowerSettings> {
 
     updateItem(context: string, settings: PowerSettings) {
         const powerType = settings.powerType ?? "total";
-        sd.setTitle(context, sd.pluginSettings.maxPower[powerType]);
+        sd.setTitle(context, sd.pluginSettings.maxPower?.[powerType] || '?');
         const image = IMAGES[powerType];
         image && sd.setImage(context, image);
     }

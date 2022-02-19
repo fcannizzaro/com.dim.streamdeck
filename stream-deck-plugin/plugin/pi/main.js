@@ -36,7 +36,14 @@ const initLoadouts = () => {
     }
 }
 
+
+const showHideDimConnectionBanner = (visible) => {
+    document.getElementById('error-extension').className = visible ? "" : 'hidden';
+}
+
 document.addEventListener('init', async ({settings, pluginSettings, action}) => {
+
+    showHideDimConnectionBanner(!Object.keys(pluginSettings).length);
 
     // show the actions settings block
     const actionPI = document.getElementById(action);
@@ -60,6 +67,9 @@ document.addEventListener('init', async ({settings, pluginSettings, action}) => 
 });
 
 document.addEventListener('stateChange', async ({changed, settings, pluginSettings, action}) => {
+
+    showHideDimConnectionBanner(!Object.keys(pluginSettings).length);
+
     if (changed === 'settings') {
         // character.value = settings["character"];
         // loadout.value = settings["loadout"];

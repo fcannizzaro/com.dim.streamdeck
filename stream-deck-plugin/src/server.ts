@@ -12,6 +12,11 @@ export const callExtension = (action: string, args: Record<string, any> = {}) =>
     });
 }
 
+wss.on('error', () => {
+    sd.logMessage("There is another instance of this plugin running");
+    process.exit();
+});
+
 wss.on('connection', (ws: WebSocket) => {
     ws.on('message', (data: string) => {
         const settings: Partial<DimSettings> = JSON.parse(data);
