@@ -3,7 +3,7 @@
   "Author": "fcannizzaro",
   "Description": "DIM actions",
   "Icon": "./icons/pluginIcon",
-  "Version": "1.0.2",
+  "Version": "1.0.3",
   "SDKVersion": 2,
   "Bundle": "index.js",
   "Engine": {
@@ -12,139 +12,105 @@
   "Software": {
     "MinimumVersion": "5.0"
   },
-  "OS": [
-    {
-      "Platform": "windows",
-      "MinimumVersion": "10"
-    }
-  ],
+  "OS": [{
+    "Platform": "windows",
+    "MinimumVersion": "10"
+  }],
   "Category": "DIM / Destiny 2",
   "CategoryIcon": "icons/category",
   "CodePath": "com.dim.streamdeck.exe",
   "PropertyInspectorPath": "pi/index.html",
-  "Actions": [
-    {
-      "Icon": "icons/loadoutIcon",
-      "Name": "Equip Loadout",
-      "States": [
-        {
-          "Image": "icons/loadoutState"
-        }
-      ],
-      "SupportedInMultiActions": true,
-      "Tooltip": "Allow to switch Destiny 2 Loadout",
-      "UUID": "com.dim.streamdeck.loadout"
-    },
-    {
-      "Icon": "icons/searchIcon",
-      "Name": "Search",
-      "States": [
-        {
-          "Image": "icons/searchState"
-        }
-      ],
-      "SupportedInMultiActions": true,
-      "Tooltip": "Search with a specific query",
-      "UUID": "com.dim.streamdeck.search"
-    },
-    {
-      "Icon": "icons/refreshIcon",
-      "Name": "Refresh DIM",
-      "States": [
-        {
-          "Image": "icons/refreshState"
-        }
-      ],
-      "SupportedInMultiActions": true,
-      "Tooltip": "Refresh DIM",
-      "UUID": "com.dim.streamdeck.refresh"
-    },
-    {
-      "Icon": "icons/randomIcon",
-      "Name": "Randomize Character",
-      "States": [
-        {
-          "Image": "icons/randomState"
-        }
-      ],
-      "SupportedInMultiActions": true,
-      "Tooltip": "Randomize a specific character",
-      "UUID": "com.dim.streamdeck.randomize"
-    },
-    {
-      "Icon": "icons/appIcon",
-      "Name": "Open DIM",
-      "States": [
-        {
-          "Image": "icons/appState"
-        }
-      ],
-      "SupportedInMultiActions": true,
-      "Tooltip": "Open DIM on the browser",
-      "UUID": "com.dim.streamdeck.app"
-    },
-    {
-      "Icon": "icons/vaultIcon",
-      "Name": "Vault",
-      "States": [
-        {
-          "Image": "icons/vaultState"
-        }
-      ],
-      "SupportedInMultiActions": false,
-      "Tooltip": "Show a specific param from the vault",
-      "UUID": "com.dim.streamdeck.vault"
-    },
-    {
-      "Icon": "icons/postmasterIcon",
-      "Name": "Postmaster",
-      "States": [
-        {
-          "Image": "icons/vaultState"
-        }
-      ],
-      "SupportedInMultiActions": false,
-      "Tooltip": "Show the used percentage of the current character postmaster",
-      "UUID": "com.dim.streamdeck.postmaster"
-    },
-    {
-      "Icon": "icons/metricsIcon",
-      "Name": "Metrics",
-      "States": [
-        {
-          "Image": "icons/metricsState"
-        }
-      ],
-      "SupportedInMultiActions": false,
-      "Tooltip": "Show a specific game metric",
-      "UUID": "com.dim.streamdeck.metrics"
-    },
-    {
-      "Icon": "icons/maxPowerIcon",
-      "Name": "Max Power",
-      "States": [
-        {
-          "Image": "icons/loadoutState"
-        }
-      ],
-      "SupportedInMultiActions": false,
-      "Tooltip": "Show the current character Max Power and tap to apply",
-      "UUID": "com.dim.streamdeck.power"
-    },
-    {
-      "Icon": "icons/farmingIcon",
-      "Name": "Farming Mode",
-      "States": [
-        {
-          "Image": "icons/farming-mode-off"
-        },
-        {
-          "Image": "icons/farming-mode-on"
-        }
-      ],
-      "SupportedInMultiActions": false,
-      "Tooltip": "Turn on/off the DIM Farming mode",
-      "UUID": "com.dim.streamdeck.farming-mode"
-    }
-  ]
+  "Actions": [{
+    "Icon": "icons/loadoutIcon",
+    "Name": "Equip Loadout",
+    "States": [{
+      "Image": "icons/loadoutState"
+    }],
+    "SupportedInMultiActions": true,
+    "Tooltip": "Allow to switch Destiny 2 Loadout",
+    "UUID": "com.dim.streamdeck.loadout"
+  }, {
+    "Icon": "icons/searchIcon",
+    "Name": "Search",
+    "States": [{
+      "Image": "icons/searchState"
+    }],
+    "SupportedInMultiActions": true,
+    "Tooltip": "Search with a specific query",
+    "UUID": "com.dim.streamdeck.search"
+  }, {
+    "Icon": "icons/refreshIcon",
+    "Name": "Refresh DIM",
+    "States": [{
+      "Image": "icons/refreshState"
+    }],
+    "SupportedInMultiActions": true,
+    "Tooltip": "Refresh DIM",
+    "UUID": "com.dim.streamdeck.refresh"
+  }, {
+    "Icon": "icons/randomIcon",
+    "Name": "Randomize Character",
+    "States": [{
+      "Image": "icons/randomState"
+    }],
+    "SupportedInMultiActions": true,
+    "Tooltip": "Randomize a specific character",
+    "UUID": "com.dim.streamdeck.randomize"
+  }, {
+    "Icon": "icons/appIcon",
+    "Name": "Open DIM",
+    "States": [{
+      "Image": "icons/appState"
+    }],
+    "SupportedInMultiActions": true,
+    "Tooltip": "Open DIM on the browser",
+    "UUID": "com.dim.streamdeck.app"
+  }, {
+    "Icon": "icons/vaultIcon",
+    "Name": "Vault",
+    "States": [{
+      "Image": "icons/vaultState"
+    }],
+    "SupportedInMultiActions": false,
+    "Tooltip": "Show a specific param from the vault",
+    "UUID": "com.dim.streamdeck.vault"
+  }, {
+    "Icon": "icons/postmasterIcon",
+    "Name": "Postmaster",
+    "States": [{
+      "Image": "icons/vaultState"
+    }],
+    "SupportedInMultiActions": false,
+    "Tooltip": "Show the used percentage of the current character postmaster",
+    "UUID": "com.dim.streamdeck.postmaster"
+  }, {
+    "Icon": "icons/metricsIcon",
+    "Name": "Metrics",
+    "States": [{
+      "Image": "icons/metricsState"
+    }],
+    "SupportedInMultiActions": false,
+    "Tooltip": "Show a specific game metric",
+    "UUID": "com.dim.streamdeck.metrics"
+  }, {
+    "Icon": "icons/maxPowerIcon",
+    "Name": "Max Power",
+    "States": [{
+      "Image": "icons/loadoutState"
+    }],
+    "SupportedInMultiActions": false,
+    "Tooltip": "Show the current character Max Power and tap to apply",
+    "UUID": "com.dim.streamdeck.power"
+  }, {
+    "Icon": "icons/farmingIcon",
+    "Name": "Farming Mode",
+    "States": [{
+      "Image": "icons/farming-mode-off"
+    }, {
+      "Image": "icons/farming-mode-on"
+    }],
+    "SupportedInMultiActions": false,
+    "Tooltip": "Turn on/off the DIM Farming mode",
+    "UUID": "com.dim.streamdeck.farming-mode"
+  }]
 }
