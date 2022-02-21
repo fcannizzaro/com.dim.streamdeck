@@ -159,7 +159,7 @@ export default function Home() {
                                     <li><span>2 styles: <code>percentage</code> , <code>counter</code></span></li>
                                     <li><span><code>Ascendant Shards</code> counter</span></li>
                                     <li><span><code>Enhancement Prisms</code> counter</span></li>
-                                    <li><span><code>Spoils of Conquer</code> counter</span></li>
+                                    <li><span><code>Spoils of Conquest</code> counter</span></li>
                                 </ul>
                                 <div className="action-steps">
                                     <Image src={Postmaster1} alt="postmaster-step-1"/>
