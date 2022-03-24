@@ -8,9 +8,10 @@ import {
 import axios from "axios";
 import {DimSettings, sd} from "../index";
 import path from "path";
+import {IMAGE_PATH} from "../constant";
 
 const PROGRESSIONS = {
-    XP: "243419342",
+    XP: "2214434133",
     GAMBIT: "3008065600",
     TRIALS: "2755675426",
     CRUCIBLE: "2083746873",
@@ -18,11 +19,11 @@ const PROGRESSIONS = {
 }
 
 const IMAGES = {
-    vanguard: path.join(__dirname, './images/metrics-vanguard.png'),
-    gambit: path.join(__dirname, './images/metrics-gambit.png'),
-    crucible: path.join(__dirname, './images/metrics-crucible.png'),
-    trials: path.join(__dirname, './images/metrics-trials.png'),
-    battlePass: path.join(__dirname, './images/metrics-bp.png'),
+    vanguard: path.join(IMAGE_PATH, './metrics-vanguard.png'),
+    gambit: path.join(IMAGE_PATH, './metrics-gambit.png'),
+    crucible: path.join(IMAGE_PATH, './metrics-crucible.png'),
+    trials: path.join(IMAGE_PATH, './metrics-trials.png'),
+    battlePass: path.join(IMAGE_PATH, './metrics-bp.png'),
 }
 
 interface MetricsSettings {

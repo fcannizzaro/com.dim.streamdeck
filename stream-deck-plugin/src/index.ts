@@ -19,7 +19,7 @@ export interface DimSettings {
         total: number
         ascendantShards?: number
         enhancementPrisms?: number
-        spoils ?: number
+        spoils?: number
     }
     maxPower: {
         total: string

@@ -7,12 +7,13 @@ import {
 } from "@stream-deck-for-node/sdk";
 import {DimSettings, sd} from "../index";
 import path from "path";
+import {IMAGE_PATH} from "../constant";
 
 const IMAGES = {
-    vault: path.join(__dirname, './images/vault-count.png'),
-    glimmer: path.join(__dirname, './images/vault-glimmer.png'),
-    brightDust: path.join(__dirname, './images/vault-dust.png'),
-    shards: path.join(__dirname, './images/vault-shards.png'),
+    vault: path.join(IMAGE_PATH, './vault-count.png'),
+    glimmer: path.join(IMAGE_PATH, './vault-glimmer.png'),
+    brightDust: path.join(IMAGE_PATH, './vault-dust.png'),
+    shards: path.join(IMAGE_PATH, './vault-shards.png'),
 }
 
 interface VaultSettings {

@@ -174,6 +174,7 @@ const onOpen = () => {
             extractLoadout().then();
             extractVault().then();
             setInterval(extractVault, 1000 * 30);
+            setInterval(extractMaxPower, 1000 * 30);
             setInterval(sendFarmingModeState, 1000 * 10);
         } catch (e) {
             console.log(e);

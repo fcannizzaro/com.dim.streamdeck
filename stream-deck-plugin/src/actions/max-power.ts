@@ -9,11 +9,12 @@ import {
 import {callExtension} from "../server";
 import {DimSettings, sd} from "../index";
 import path from "path";
+import {IMAGE_PATH} from "../constant";
 
 const IMAGES = {
-    total: path.join(__dirname, './images/power-total.png'),
-    base: path.join(__dirname, './images/power-armor.png'),
-    artifact: path.join(__dirname, './images/power-artifact.png')
+    total: path.join(IMAGE_PATH, './power-total.png'),
+    base: path.join(IMAGE_PATH, './power-armor.png'),
+    artifact: path.join(IMAGE_PATH, './power-artifact.png')
 }
 
 interface PowerSettings {

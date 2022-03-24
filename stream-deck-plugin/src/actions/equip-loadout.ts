@@ -24,6 +24,7 @@ export class EquipLoadout extends BaseAction<LoadoutSettings> {
 
     onKeyDown(e: KeyEvent<LoadoutSettings>) {
         callExtension("loadout", e.payload.settings);
+        sd.showOk(e.context);
     }
 
 }

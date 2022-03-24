@@ -10,12 +10,13 @@ import axios from "axios";
 import {DimSettings, sd} from "../index";
 import {callExtension} from "../server";
 import path from "path";
+import {IMAGE_PATH} from "../constant";
 
 const IMAGES = {
-    postmaster: path.join(__dirname, './images/postmaster.png'),
-    ascendantShards: path.join(__dirname, './images/postmaster-shard.png'),
-    enhancementPrisms: path.join(__dirname, './images/postmaster-prism.png'),
-    spoils: path.join(__dirname, './images/postmaster-spoils.png')
+    postmaster: path.join(IMAGE_PATH, './postmaster.png'),
+    ascendantShards: path.join(IMAGE_PATH, './postmaster-shard.png'),
+    enhancementPrisms: path.join(IMAGE_PATH, './postmaster-prism.png'),
+    spoils: path.join(IMAGE_PATH, './postmaster-spoils.png')
 }
 
 const MATS = {
