@@ -13,7 +13,7 @@ Install the browser extension
 and then download the stream-deck plugin from the [releases](https://github.com/fcannizzaro/com.dim.streamdeck/releases/latest)
 or from below:
 
-[![download](https://github.com/fcannizzaro/com.dim.streamdeck/blob/main/media/download.png?raw=true)](https://github.com/fcannizzaro/com.dim.streamdeck/releases/download/1.0.2/com.dim.streamdeck.streamDeckPlugin)
+[![download](https://github.com/fcannizzaro/com.dim.streamdeck/blob/main/media/download.png?raw=true)](https://github.com/fcannizzaro/com.dim.streamdeck/releases/download/1.0.3/com.dim.streamdeck.streamDeckPlugin)
 
 ## Features
 
