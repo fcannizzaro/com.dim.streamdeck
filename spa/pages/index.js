@@ -69,7 +69,7 @@ export default function Home() {
                             </div>
                         </div>
                     </a>
-                    <a href='https://github.com/fcannizzaro/com.dim.streamdeck/releases/download/1.0.1/com.dim.streamdeck.streamDeckPlugin'
+                    <a href='https://apps.elgato.com/plugins/com.dim.streamdeck'
                        target='_blank'>
                         <div className="download-button elgato">
                             <div className="download-icon">
