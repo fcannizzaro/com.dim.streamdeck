@@ -7,11 +7,18 @@ interface LoadoutSettings {
     loadout: string;
 }
 
+/*
+   Equip a selected loadout
+*/
 @Action("loadout")
 export class EquipLoadout extends BaseAction<LoadoutSettings> {
 
     updateTitle(context: string, settings: LoadoutSettings) {
-        sd.setTitle(context, settings.loadout);
+        const loadouts = sd.pluginSettings.loadouts;
+        const loadout = loadouts[settings.character]?.items.find(it => it.id === settings.loadout);
+        if (loadout) {
+            sd.setTitle(context, loadout.label);
+        }
     }
 
     onAppear(e: AppearDisappearEvent<LoadoutSettings>) {

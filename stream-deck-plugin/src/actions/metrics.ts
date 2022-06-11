@@ -5,86 +5,39 @@ import {
     PluginSettingsChanged,
     SettingsChanged
 } from "@stream-deck-for-node/sdk";
-import axios from "axios";
 import {DimSettings, sd} from "../index";
 import path from "path";
 import {IMAGE_PATH} from "../constant";
 
-const PROGRESSIONS = {
-    XP: "2214434133",
-    GAMBIT: "3008065600",
-    TRIALS: "2755675426",
-    CRUCIBLE: "2083746873",
-    VANGUARD: "457612306"
-}
-
 const IMAGES = {
     vanguard: path.join(IMAGE_PATH, './metrics-vanguard.png'),
     gambit: path.join(IMAGE_PATH, './metrics-gambit.png'),
+    gunsmith: path.join(IMAGE_PATH, './metrics-gunsmith.png'),
+    ironBanner: path.join(IMAGE_PATH, './metrics-iron-banner.png'),
     crucible: path.join(IMAGE_PATH, './metrics-crucible.png'),
-    trials: path.join(IMAGE_PATH, './metrics-trials.png'),
-    battlePass: path.join(IMAGE_PATH, './metrics-bp.png'),
+    trials: path.join(IMAGE_PATH, './metrics-trials.png')
 }
 
 interface MetricsSettings {
-    metric: "gambit" | "vanguard" | "crucible" | "trials" | "battlePass";
+    metric: "gambit" | "vanguard" | "crucible" | "trials" | "ironBanner" | "gunsmith" | "battlePass";
 }
 
-const AXIOS_OPTS = {
-    headers: {
-        'X-API-Key': 'fcd25f4d685f40a297417847576e4139'
-    }
-}
-
+/*
+   Show playlists metrics, progress, etc..
+*/
 @Action("metrics")
 export class Metrics extends BaseAction {
-
-    constructor() {
-        super();
-        setTimeout(async () => {
-            await this.updateMetrics();
-            setInterval(() => this.updateMetrics(), 60 * 1000);
-        }, 2000);
-    }
-
-    async updateMetrics() {
-
-        try {
-            const {membershipType, membershipId} = sd.pluginSettings || {};
-
-            if (!membershipId) {
-                return;
-            }
-
-            const {data} = await axios(`https://www.bungie.net/Platform/Destiny2/${membershipType}/Profile/${membershipId}/?components=202`, AXIOS_OPTS);
-
-            const {progressions} = Object.values(data.Response["characterProgressions"].data)[0] as any;
-            const totalXP = progressions[PROGRESSIONS.XP]["currentProgress"];
-
-            const metrics = {
-                battlePass: Math.ceil(totalXP / 100000),
-                vanguard: progressions[PROGRESSIONS.VANGUARD]["currentProgress"],
-                trials: progressions[PROGRESSIONS.TRIALS]["currentProgress"],
-                crucible: progressions[PROGRESSIONS.CRUCIBLE]["currentProgress"],
-                gambit: progressions[PROGRESSIONS.GAMBIT]["currentProgress"],
-            };
-
-            sd.setPluginSettings({
-                metrics
-            });
-
-        } catch (e) {
-            console.log(e);
-        }
-
-    }
 
     updateItem(context: string, settings: MetricsSettings) {
         const metrics = sd.pluginSettings.metrics || {};
         const title = metrics?.[settings.metric]?.toString() || "-";
         sd.setTitle(context, title);
         const image = IMAGES[settings.metric];
-        image && sd.setImage(context, image);
+        if (settings.metric === "battlePass") {
+            sd.setImage(context, `https://www.bungie.net${sd.pluginSettings.metrics.artifactIcon}`);
+        } else {
+            image && sd.setImage(context, image);
+        }
     }
 
     onSettingsChanged(e: SettingsChanged<MetricsSettings>) {

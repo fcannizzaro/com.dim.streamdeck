@@ -2,11 +2,14 @@ import {Action, AppearDisappearEvent, BaseAction, KeyEvent, PluginSettingsChange
 import {callExtension} from "../server";
 import {DimSettings, sd} from "../index";
 
+/*
+   Enable / disable the farming mode for the current character
+*/
 @Action("farming-mode")
 export class FarmingMode extends BaseAction {
 
     updateItem(context: string) {
-        const on = sd.pluginSettings.farmingMode;
+        const on = sd.pluginSettings.farmingMode
         sd.setState(context, on ? 1 : 0);
     }
 

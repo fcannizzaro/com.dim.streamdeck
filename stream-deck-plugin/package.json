@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@stream-deck-for-node/sdk": "^1.0.8",
-    "axios": "^0.24.0",
     "ws": "^8.4.0"
   },
   "pkg": {

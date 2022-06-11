@@ -6,6 +6,9 @@ interface SearchSettings {
     search: string;
 }
 
+/*
+   Trigger a pre compiled query and show the results
+*/
 @Action("search")
 export class Search extends BaseAction<SearchSettings> {
 

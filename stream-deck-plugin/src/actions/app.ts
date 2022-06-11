@@ -5,6 +5,9 @@ interface AppSettings {
     beta: boolean;
 }
 
+/*
+   Open a specific version of DIM in the browser
+*/
 @Action("app")
 export class App extends BaseAction<AppSettings> {
 

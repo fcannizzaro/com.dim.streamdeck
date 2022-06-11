@@ -3,12 +3,10 @@
   "Author": "fcannizzaro",
   "Description": "DIM actions",
   "Icon": "icons/pluginIcon",
-  "Version": "1.0.3",
+  "Version": "1.0.4",
   "SDKVersion": 2,
   "Bundle": "index.js",
-  "Engine": {
-    "node": "16.0.0"
-  },
+  "uuid": "com.dim.streamdeck",
   "Software": {
     "MinimumVersion": "5.0"
   },

@@ -10,11 +10,20 @@ import "./actions/max-power";
 import "./actions/farming-mode";
 
 import {StreamDeck} from "@stream-deck-for-node/sdk";
+import {callExtension} from "./server";
+
+interface Loadout {
+    id: string;
+    label: string;
+}
+
+interface LoadoutCharacter {
+    label: string;
+    items: Loadout[]
+}
 
 export interface DimSettings {
-    loadouts: Record<string, string[]>
-    membershipId: string
-    membershipType: string
+    loadouts: Record<string, LoadoutCharacter>
     postmaster: {
         total: number
         ascendantShards?: number
@@ -24,7 +33,7 @@ export interface DimSettings {
     maxPower: {
         total: string
         base: string
-        artifact: string
+        artifact: number
     }
     metrics: {
         battlePass: number;
@@ -32,6 +41,9 @@ export interface DimSettings {
         crucible: number;
         gambit: number;
         trials: number;
+        gunsmith: number;
+        ironBanner: number;
+        artifactIcon: string;
     }
     vault: {
         vault: string
@@ -46,6 +58,9 @@ export const sd = new StreamDeck<DimSettings>();
 
 // Reset Plugin (Development Only)
 // setTimeout(() => sd.resetPluginSettings(), 4000);
+
+// to keep max power / postmaster always updated
+setInterval(() => callExtension("refresh"), 15000);
 
 process.on('uncaughtException', (e) => {
     console.log(e);

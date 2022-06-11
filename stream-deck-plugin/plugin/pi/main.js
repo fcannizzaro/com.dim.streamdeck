@@ -16,7 +16,7 @@ const emptySelect = (select) => {
 // initialize character field
 const dimInit = async () => {
     if (character) {
-        Object.keys(loadouts).forEach(it => character.options.add(new Option(it, it)));
+        Object.entries(loadouts).forEach(([id, {label}]) => character.options.add(new Option(label, id)));
         character.value = prevSettings["character"];
     }
     if (loadout) {
@@ -28,9 +28,10 @@ const dimInit = async () => {
 // initialize loadout field
 const initLoadouts = () => {
     emptySelect(loadout);
-    if ((loadouts[character.value] || []).length) {
+
+    if (loadouts[character.value]) {
         loadoutField.classList.remove("hidden");
-        loadouts[character.value].forEach(it => loadout.options.add(new Option(it, it)));
+        loadouts[character.value]?.items?.forEach(it => loadout.options.add(new Option(it.label, it.id)));
     } else {
         loadoutField.classList.add("hidden");
     }
@@ -43,7 +44,7 @@ const showHideDimConnectionBanner = (visible) => {
 
 document.addEventListener('init', async ({settings, pluginSettings, action}) => {
 
-    showHideDimConnectionBanner(!Object.keys(pluginSettings).length);
+    showHideDimConnectionBanner(!Object.keys(pluginSettings || {}).length);
 
     // show the actions settings block
     const actionPI = document.getElementById(action);
@@ -60,7 +61,6 @@ document.addEventListener('init', async ({settings, pluginSettings, action}) => 
     loadoutField = document.getElementById('loadout-field');
 
     // init variables
-    console.log(pluginSettings);
     loadouts = pluginSettings.loadouts;
     prevSettings = settings;
     await dimInit();
@@ -68,7 +68,7 @@ document.addEventListener('init', async ({settings, pluginSettings, action}) => 
 
 document.addEventListener('stateChange', async ({changed, settings, pluginSettings, action}) => {
 
-    showHideDimConnectionBanner(!Object.keys(pluginSettings).length);
+    showHideDimConnectionBanner(!Object.keys(pluginSettings || {}).length);
 
     if (changed === 'settings') {
         // character.value = settings["character"];

@@ -20,11 +20,14 @@ interface VaultSettings {
     item: string;
 }
 
+/*
+  Show Vault stats like currencies, total slots, etc...
+*/
 @Action("vault")
 export class Vault extends BaseAction<VaultSettings> {
 
     updateItem(context: string, settings: VaultSettings) {
-        sd.setTitle(context, sd.pluginSettings?.vault?.[settings.item]);
+        sd.setTitle(context, sd.pluginSettings?.vault?.[settings.item]?.toString());
         const image = IMAGES[settings.item];
         image && sd.setImage(context, image);
     }

@@ -21,18 +21,16 @@ interface PowerSettings {
     powerType: "total" | "base" | "artifact";
 }
 
+/*
+   Show the max power for the current character
+   Tap to Equip the Max Power Loadout
+*/
 @Action("power")
 export class MaxPower extends BaseAction<PowerSettings> {
 
-    constructor() {
-        super();
-        // to keep max power / postmaster always updated
-        setInterval(() => callExtension("refresh"), 15000);
-    }
-
     updateItem(context: string, settings: PowerSettings) {
         const powerType = settings.powerType ?? "total";
-        sd.setTitle(context, sd.pluginSettings.maxPower?.[powerType] || '?');
+        sd.setTitle(context, sd.pluginSettings.maxPower?.[powerType]?.toString() || '?');
         const image = IMAGES[powerType];
         image && sd.setImage(context, image);
     }

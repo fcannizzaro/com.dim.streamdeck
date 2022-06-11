@@ -3,9 +3,12 @@ import {callExtension} from "../server";
 import {sd} from "../index";
 
 interface RandomizeSettings {
-    character: string;
+    weaponsOnly: boolean;
 }
 
+/*
+    Randomize the current character
+ */
 @Action("randomize")
 export class Randomize extends BaseAction<RandomizeSettings> {
 

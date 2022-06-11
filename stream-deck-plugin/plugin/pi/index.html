@@ -55,15 +55,12 @@
         </details>
     </div>
     <div id="com.dim.streamdeck.randomize" class="hidden isAction">
-        <div type="select" class="sdpi-item">
-            <div class="sdpi-item-label">Character</div>
-            <select class="sdProperty full" id="character" oninput="setSettings()">
-            </select>
+        <div type="checkbox" class="sdpi-item">
+            <div class="sdpi-item-label">Options</div>
+            <input class="sdProperty sdCheckbox sdpi-item-value" id="weaponsOnly" type="checkbox" value="beta"
+                   oninput="setSettings()">
+            <label for="weaponsOnly"><span></span>Weapons Only</label>
         </div>
-        <details>
-            <summary>Guide</summary>
-            <p>Choose a character to randomize.</p>
-        </details>
     </div>
     <div id="com.dim.streamdeck.app" class="hidden isAction">
         <div type="checkbox" class="sdpi-item">
@@ -123,6 +120,8 @@
                 <option value=""></option>
                 <option value="battlePass">Battle Pass Level</option>
                 <option value="vanguard">Vanguard</option>
+                <option value="gunsmith">Gunsmith</option>
+                <option value="ironBanner">Iron Banner</option>
                 <option value="gambit">Gambit</option>
                 <option value="crucible">Crucible</option>
                 <option value="trials">Trials</option>
