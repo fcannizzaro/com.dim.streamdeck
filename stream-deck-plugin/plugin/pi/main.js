@@ -66,16 +66,45 @@ document.addEventListener('init', async ({settings, pluginSettings, action}) => 
     await dimInit();
 });
 
+const onSlotChange = (slot) => {
+    setLocalSettings({
+        slot
+    });
+    Array.from(document.querySelectorAll('.slots img')).forEach(e => e.className = '');
+    document.querySelector(`.slots img[alt=${slot}]`).className = 'selected';
+}
+
+const onSelection = (selection) => {
+    sendToPlugin({
+        selection
+    });
+}
+
+const onPreviewSelection = () => {
+    sendToPlugin({
+        preview: true
+    });
+}
+
 document.addEventListener('stateChange', async ({changed, settings, pluginSettings, action}) => {
 
     showHideDimConnectionBanner(!Object.keys(pluginSettings || {}).length);
 
+    sendToPlugin({
+        "test": "ok"
+    });
+
     if (changed === 'settings') {
-        // character.value = settings["character"];
-        // loadout.value = settings["loadout"];
+
+        if (action.endsWith('free-slot')) {
+            document.querySelector(`.slots img[alt=${settings.slot}]`).className = 'selected';
+        }
+
         if (action.endsWith('loadout') && character.value !== prevSettings["character"]) {
             initLoadouts();
         }
+
+
         prevSettings = settings;
     }
 });

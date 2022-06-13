@@ -132,6 +132,38 @@
             <p>Choose a metric to show.</p>
         </details>
     </div>
+    <div id="com.dim.streamdeck.free-slot" class="hidden isAction">
+        <div class="sdpi-item">
+            <div class="sdpi-item-label">Slot</div>
+            <div class="slots">
+                    <img src="./images/slot-helmet.png" alt="helmet" onClick="onSlotChange('helmet')"/>
+                    <img src="./images/slot-gloves.png" alt="gloves" onClick="onSlotChange('gloves')"/>
+                    <img src="./images/slot-chest.png" alt="chest" onClick="onSlotChange('chest')"/>
+                    <img src="./images/slot-boots.png" alt="boots" onClick="onSlotChange('boots')"/>
+                    <img src="./images/slot-class.png" alt="class" onClick="onSlotChange('class')"/>
+                    <img src="./images/slot-kinetik.png" alt="kinetik" onClick="onSlotChange('kinetik')"/>
+                    <img src="./images/slot-energy.png" alt="energy" onClick="onSlotChange('energy')"/>
+                    <img src="./images/slot-power.png" alt="power" onClick="onSlotChange('power')"/>
+            </div>
+        </div>
+        <details>
+            <summary>Guide</summary>
+            <p>Choose a slot to free up.</p>
+        </details>
+    </div>
+
+    <div id="com.dim.streamdeck.equip-item" class="hidden isAction">
+        <div class="sdpi-item">
+            <div class="sdpi-item-label empty"></div>
+            <button onclick="onSelection('item')">SELECT ITEM</button>
+            <button onclick="onPreviewSelection()">SHOW ITEM</button>
+        </div>
+        <details>
+            <summary>Guide</summary>
+            <p>Choose a slot to free up.</p>
+        </details>
+    </div>
+
     <div id="com.dim.streamdeck.power" class="hidden isAction">
         <div class="sdpi-item" id="loadout-field">
             <div class="sdpi-item-label">Metric</div>

@@ -1031,13 +1031,6 @@ h1 {
   margin-bottom: 12px;
 }
 
-::-webkit-datetime-edit {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  background: url(elg_calendar_inv.svg) no-repeat left center;
-  padding-right: 1em;
-  padding-left: 25px;
-  background-position: 4px 0px;
- }
 ::-webkit-datetime-edit-fields-wrapper {
 
  }
@@ -1574,3 +1567,22 @@ input[type=range].vHorizon {
   margin: 4px 0px;
 }
 */
+
+
+.slots {
+  flex-wrap: wrap;
+  display: flex;
+  margin-top: 8px;
+}
+
+.slots img {
+  height: 36px;
+  margin-bottom: 8px;
+  margin-right: 8px;
+  cursor: pointer;
+  opacity: .5;
+}
+
+.slots img.selected {
+  opacity: 1
+}

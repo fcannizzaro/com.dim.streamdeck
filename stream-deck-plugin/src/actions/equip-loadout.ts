@@ -1,6 +1,7 @@
 import {Action, AppearDisappearEvent, BaseAction, KeyEvent, SettingsChanged} from "@stream-deck-for-node/sdk";
 import {callExtension} from "../server";
 import {sd} from "../index";
+import {PropertyInspectorMessagingEvent} from "@stream-deck-for-node/sdk/src/types/events";
 
 interface LoadoutSettings {
     character: string;
@@ -19,6 +20,10 @@ export class EquipLoadout extends BaseAction<LoadoutSettings> {
         if (loadout) {
             sd.setTitle(context, loadout.label);
         }
+    }
+
+    onMessageFromPropertyInspector(e: PropertyInspectorMessagingEvent) {
+        console.log(e.context, e.payload, e.action);
     }
 
     onAppear(e: AppearDisappearEvent<LoadoutSettings>) {

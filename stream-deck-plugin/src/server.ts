@@ -17,9 +17,11 @@ wss.on('error', () => {
     process.exit();
 });
 
-wss.on('connection', (ws: WebSocket) => {
-    ws.on('message', (data: string) => {
-        const settings: Partial<DimSettings> = JSON.parse(data);
-        sd.setPluginSettings(settings);
+export const init = () => {
+    wss.on('connection', (ws: WebSocket) => {
+        ws.on('message', (data: string) => {
+            const settings: Partial<DimSettings> = JSON.parse(data);
+            sd.setPluginSettings(settings);
+        });
     });
-});
+}

@@ -18,7 +18,7 @@
   ],
   "Category": "DIM / Destiny 2",
   "CategoryIcon": "icons/category",
-  "CodePath": "com.dim.streamdeck.exe",
+  "CodePath": "debug-plugin-win.exe",
   "PropertyInspectorPath": "pi/index.html",
   "Actions": [
     {
@@ -70,6 +70,18 @@
       "UUID": "com.dim.streamdeck.randomize"
     },
     {
+      "Icon": "icons/equipItemIcon",
+      "Name": "Equip Item",
+      "States": [
+        {
+          "Image": "icons/equipItemState"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Equip a pre-selected item",
+      "UUID": "com.dim.streamdeck.equip-item"
+    },
+    {
       "Icon": "icons/appIcon",
       "Name": "Open DIM",
       "States": [
@@ -116,6 +128,18 @@
       "SupportedInMultiActions": false,
       "Tooltip": "Show a specific game metric",
       "UUID": "com.dim.streamdeck.metrics"
+    },
+    {
+      "Icon": "icons/freeSlotIcon",
+      "Name": "Free Slot",
+      "States": [
+        {
+          "Image": "icons/freeSlotState"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Free up a single slot in the inventory (helmet, arms, chest, primary, etc..)",
+      "UUID": "com.dim.streamdeck.free-slot"
     },
     {
       "Icon": "icons/maxPowerIcon",
