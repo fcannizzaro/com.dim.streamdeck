@@ -3,7 +3,7 @@
   "Author": "fcannizzaro",
   "Description": "DIM actions",
   "Icon": "icons/pluginIcon",
-  "Version": "1.0.4",
+  "Version": "1.0.5",
   "SDKVersion": 2,
   "Bundle": "index.js",
   "uuid": "com.dim.streamdeck",
@@ -18,8 +18,15 @@
   ],
   "Category": "DIM / Destiny 2",
   "CategoryIcon": "icons/category",
-  "CodePath": "debug-plugin-win.exe",
+  "CodePath": "com.dim.streamdeck.exe",
   "PropertyInspectorPath": "pi/index.html",
+  "Profiles": [
+    {
+      "Name": "DIM-Enhanced",
+      "DeviceType": 0,
+      "Readonly": true
+    }
+  ],
   "Actions": [
     {
       "Icon": "icons/loadoutIcon",
@@ -71,7 +78,7 @@
     },
     {
       "Icon": "icons/equipItemIcon",
-      "Name": "Equip Item",
+      "Name": "Pull Item",
       "States": [
         {
           "Image": "icons/equipItemState"
@@ -79,7 +86,7 @@
       ],
       "SupportedInMultiActions": true,
       "Tooltip": "Equip a pre-selected item",
-      "UUID": "com.dim.streamdeck.equip-item"
+      "UUID": "com.dim.streamdeck.pull-item"
     },
     {
       "Icon": "icons/appIcon",
@@ -110,7 +117,12 @@
       "Name": "Postmaster",
       "States": [
         {
-          "Image": "icons/vaultState"
+          "Image": "icons/vaultState",
+          "TitleAlignment": "bottom"
+        },
+        {
+          "Image": "icons/vaultState",
+          "TitleAlignment": "middle"
         }
       ],
       "SupportedInMultiActions": false,
@@ -122,7 +134,8 @@
       "Name": "Metrics",
       "States": [
         {
-          "Image": "icons/metricsState"
+          "Image": "icons/metricsState",
+          "TitleAlignment": "bottom"
         }
       ],
       "SupportedInMultiActions": false,
@@ -146,7 +159,8 @@
       "Name": "Max Power",
       "States": [
         {
-          "Image": "icons/loadoutState"
+          "Image": "icons/loadoutState",
+          "TitleAlignment": "bottom"
         }
       ],
       "SupportedInMultiActions": false,
@@ -167,6 +181,28 @@
       "SupportedInMultiActions": false,
       "Tooltip": "Turn on/off the DIM Farming mode",
       "UUID": "com.dim.streamdeck.farming-mode"
+    },
+    {
+      "Name": "Rotations",
+      "States": [
+        {
+          "Image": "icons/appState"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "VisibleInActionsList": false,
+      "UUID": "com.dim.streamdeck.rotations"
+    },
+    {
+      "Name": "Tile",
+      "States": [
+        {
+          "Image": "icons/pageState"
+        }
+      ],
+      "SupportedInMultiActions": false,
+      "VisibleInActionsList": false,
+      "UUID": "com.dim.streamdeck.page"
     }
   ]
 }

@@ -8,12 +8,13 @@ import {
 import {DimSettings, sd} from "../index";
 import path from "path";
 import {IMAGE_PATH} from "../constant";
+import commaNumber from 'comma-number';
 
 const IMAGES = {
-    vault: path.join(IMAGE_PATH, './vault-count.png'),
-    glimmer: path.join(IMAGE_PATH, './vault-glimmer.png'),
-    brightDust: path.join(IMAGE_PATH, './vault-dust.png'),
-    shards: path.join(IMAGE_PATH, './vault-shards.png'),
+    vault: path.join(IMAGE_PATH, './vault/vault-count.png'),
+    glimmer: path.join(IMAGE_PATH, './vault/vault-glimmer.png'),
+    brightDust: path.join(IMAGE_PATH, './vault/vault-dust.png'),
+    shards: path.join(IMAGE_PATH, './vault/vault-shards.png'),
 }
 
 interface VaultSettings {
@@ -27,7 +28,7 @@ interface VaultSettings {
 export class Vault extends BaseAction<VaultSettings> {
 
     updateItem(context: string, settings: VaultSettings) {
-        sd.setTitle(context, sd.pluginSettings?.vault?.[settings.item]?.toString());
+        sd.setTitle(context, commaNumber(sd.pluginSettings?.vault?.[settings.item]));
         const image = IMAGES[settings.item];
         image && sd.setImage(context, image);
     }

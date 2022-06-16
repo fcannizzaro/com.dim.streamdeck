@@ -6,15 +6,15 @@ import {
     PluginSettingsChanged,
     SettingsChanged
 } from "@stream-deck-for-node/sdk";
-import {callExtension} from "../server";
+import {sendToDIM} from "../server";
 import {DimSettings, sd} from "../index";
 import path from "path";
 import {IMAGE_PATH} from "../constant";
 
 const IMAGES = {
-    total: path.join(IMAGE_PATH, './power-total.png'),
-    base: path.join(IMAGE_PATH, './power-armor.png'),
-    artifact: path.join(IMAGE_PATH, './power-artifact.png')
+    total: path.join(IMAGE_PATH, './max-power/power-total.png'),
+    base: path.join(IMAGE_PATH, './max-power/power-armor.png'),
+    artifact: path.join(IMAGE_PATH, './max-power/power-artifact.png')
 }
 
 interface PowerSettings {
@@ -57,7 +57,7 @@ export class MaxPower extends BaseAction<PowerSettings> {
     }
 
     onKeyDown(e: KeyEvent) {
-        callExtension("maxPower");
+        sendToDIM("maxPower");
         sd.showOk(e.context);
     }
 

@@ -226,4 +226,6 @@ modules.xml
 
 # End of https://www.toptal.com/developers/gitignore/api/webstorm+all,node
 
-.pkg-cache 
+.pkg-cache
+
+pnpm-lock.yaml

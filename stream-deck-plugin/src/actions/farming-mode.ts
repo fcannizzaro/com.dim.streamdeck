@@ -1,5 +1,5 @@
 import {Action, AppearDisappearEvent, BaseAction, KeyEvent, PluginSettingsChanged} from "@stream-deck-for-node/sdk";
-import {callExtension} from "../server";
+import {sendToDIM} from "../server";
 import {DimSettings, sd} from "../index";
 
 /*
@@ -30,7 +30,7 @@ export class FarmingMode extends BaseAction {
     }
 
     onKeyDown(e: KeyEvent) {
-        callExtension("farmingMode");
+        sendToDIM("farmingMode");
         sd.showOk(e.context);
     }
 

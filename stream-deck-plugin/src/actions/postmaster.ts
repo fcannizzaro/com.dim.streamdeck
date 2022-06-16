@@ -7,15 +7,15 @@ import {
     SettingsChanged
 } from "@stream-deck-for-node/sdk";
 import {DimSettings, sd} from "../index";
-import {callExtension} from "../server";
+import {sendToDIM} from "../server";
 import path from "path";
 import {IMAGE_PATH} from "../constant";
 
 const IMAGES = {
-    postmaster: path.join(IMAGE_PATH, './postmaster.png'),
-    ascendantShards: path.join(IMAGE_PATH, './postmaster-shard.png'),
-    enhancementPrisms: path.join(IMAGE_PATH, './postmaster-prism.png'),
-    spoils: path.join(IMAGE_PATH, './postmaster-spoils.png')
+    postmaster: path.join(IMAGE_PATH, './postmaster/postmaster.png'),
+    ascendantShards: path.join(IMAGE_PATH, './postmaster/postmaster-shard.png'),
+    enhancementPrisms: path.join(IMAGE_PATH, './postmaster/postmaster-prism.png'),
+    spoils: path.join(IMAGE_PATH, './postmaster/postmaster-spoils.png')
 }
 
 interface PostmasterSettings {
@@ -39,7 +39,7 @@ export class Postmaster extends BaseAction {
     }
 
     onKeyDown(e: KeyEvent) {
-        callExtension("collectPostmaster");
+        sendToDIM("collectPostmaster");
         sd.showOk(e.context);
     }
 
@@ -62,6 +62,7 @@ export class Postmaster extends BaseAction {
             items[settings.postmasterItem]?.toString() || "0" :
             settings.style === "percentage" ? `${Math.round(total * 100 / 21)}%` : `${total} / 21`;
         sd.setTitle(context, title);
+        sd.setState(context, settings.postmasterItem === '' ? 1 : 0);
         sd.setImage(context, IMAGES[settings.postmasterItem || "postmaster"]);
     }
 

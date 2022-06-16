@@ -1,6 +1,13 @@
-import {Action, AppearDisappearEvent, BaseAction, KeyEvent, SettingsChanged} from "@stream-deck-for-node/sdk";
-import {callExtension} from "../server";
-import {sd} from "../index";
+import {
+    Action,
+    AppearDisappearEvent,
+    BaseAction,
+    KeyEvent,
+    PluginSettingsChanged,
+    SettingsChanged
+} from "@stream-deck-for-node/sdk";
+import {sendToDIM} from "../server";
+import {DimSettings, sd} from "../index";
 import {PropertyInspectorMessagingEvent} from "@stream-deck-for-node/sdk/src/types/events";
 
 interface LoadoutSettings {
@@ -14,6 +21,8 @@ interface LoadoutSettings {
 @Action("loadout")
 export class EquipLoadout extends BaseAction<LoadoutSettings> {
 
+    pending?: string;
+
     updateTitle(context: string, settings: LoadoutSettings) {
         const loadouts = sd.pluginSettings.loadouts;
         const loadout = loadouts[settings.character]?.items.find(it => it.id === settings.loadout);
@@ -22,8 +31,13 @@ export class EquipLoadout extends BaseAction<LoadoutSettings> {
         }
     }
 
-    onMessageFromPropertyInspector(e: PropertyInspectorMessagingEvent) {
-        console.log(e.context, e.payload, e.action);
+    async onMessageFromPropertyInspector(e: PropertyInspectorMessagingEvent) {
+        switch (e.payload.trigger) {
+            case 'selection':
+                this.pending = e.context;
+                sendToDIM("selection", {selection: "loadout"});
+                break;
+        }
     }
 
     onAppear(e: AppearDisappearEvent<LoadoutSettings>) {
@@ -35,8 +49,18 @@ export class EquipLoadout extends BaseAction<LoadoutSettings> {
     }
 
     onKeyDown(e: KeyEvent<LoadoutSettings>) {
-        callExtension("loadout", e.payload.settings);
+        sendToDIM("loadout", e.payload.settings);
         sd.showOk(e.context);
+    }
+
+    onPluginSettingsChanged(e: PluginSettingsChanged<DimSettings>) {
+        if (!this.pending || !e.changedKeys.includes("selection")) {
+            return;
+        }
+        if (sd.pluginSettings.selectionType === 'loadout') {
+            sd.setSettings<LoadoutSettings>(this.pending, sd.pluginSettings.selection);
+            this.pending = undefined;
+        }
     }
 
 }

@@ -1,5 +1,5 @@
 import {Action, BaseAction, KeyEvent} from "@stream-deck-for-node/sdk";
-import {callExtension} from "../server";
+import {sendToDIM} from "../server";
 import {sd} from "../index";
 
 /*
@@ -9,7 +9,7 @@ import {sd} from "../index";
 export class Refresh extends BaseAction {
 
     onKeyDown(e: KeyEvent) {
-        callExtension("refresh");
+        sendToDIM("refresh");
         sd.showOk(e.context);
     }
 

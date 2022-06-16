@@ -14,13 +14,15 @@
   },
   "dependencies": {
     "@stream-deck-for-node/sdk": "1.0.9",
+    "@types/comma-number": "^2.1.0",
+    "comma-number": "^2.1.0",
     "ws": "^8.4.0"
   },
   "pkg": {
     "targets": [
       "node16-windows-x64"
     ],
-    "assets": "./images/*"
+    "assets": "./images/**/*"
   },
   "devDependencies": {
     "@types/node": "^16.11.12",
