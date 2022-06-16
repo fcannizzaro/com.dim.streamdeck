@@ -9,10 +9,13 @@ import {
 import {sendToDIM} from "../server";
 import {DimSettings, sd} from "../index";
 import {PropertyInspectorMessagingEvent} from "@stream-deck-for-node/sdk/src/types/events";
+import {bungify} from "../util/bungify";
 
 interface LoadoutSettings {
     character: string;
     loadout: string;
+    label: string;
+    icon: string;
 }
 
 /*
@@ -24,11 +27,10 @@ export class EquipLoadout extends BaseAction<LoadoutSettings> {
     pending?: string;
 
     updateTitle(context: string, settings: LoadoutSettings) {
-        const loadouts = sd.pluginSettings.loadouts;
-        const loadout = loadouts[settings.character]?.items.find(it => it.id === settings.loadout);
-        if (loadout) {
-            sd.setTitle(context, loadout.label);
+        if (settings.loadout) {
+            sd.setTitle(context, settings.label);
         }
+        sd.setImage(context, bungify(settings.icon));
     }
 
     async onMessageFromPropertyInspector(e: PropertyInspectorMessagingEvent) {

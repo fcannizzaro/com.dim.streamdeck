@@ -13,7 +13,7 @@
     "build:bin": "npx pkg package.json --compress GZip -o plugin/com.dim.streamdeck"
   },
   "dependencies": {
-    "@stream-deck-for-node/sdk": "1.0.9",
+    "@stream-deck-for-node/sdk": "1.0.10",
     "@types/comma-number": "^2.1.0",
     "comma-number": "^2.1.0",
     "ws": "^8.4.0"
