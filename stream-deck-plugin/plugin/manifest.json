@@ -105,7 +105,8 @@
       "Name": "Vault",
       "States": [
         {
-          "Image": "icons/vaultState"
+          "Image": "icons/vaultState",
+          "TitleAlignment": "bottom"
         }
       ],
       "SupportedInMultiActions": false,

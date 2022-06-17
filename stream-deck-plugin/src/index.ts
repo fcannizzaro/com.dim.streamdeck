@@ -66,8 +66,8 @@ export const sd = new StreamDeck<DimSettings>();
 // Reset Plugin (Development Only)
 // setTimeout(() => sd.resetPluginSettings(), 4000);
 
-// to keep max power / postmaster always updated
-setInterval(() => sendToDIM("refresh"), 30000);
+// to keep max power / postmaster always updated every 2.5 minutes
+setInterval(() => sendToDIM("refresh"), 1000 * 60 * 2.5);
 
 process.on('uncaughtException', (e) => {
     console.log(e);
