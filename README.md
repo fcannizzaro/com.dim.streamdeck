@@ -6,11 +6,7 @@ A Stream Deck plugin to interact with Destiny Item Manager and Destiny 2
 
 ## Installation
 
-Install the browser extension
-
-[![download](https://github.com/fcannizzaro/com.dim.streamdeck/blob/main/media/extension.png?raw=true)](https://chrome.google.com/webstore/detail/odiiafbigbkmleijfhjgidbiefjolcmg)
-
-and then download the stream-deck plugin from the [releases](https://github.com/fcannizzaro/com.dim.streamdeck/releases/latest)
+Download the stream-deck plugin from the [releases](https://github.com/fcannizzaro/com.dim.streamdeck/releases/latest)
 or from below:
 
 [![download](https://github.com/fcannizzaro/com.dim.streamdeck/blob/main/media/download.png?raw=true)](https://apps.elgato.com/plugins/com.dim.streamdeck)
