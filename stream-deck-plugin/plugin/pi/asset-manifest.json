@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.b0621c21.css",
-    "main.js": "./static/js/main.76c69366.js",
+    "main.js": "./static/js/main.e3ff3738.js",
     "static/media/dust.png": "./static/media/dust.7bd3e9c2794494578f4d.png",
     "static/media/glimmer.png": "./static/media/glimmer.66d94672a540d90cae28.png",
     "static/media/shards.png": "./static/media/shards.198825a766976370fcc8.png",
@@ -9,6 +9,6 @@
   },
   "entrypoints": [
     "static/css/main.b0621c21.css",
-    "static/js/main.76c69366.js"
+    "static/js/main.e3ff3738.js"
   ]
 }

@@ -2,6 +2,7 @@ import React from "react";
 import {useSettings} from "../hooks/stream-deck";
 import {SettingsBox} from "../components/SettingsBox";
 import styled from 'styled-components';
+import {ButtonsGroup} from "../components/ButtonsGroup";
 
 const TextAreaSearch = styled.textarea`
   background: #3d3d3d;
@@ -19,8 +20,13 @@ export const Search = () => {
         <TextAreaSearch
             rows={5}
             placeholder="Search item/perk"
-            onChange={it => setSettings({search: it.target.value})}
+            onChange={it => setSettings({...settings, search: it.target.value})}
             value={settings.search || ""}
+        />
+        <ButtonsGroup
+            value={settings.page}
+            onChange={page => setSettings({...settings, page})}
+            items={["Inventory", "Progress", "Vendors", "Records"]}
         />
     </SettingsBox>;
 
