@@ -56,7 +56,7 @@ export class MaxPower extends BaseAction<PowerSettings> {
 
     }
 
-    onKeyDown(e: KeyEvent) {
+    onSingleTap(e: KeyEvent) {
         sendToDIM("maxPower");
         sd.showOk(e.context);
     }

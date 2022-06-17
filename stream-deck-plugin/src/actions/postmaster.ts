@@ -38,9 +38,11 @@ export class Postmaster extends BaseAction {
         this.updateItem(e.context, e.payload.settings);
     }
 
-    onKeyDown(e: KeyEvent) {
-        sendToDIM("collectPostmaster");
-        sd.showOk(e.context);
+    onKeyDown(e: KeyEvent<PostmasterSettings>) {
+        if (e.payload.settings.postmasterItem === '') {
+            sendToDIM("collectPostmaster");
+            sd.showOk(e.context);
+        }
     }
 
     async onPluginSettingsChanged(e: PluginSettingsChanged<DimSettings>) {

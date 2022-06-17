@@ -1,7 +1,8 @@
 import {WebSocket, WebSocketServer} from "ws";
-import {DimSettings, sd} from "./index";
+import {sd} from "./index";
+import ncp from "copy-paste";
 
-const wss = new WebSocketServer({port: 9119});
+const wss = new WebSocketServer({port: 9119, host: 'localhost'});
 
 export const sendToDIM = (action: string, args: Record<string, any> = {}) => {
     const msg = JSON.stringify({action, args});
@@ -21,8 +22,13 @@ export const init = () => {
     wss.on('connection', (ws: WebSocket) => {
         sd.setPluginSettings({connected: true});
         ws.on('message', (data: string) => {
-            const settings: Partial<DimSettings> = JSON.parse(data);
-            sd.setPluginSettings(settings);
+            const parsed = JSON.parse(data);
+            const share = parsed['shareUrl'];
+            if (share) {
+                ncp.copy(share);
+            } else {
+                sd.setPluginSettings(parsed);
+            }
         });
         ws.on('close', () => {
             sd.setPluginSettings({connected: false});

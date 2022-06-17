@@ -9,12 +9,17 @@ import {DimSettings, sd} from "../index";
 export class FarmingMode extends BaseAction {
 
     updateItem(context: string) {
-        const on = sd.pluginSettings.farmingMode
+        const on = sd.pluginSettings.farmingMode;
         sd.setState(context, on ? 1 : 0);
     }
 
     onAppear(e: AppearDisappearEvent) {
         this.updateItem(e.context);
+    }
+
+    onSingleTap(e: KeyEvent) {
+        sendToDIM("farmingMode");
+        sd.showOk(e.context);
     }
 
     async onPluginSettingsChanged(e: PluginSettingsChanged<DimSettings>) {
@@ -27,11 +32,6 @@ export class FarmingMode extends BaseAction {
             this.updateItem(context);
         }
 
-    }
-
-    onKeyDown(e: KeyEvent) {
-        sendToDIM("farmingMode");
-        sd.showOk(e.context);
     }
 
 }

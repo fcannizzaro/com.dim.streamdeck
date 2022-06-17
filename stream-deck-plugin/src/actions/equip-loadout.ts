@@ -50,8 +50,13 @@ export class EquipLoadout extends BaseAction<LoadoutSettings> {
         this.updateTitle(e.context, e.settings);
     }
 
-    onKeyDown(e: KeyEvent<LoadoutSettings>) {
+    onSingleTap(e: KeyEvent<LoadoutSettings>) {
         sendToDIM("loadout", e.payload.settings);
+        sd.showOk(e.context);
+    }
+
+    onLongPress(e: KeyEvent<LoadoutSettings>) {
+        sendToDIM("shareLoadout", e.payload.settings);
         sd.showOk(e.context);
     }
 
