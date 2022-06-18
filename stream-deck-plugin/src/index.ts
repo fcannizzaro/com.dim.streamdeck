@@ -3,7 +3,7 @@ import "./actions/randomize";
 import "./actions/search";
 import "./actions/equip-loadout";
 import "./actions/vault";
-import "./actions/app";
+import "./actions/dim-app";
 import "./actions/postmaster";
 import "./actions/metrics";
 import "./actions/max-power";
