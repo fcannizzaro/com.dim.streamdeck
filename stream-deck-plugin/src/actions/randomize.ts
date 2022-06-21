@@ -1,20 +1,18 @@
-import {Action, BaseAction, KeyEvent} from "@stream-deck-for-node/sdk";
-import {sendToDIM} from "../server";
-import {sd} from "../index";
+import { Action, BaseAction, KeyEvent } from '@stream-deck-for-node/sdk';
+import { sendToDIM } from '../server';
+import { sd } from '../index';
 
 interface RandomizeSettings {
-    weaponsOnly: boolean;
+  weaponsOnly: boolean;
 }
 
 /*
     Randomize the current character
  */
-@Action("randomize")
+@Action('randomize')
 export class Randomize extends BaseAction<RandomizeSettings> {
-
-    onKeyDown(e: KeyEvent) {
-        sendToDIM("randomize", e.payload.settings);
-        sd.showOk(e.context);
-    }
-
+  onKeyDown(e: KeyEvent) {
+    sendToDIM('randomize', e.payload.settings);
+    sd.showOk(e.context);
+  }
 }

@@ -198,7 +198,9 @@
       "Name": "Tile",
       "States": [
         {
-          "Image": "icons/pageState"
+          "Image": "icons/pageState",
+          "TitleAlignment": "middle",
+          "FontSize": "16"
         }
       ],
       "SupportedInMultiActions": false,

@@ -1,37 +1,40 @@
-import {Action, AppearDisappearEvent, BaseAction, KeyEvent, PluginSettingsChanged} from "@stream-deck-for-node/sdk";
-import {sendToDIM} from "../server";
-import {DimSettings, sd} from "../index";
+import {
+  Action,
+  AppearDisappearEvent,
+  BaseAction,
+  KeyEvent,
+  PluginSettingsChanged,
+} from '@stream-deck-for-node/sdk';
+import { sendToDIM } from '../server';
+import { sd } from '../index';
+import { DimSettings } from '../interfaces';
 
 /*
    Enable / disable the farming mode for the current character
 */
-@Action("farming-mode")
+@Action('farming-mode')
 export class FarmingMode extends BaseAction {
+  updateItem(context: string) {
+    const on = sd.pluginSettings.farmingMode;
+    sd.setState(context, on ? 1 : 0);
+  }
 
-    updateItem(context: string) {
-        const on = sd.pluginSettings.farmingMode;
-        sd.setState(context, on ? 1 : 0);
+  onAppear(e: AppearDisappearEvent) {
+    this.updateItem(e.context);
+  }
+
+  onSingleTap(e: KeyEvent) {
+    sendToDIM('farmingMode');
+    sd.showOk(e.context);
+  }
+
+  async onPluginSettingsChanged(e: PluginSettingsChanged<DimSettings>) {
+    if (!e.changedKeys.includes('farmingMode')) {
+      return;
     }
 
-    onAppear(e: AppearDisappearEvent) {
-        this.updateItem(e.context);
+    for (const context of Array.from(this.contexts)) {
+      this.updateItem(context);
     }
-
-    onSingleTap(e: KeyEvent) {
-        sendToDIM("farmingMode");
-        sd.showOk(e.context);
-    }
-
-    async onPluginSettingsChanged(e: PluginSettingsChanged<DimSettings>) {
-
-        if (!e.changedKeys.includes("farmingMode")) {
-            return;
-        }
-
-        for (const context of Array.from(this.contexts)) {
-            this.updateItem(context);
-        }
-
-    }
-
+  }
 }

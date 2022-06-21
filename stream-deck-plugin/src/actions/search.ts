@@ -1,21 +1,19 @@
-import {Action, BaseAction, KeyEvent} from "@stream-deck-for-node/sdk";
-import {sendToDIM} from "../server";
-import {sd} from "../index";
+import { Action, BaseAction, KeyEvent } from '@stream-deck-for-node/sdk';
+import { sendToDIM } from '../server';
+import { sd } from '../index';
 
 interface SearchSettings {
-    search: string;
-    page: string;
+  search: string;
+  page: string;
 }
 
 /*
    Trigger a pre compiled query and show the results
 */
-@Action("search")
+@Action('search')
 export class Search extends BaseAction<SearchSettings> {
-
-    onKeyDown(e: KeyEvent<SearchSettings>) {
-        sendToDIM("search", e.payload.settings);
-        sd.showOk(e.context);
-    }
-
+  onKeyDown(e: KeyEvent<SearchSettings>) {
+    sendToDIM('search', e.payload.settings);
+    sd.showOk(e.context);
+  }
 }

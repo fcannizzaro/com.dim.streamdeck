@@ -3,6 +3,7 @@ import {useGlobalSettings, useStreamDeck} from "./hooks/stream-deck";
 import {SettingsBox} from "./components/SettingsBox";
 import {SettingBody, SettingsHeader} from "./components/SettingsHeader";
 import {InfoBanner} from "./components/DiscordBanner";
+import {ChallengeBox} from "./components/ChallengeBox";
 
 function App() {
 
@@ -23,18 +24,19 @@ function App() {
             <div className="mini-spaced"/>
             <div className="content">
                 {
-                    !pluginSettings.connected ?
-                        <SettingsBox error>
-                            <SettingsHeader error>
-                                <span>Error</span>
-                            </SettingsHeader>
-                            <SettingBody>The <b>plugin</b> is not enabled or <b>DIM</b> is closed</SettingBody>
-                            <InfoBanner/>
-                        </SettingsBox>
-                        : <>
-                            <Action/>
-                            <InfoBanner guide={false} discord="DISCORD SERVER" />
-                        </>
+                    pluginSettings.challenge ? <ChallengeBox challenge={pluginSettings.challenge}/> :
+                        !pluginSettings.connected ?
+                            <SettingsBox error>
+                                <SettingsHeader error>
+                                    <span>Error</span>
+                                </SettingsHeader>
+                                <SettingBody>The <b>plugin</b> is not enabled or <b>DIM</b> is closed</SettingBody>
+                                <InfoBanner/>
+                            </SettingsBox>
+                            : <>
+                                <Action/>
+                                <InfoBanner guide={false} discord="DISCORD SERVER"/>
+                            </>
                 }
             </div>
         </div>

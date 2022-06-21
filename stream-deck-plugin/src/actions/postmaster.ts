@@ -1,71 +1,72 @@
 import {
-    Action,
-    AppearDisappearEvent,
-    BaseAction,
-    KeyEvent,
-    PluginSettingsChanged,
-    SettingsChanged
-} from "@stream-deck-for-node/sdk";
-import {DimSettings, sd} from "../index";
-import {sendToDIM} from "../server";
-import path from "path";
-import {IMAGE_PATH} from "../constant";
+  Action,
+  AppearDisappearEvent,
+  BaseAction,
+  KeyEvent,
+  PluginSettingsChanged,
+  SettingsChanged,
+} from '@stream-deck-for-node/sdk';
+import { sd } from '../index';
+import { sendToDIM } from '../server';
+import path from 'path';
+import { IMAGE_PATH } from '../constant';
+import { DimSettings } from '../interfaces';
 
 const IMAGES = {
-    postmaster: path.join(IMAGE_PATH, './postmaster/postmaster.png'),
-    ascendantShards: path.join(IMAGE_PATH, './postmaster/postmaster-shard.png'),
-    enhancementPrisms: path.join(IMAGE_PATH, './postmaster/postmaster-prism.png'),
-    spoils: path.join(IMAGE_PATH, './postmaster/postmaster-spoils.png')
-}
+  postmaster: path.join(IMAGE_PATH, './postmaster/postmaster.png'),
+  ascendantShards: path.join(IMAGE_PATH, './postmaster/postmaster-shard.png'),
+  enhancementPrisms: path.join(IMAGE_PATH, './postmaster/postmaster-prism.png'),
+  spoils: path.join(IMAGE_PATH, './postmaster/postmaster-spoils.png'),
+};
 
 interface PostmasterSettings {
-    style: "percentage" | "counter"
-    postmasterItem: "" | "ascendantShards" | "enhancementPrisms" | "spoils"
+  style: 'percentage' | 'counter';
+  postmasterItem: '' | 'ascendantShards' | 'enhancementPrisms' | 'spoils';
 }
 
 /*
    Show Postmaster items count, ascendant shards, enhancement prisms, etc...
    Tap to pull items
 */
-@Action("postmaster")
+@Action('postmaster')
 export class Postmaster extends BaseAction {
+  onSettingsChanged(e: SettingsChanged<PostmasterSettings>) {
+    this.updateItem(e.context, e.settings);
+  }
 
-    onSettingsChanged(e: SettingsChanged<PostmasterSettings>) {
-        this.updateItem(e.context, e.settings);
+  onAppear(e: AppearDisappearEvent<PostmasterSettings>) {
+    this.updateItem(e.context, e.payload.settings);
+  }
+
+  onKeyDown(e: KeyEvent<PostmasterSettings>) {
+    if (e.payload.settings.postmasterItem === '') {
+      sendToDIM('collectPostmaster');
+      sd.showOk(e.context);
+    }
+  }
+
+  async onPluginSettingsChanged(e: PluginSettingsChanged<DimSettings>) {
+    if (!e.changedKeys.includes('postmaster')) {
+      return;
     }
 
-    onAppear(e: AppearDisappearEvent<PostmasterSettings>) {
-        this.updateItem(e.context, e.payload.settings);
-    }
+    await Promise.all(
+      Array.from(this.contexts).map(async (context) => {
+        const settings = await sd.getSettings<PostmasterSettings>(context);
+        this.updateItem(context, settings);
+      }),
+    );
+  }
 
-    onKeyDown(e: KeyEvent<PostmasterSettings>) {
-        if (e.payload.settings.postmasterItem === '') {
-            sendToDIM("collectPostmaster");
-            sd.showOk(e.context);
-        }
-    }
-
-    async onPluginSettingsChanged(e: PluginSettingsChanged<DimSettings>) {
-
-        if (!e.changedKeys.includes("postmaster")) {
-            return;
-        }
-
-        await Promise.all(Array.from(this.contexts).map(async (context) => {
-            const settings = await sd.getSettings<PostmasterSettings>(context);
-            this.updateItem(context, settings);
-        }));
-
-    }
-
-    updateItem(context: string, settings: PostmasterSettings) {
-        const {total = 0, ...items} = sd.pluginSettings.postmaster || {};
-        const title = settings.postmasterItem ?
-            items[settings.postmasterItem]?.toString() || "0" :
-            settings.style === "percentage" ? `${Math.round(total * 100 / 21)}%` : `${total} / 21`;
-        sd.setTitle(context, title);
-        sd.setState(context, settings.postmasterItem === '' ? 1 : 0);
-        sd.setImage(context, IMAGES[settings.postmasterItem || "postmaster"]);
-    }
-
+  updateItem(context: string, settings: PostmasterSettings) {
+    const { total = 0, ...items } = sd.pluginSettings.postmaster || {};
+    const title = settings.postmasterItem
+      ? items[settings.postmasterItem]?.toString() || '0'
+      : settings.style === 'percentage'
+      ? `${Math.round((total * 100) / 21)}%`
+      : `${total} / 21`;
+    sd.setTitle(context, title);
+    sd.setState(context, settings.postmasterItem === '' ? 1 : 0);
+    sd.setImage(context, IMAGES[settings.postmasterItem || 'postmaster']);
+  }
 }
