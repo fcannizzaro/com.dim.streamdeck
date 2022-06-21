@@ -23,8 +23,23 @@
   "Profiles": [
     {
       "Name": "DIM-Enhanced",
-      "DeviceType": 0,
-      "Readonly": true
+      "ReadOnly": true,
+      "DeviceType": 0
+    },
+    {
+      "Name": "DIM-EnhancedMini",
+      "ReadOnly": true,
+      "DeviceType": 1
+    },
+    {
+      "Name": "DIM-EnhancedXL",
+      "ReadOnly": true,
+      "DeviceType": 2
+    },
+    {
+      "Name": "DIM-Enhanced",
+      "ReadOnly": true,
+      "DeviceType": 3
     }
   ],
   "Actions": [

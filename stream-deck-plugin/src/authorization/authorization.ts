@@ -78,12 +78,12 @@ export const initChallenge = (ws: WebSocket) => {
   // send challenge and sharedKey
   ws.send(`${DIM_VERIFICATION + challenge}:${randomToken()}`);
 
-  switchFirstDeviceProfile('DIM-Enhanced');
+  const type: number = switchFirstDeviceProfile('DIM-Enhanced');
+  const positionByType = [7, 1, 11, 7][type];
 
   setTimeout(() => {
     const tiles = sd.allContexts()['com.dim.streamdeck.page'];
-    const center = Math.floor(tiles.length / 2);
-    sd.setImage(tiles[center], join(IMAGE_PATH, './authorization.png'));
-    sd.setTitle(tiles[center], challenge.toString());
-  }, 500);
+    sd.setImage(tiles[positionByType], join(IMAGE_PATH, './authorization.png'));
+    sd.setTitle(tiles[positionByType], challenge.toString());
+  }, 250);
 };

@@ -14,7 +14,8 @@ export const copyHandler = (msg: Record<string, any>): boolean => {
   return false;
 };
 
-export const switchFirstDeviceProfile = (profile?: string) => {
+export const switchFirstDeviceProfile = (profile?: string): number => {
   const first = sd.info.devices[0];
   first && sd.switchToProfile(sd.uuid, first.id, profile);
+  return first.type;
 };
