@@ -8,11 +8,20 @@ import {
 } from './authorization/authorization';
 import { encrypt } from './authorization/encryption';
 import { copyHandler } from './util';
+import { createServer } from 'https';
+import { readFileSync } from 'fs';
+import { SSL_PATH } from './constant';
+import { join } from 'path';
 
-const wss = new WebSocketServer({ port: 9119, host: 'localhost' });
+const server = createServer({
+  cert: readFileSync(join(SSL_PATH, './cert.pem')),
+  key: readFileSync(join(SSL_PATH, './key.pem')),
+});
+
+const wss = new WebSocketServer({ server });
 
 export const sendToDIM = (action: string, args: Record<string, any> = {}) => {
-  const baseMsg = JSON.stringify({ action, args });
+  const baseMsg = JSON.stringify({ action, ...args });
   wss.clients.forEach((ws) => {
     const sharedKey = sharedKeyById(ws.protocol);
     if (sharedKey && ws.readyState === WebSocket.OPEN) {
@@ -60,3 +69,5 @@ export const init = () => {
     });
   });
 };
+
+server.listen(9119, 'localhost');

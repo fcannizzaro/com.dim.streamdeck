@@ -37,6 +37,7 @@ export interface DimSettings {
     trials: number;
     gunsmith: number;
     ironBanner: number;
+    triumphs: number;
     artifactIcon: string;
   };
   vault: {

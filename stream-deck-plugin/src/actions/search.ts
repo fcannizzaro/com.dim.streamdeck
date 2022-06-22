@@ -5,6 +5,7 @@ import { sd } from '../index';
 interface SearchSettings {
   search: string;
   page: string;
+  pullItems: boolean;
 }
 
 /*

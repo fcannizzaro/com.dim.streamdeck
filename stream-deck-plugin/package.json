@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "dim-stream-deck-plugin",
-  "version": "1.0.0",
+  "version": "1.0.7",
   "author": "Francesco Saverio Cannizzaro (fcannizzaro)",
   "license": "GPL-3",
   "main": "./dist/index.js",
@@ -24,7 +24,10 @@
     "targets": [
       "node16-windows-x64"
     ],
-    "assets": "./images/**/*"
+    "assets": [
+      "./ssl/**/*",
+      "./images/**/*"
+    ]
   },
   "devDependencies": {
     "@types/comma-number": "^2.1.0",

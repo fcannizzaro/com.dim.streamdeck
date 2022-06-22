@@ -19,10 +19,19 @@ const IMAGES = {
   ironBanner: path.join(IMAGE_PATH, './metrics/metrics-iron-banner.png'),
   crucible: path.join(IMAGE_PATH, './metrics/metrics-crucible.png'),
   trials: path.join(IMAGE_PATH, './metrics/metrics-trials.png'),
+  triumphs: path.join(IMAGE_PATH, './metrics/metrics-triumphs.png'),
 };
 
 interface MetricsSettings {
-  metric: 'gambit' | 'vanguard' | 'crucible' | 'trials' | 'ironBanner' | 'gunsmith' | 'battlePass';
+  metric:
+    | 'gambit'
+    | 'vanguard'
+    | 'crucible'
+    | 'trials'
+    | 'ironBanner'
+    | 'gunsmith'
+    | 'triumphs'
+    | 'battlePass';
 }
 
 /*

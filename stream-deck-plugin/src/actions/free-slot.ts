@@ -10,29 +10,37 @@ import path from 'path';
 import { IMAGE_PATH } from '../constant';
 import { sendToDIM } from '../server';
 
-interface FreeSlotSettings {
-  slot: 'Helmet' | 'Gauntlets' | 'Chest' | 'Leg' | 'ClassItem' | 'KineticSlot' | 'Energy' | 'Power';
+interface FreeBucketSlotSetting {
+  bucket:
+    | 'Helmet'
+    | 'Gauntlets'
+    | 'Chest'
+    | 'Leg'
+    | 'ClassItem'
+    | 'KineticSlot'
+    | 'Energy'
+    | 'Power';
 }
 
 /*
    Free up a single slot in the inventory (helmet, arms, chest, primary, etc..)
 */
-@Action('free-slot')
+@Action('free-bucket-slot')
 export class FreeSlot extends BaseAction {
-  updateItem(context: string, settings: FreeSlotSettings) {
-    sd.setImage(context, path.join(IMAGE_PATH, `./free-slot/slot-${settings.slot}.png`));
+  updateItem(context: string, settings: FreeBucketSlotSetting) {
+    sd.setImage(context, path.join(IMAGE_PATH, `./free-slot/slot-${settings.bucket}.png`));
   }
 
-  onSettingsChanged(e: SettingsChanged<FreeSlotSettings>) {
+  onSettingsChanged(e: SettingsChanged<FreeBucketSlotSetting>) {
     this.updateItem(e.context, e.settings);
   }
 
-  onAppear(e: AppearDisappearEvent<FreeSlotSettings>) {
+  onAppear(e: AppearDisappearEvent<FreeBucketSlotSetting>) {
     this.updateItem(e.context, e.payload.settings);
   }
 
-  onSingleTap(e: KeyEvent<FreeSlotSettings>) {
-    sendToDIM('freeSlot', e.payload.settings);
+  onSingleTap(e: KeyEvent<FreeBucketSlotSetting>) {
+    sendToDIM('freeBucketSlot', e.payload.settings);
     sd.showOk(e.context);
   }
 }

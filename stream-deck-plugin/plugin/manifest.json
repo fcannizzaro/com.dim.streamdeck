@@ -3,7 +3,7 @@
   "Author": "fcannizzaro",
   "Description": "DIM actions",
   "Icon": "icons/pluginIcon",
-  "Version": "1.0.5",
+  "Version": "1.0.7",
   "SDKVersion": 2,
   "Bundle": "index.js",
   "uuid": "com.dim.streamdeck",
@@ -160,7 +160,7 @@
     },
     {
       "Icon": "icons/freeSlotIcon",
-      "Name": "Free Slot",
+      "Name": "Free Bucket Slot",
       "States": [
         {
           "Image": "icons/freeSlotState"
@@ -168,7 +168,7 @@
       ],
       "SupportedInMultiActions": true,
       "Tooltip": "Free up a single slot in the inventory (helmet, arms, chest, primary, etc..)",
-      "UUID": "com.dim.streamdeck.free-slot"
+      "UUID": "com.dim.streamdeck.free-bucket-slot"
     },
     {
       "Icon": "icons/maxPowerIcon",
