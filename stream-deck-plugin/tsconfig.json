@@ -3,7 +3,6 @@
     "outDir": "./dist",
     "module": "commonjs",
     "target": "es5",
-    "rootDir": "src",
     "lib": ["es6", "es2017"],
     "declaration": false,
     "moduleResolution": "node",
@@ -18,6 +17,6 @@
     "suppressImplicitAnyIndexErrors": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["."],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist", "sample"]
 }
