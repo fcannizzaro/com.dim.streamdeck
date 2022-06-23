@@ -6,11 +6,13 @@ import { join } from 'path';
 import { IMAGE_PATH } from '../constant';
 import { context2Challenge } from '../security/authorization';
 
+// copy shareable loadout url to clipboard
 export const shareUrlHandler = ({ data }: HandlerArgs) => {
   const url = data.shareUrl;
   url && ncp.copy(url);
 };
 
+// update global setting with DIM data
 export const updateHandler = ({ data }: HandlerArgs) => {
   // prevent tokens overwriting
   const { tokens, ...settings } = data;
