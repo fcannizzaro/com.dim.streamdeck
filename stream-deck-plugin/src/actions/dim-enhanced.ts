@@ -1,5 +1,7 @@
-import { Action, AppearDisappearEvent, BaseAction } from '@stream-deck-for-node/sdk';
-import { sd } from '../index';
+import { Action, BaseAction, KeyEvent } from '@stream-deck-for-node/sdk';
+import { switchFirstDeviceProfile } from '../util';
+import { clients, sendToDIM } from '../ws/server';
+import { context2Challenge, saveToken } from '../security/authorization';
 
 /*
    DIM Enhanced tile
@@ -7,8 +9,17 @@ import { sd } from '../index';
 */
 @Action('page')
 export class DimEnhanced extends BaseAction {
-  onAppear(e: AppearDisappearEvent) {
-    // reset tile
-    sd.setTitle(e.context, '');
+  onSingleTap(e: KeyEvent) {
+    const challenge = context2Challenge[e.context];
+    if (challenge) {
+      sendToDIM(
+        'authorization:confirm',
+        { challenge: challenge.label },
+        clients[challenge.identifier],
+        true,
+      );
+      saveToken(challenge.identifier, challenge.value);
+      switchFirstDeviceProfile();
+    }
   }
 }

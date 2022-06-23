@@ -5,7 +5,7 @@ import {
   KeyEvent,
   PluginSettingsChanged,
 } from '@stream-deck-for-node/sdk';
-import { sendToDIM } from '../server';
+import { sendToDIM } from '../ws/server';
 import { sd } from '../index';
 import { DimSettings } from '../interfaces';
 

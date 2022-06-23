@@ -9,7 +9,7 @@ import { sd } from '../index';
 import path from 'path';
 import { IMAGE_PATH } from '../constant';
 import commaNumber from 'comma-number';
-import { util } from '../util';
+import { bungify } from '../util';
 import { DimSettings } from '../interfaces';
 
 const IMAGES = {
@@ -45,7 +45,7 @@ export class Metrics extends BaseAction {
     sd.setTitle(context, title);
     const image = IMAGES[settings.metric];
     if (settings.metric === 'battlePass') {
-      sd.setImage(context, util(sd.pluginSettings.metrics.artifactIcon));
+      sd.setImage(context, bungify(sd.pluginSettings.metrics.artifactIcon));
     } else {
       image && sd.setImage(context, image);
     }

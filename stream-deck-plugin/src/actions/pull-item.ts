@@ -8,8 +8,8 @@ import {
   SettingsChanged,
 } from '@stream-deck-for-node/sdk';
 import { sd } from '../index';
-import { sendToDIM } from '../server';
-import { util } from '../util';
+import { sendToDIM } from '../ws/server';
+import { bungify } from '../util';
 import { DimSettings } from '../interfaces';
 
 interface EquipItemSettings {
@@ -28,7 +28,7 @@ export class PullItem extends BaseAction {
 
   updateItem(context: string, settings: EquipItemSettings) {
     if (settings.icon) {
-      sd.setImage(context, util(settings.icon));
+      sd.setImage(context, bungify(settings.icon));
     }
   }
 

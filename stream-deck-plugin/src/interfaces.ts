@@ -10,9 +10,9 @@ interface LoadoutCharacter {
   items: Loadout[];
 }
 
-interface Authorization {
+interface Token {
   identifier: string;
-  sharedKey: string;
+  token: string;
 }
 
 export interface DimSettings {
@@ -46,13 +46,61 @@ export interface DimSettings {
     shards: string;
     brightDust: string;
   };
-  authorization: Authorization[];
-  selection: any;
+  selection: {
+    label: string;
+    subtitle: string;
+    icon: string;
+    item: string;
+    loadout: string;
+    character: string;
+  };
   selectionType: 'item' | 'loadout';
   farmingMode: boolean;
-  challenge: number;
+  tokens: Token[];
 }
 
 export interface ExtWebSocket extends WebSocket {
-  sharedKey?: string;
+  token?: string;
 }
+
+export interface Challenge {
+  label: number;
+  value: string;
+  identifier: string;
+}
+
+export interface WebSocketMessageArgs extends DimSettings {
+  challenges?: Challenge[];
+  shareUrl?: string;
+}
+
+export interface WebSocketMessage {
+  // action to execute on Stream Deck
+  action: 'dim:update' | 'dim:share-url' | 'authorization:challenges' | 'authorization:reset';
+  // actions parameters
+  data: WebSocketMessageArgs;
+}
+
+export interface HandlerArgs {
+  data: WebSocketMessageArgs;
+  ws: ExtWebSocket;
+  identifier: string;
+  token: string;
+}
+
+export type MessageHandlers = Record<WebSocketMessage['action'], (args: HandlerArgs) => void>;
+
+export type DimAction =
+  | 'search'
+  | 'randomize'
+  | 'collectPostmaster'
+  | 'refresh'
+  | 'farmingMode'
+  | 'maxPower'
+  | 'freeBucketSlot'
+  | 'pullItem'
+  | 'selection'
+  | 'loadout'
+  | 'shareLoadout'
+  | 'authorization:init'
+  | 'authorization:confirm';

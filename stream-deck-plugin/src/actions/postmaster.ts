@@ -7,7 +7,7 @@ import {
   SettingsChanged,
 } from '@stream-deck-for-node/sdk';
 import { sd } from '../index';
-import { sendToDIM } from '../server';
+import { sendToDIM } from '../ws/server';
 import path from 'path';
 import { IMAGE_PATH } from '../constant';
 import { DimSettings } from '../interfaces';

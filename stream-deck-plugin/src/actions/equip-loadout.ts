@@ -6,10 +6,10 @@ import {
   PluginSettingsChanged,
   SettingsChanged,
 } from '@stream-deck-for-node/sdk';
-import { sendToDIM } from '../server';
+import { sendToDIM } from '../ws/server';
 import { sd } from '../index';
 import { PropertyInspectorMessagingEvent } from '@stream-deck-for-node/sdk/src/types/events';
-import { util } from '../util';
+import { bungify } from '../util';
 import { DimSettings } from '../interfaces';
 
 interface LoadoutSettings {
@@ -30,7 +30,7 @@ export class EquipLoadout extends BaseAction<LoadoutSettings> {
     if (settings.loadout) {
       sd.setTitle(context, settings.label);
     }
-    sd.setImage(context, util(settings.icon));
+    sd.setImage(context, bungify(settings.icon));
   }
 
   async onMessageFromPropertyInspector(e: PropertyInspectorMessagingEvent) {

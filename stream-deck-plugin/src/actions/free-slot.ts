@@ -8,7 +8,7 @@ import {
 import { sd } from '../index';
 import path from 'path';
 import { IMAGE_PATH } from '../constant';
-import { sendToDIM } from '../server';
+import { sendToDIM } from '../ws/server';
 
 interface FreeBucketSlotSetting {
   bucket:

@@ -14,7 +14,7 @@ import './actions/dim-enhanced';
 import './actions/rotations';
 
 import { StreamDeck } from '@stream-deck-for-node/sdk';
-import { sendToDIM, init } from './server';
+import { sendToDIM, init } from './ws/server';
 import { DimSettings } from './interfaces';
 
 export const sd = new StreamDeck<DimSettings>();
