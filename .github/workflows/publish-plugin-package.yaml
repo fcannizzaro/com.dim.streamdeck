@@ -10,15 +10,15 @@ on:
 jobs:
   package-stream-deck-plugin:
     runs-on: windows-latest
-    defaults:
-      run:
-        working-directory: ./stream-deck-plugin
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '16.x'
+
+      - name: Move plugin code to root dir
+        run: move stream-deck-plugin/* .
 
       - uses: suisei-cn/actions-download-file@v1
         id: distribution_tool
@@ -28,7 +28,7 @@ jobs:
           target: .
 
       - name: Extract DistributionTool.exe
-        run: 7z x "./stream-deck-plugin/${{ steps.distribution_tool.outputs.filename }}"
+        run: 7z x "${{ steps.distribution_tool.outputs.filename }}"
 
       - name: Use pnpm
         uses: pnpm/action-setup@v2.2.2
