@@ -45,7 +45,7 @@ export class Metrics extends BaseAction {
     sd.setTitle(context, title);
     const image = IMAGES[settings.metric];
     if (settings.metric === 'battlePass') {
-      sd.setImage(context, bungify(sd.pluginSettings.metrics.artifactIcon));
+      sd.setImage(context, bungify(sd.pluginSettings.metrics?.artifactIcon));
     } else {
       image && sd.setImage(context, image);
     }
