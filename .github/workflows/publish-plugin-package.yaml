@@ -42,7 +42,7 @@ jobs:
           target: .
 
       - name: Extract DistributionTool.exe
-        run: 7z x "${{ steps.distribution_tool.outputs.filename }}"
+        run: 7z x "./${{ steps.distribution_tool.outputs.filename }}"
 
       - name: Package plugin
         run: ./DistributionTool.exe -b -i com.dim.streamdeck.sdPlugin -o .
