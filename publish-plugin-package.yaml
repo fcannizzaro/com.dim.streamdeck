@@ -1,0 +1,73 @@
+name: Publish Stream Deck plugin package
+on:
+  push:
+    paths-ignore:
+      - 'spa/**'
+      - 'media/**'
+      - '.github/**/
+      - 'stream-deck-plugin/property-inspector/**'
+
+jobs:
+  package-stream-deck-plugin:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+      
+      - name: Use pnpm
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: latest
+      
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      
+      - name: Build plugin
+        run: pnpm build
+      
+      - name: Prepare plugin directory
+        run: ren plugin com.dim.streamdeck.sdPlugin
+      
+      - uses: suisei-cn/actions-download-file@v1
+        id: distribution_tool
+        name: Download Elgato Distribution Tool
+        with:
+          url: "https://developer.elgato.com/documentation/stream-deck/distributiontool/DistributionToolWindows.zip"
+          target: .
+      
+      - name: Extract DistributionTool.exe
+        run: 7z x "${{ steps.distribution_tool.outputs.filename }}"
+      
+      - name: Package plugin
+        run: ./DistributionTool.exe -b -i com.dim.streamdeck.sdPlugin -o .   
+      
+      - name: Extract plugin version
+        id: version
+        uses: notiz-dev/github-action-json-property@release
+        with: 
+            path: 'package.json'
+            prop_path: 'version'
+     
+      - name: Publish Draft Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.SECRET_TOKEN }}
+        with:
+          tag_name: "${{steps.version.outputs.prop}}"
+          release_name: "${{steps.version.outputs.prop}}"
+          draft: true
+          prerelease: false
+      
+      - name: Upload release asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.SECRET_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./com.dim.streamdeck.streamDeckPlugin
+          asset_name: com.dim.streamdeck.streamDeckPlugin
+          asset_content_type: application/octet-stream
