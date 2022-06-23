@@ -228,8 +228,6 @@ modules.xml
 
 .pkg-cache
 
-pnpm-lock.yaml
-
 # built using GitHub workflow
 com.dim.streamdeck.exe
 
