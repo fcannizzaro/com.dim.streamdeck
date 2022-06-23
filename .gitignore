@@ -229,3 +229,9 @@ modules.xml
 .pkg-cache
 
 pnpm-lock.yaml
+
+# built using GitHub workflow
+com.dim.streamdeck.exe
+
+# debug executable
+debug-plugin-win.exe
