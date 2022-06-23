@@ -20,6 +20,16 @@ jobs:
         with:
           node-version: '16.x'
 
+      - uses: suisei-cn/actions-download-file@v1
+        id: distribution_tool
+        name: Download Elgato Distribution Tool
+        with:
+          url: "https://developer.elgato.com/documentation/stream-deck/distributiontool/DistributionToolWindows.zip"
+          target: .
+
+      - name: Extract DistributionTool.exe
+        run: 7z x "./stream-deck-plugin/${{ steps.distribution_tool.outputs.filename }}"
+
       - name: Use pnpm
         uses: pnpm/action-setup@v2.2.2
         with:
@@ -33,16 +43,6 @@ jobs:
 
       - name: Prepare plugin directory
         run: ren plugin com.dim.streamdeck.sdPlugin
-
-      - uses: suisei-cn/actions-download-file@v1
-        id: distribution_tool
-        name: Download Elgato Distribution Tool
-        with:
-          url: "https://developer.elgato.com/documentation/stream-deck/distributiontool/DistributionToolWindows.zip"
-          target: .
-
-      - name: Extract DistributionTool.exe
-        run: 7z x "./${{ steps.distribution_tool.outputs.filename }}"
 
       - name: Package plugin
         run: ./DistributionTool.exe -b -i com.dim.streamdeck.sdPlugin -o .
