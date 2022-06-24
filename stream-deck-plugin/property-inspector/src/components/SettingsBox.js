@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const SettingsBox = styled.div`
   display: flex;
@@ -6,4 +6,4 @@ export const SettingsBox = styled.div`
   max-width: 320px;
   background: #222222;
   flex-direction: column;
-`
+`;

@@ -4,8 +4,10 @@ import { sd } from './index';
 export const bungify = (image: string) => (!image ? undefined : `https://www.bungie.net${image}`);
 
 // Stream Deck auto profile utility
-export const switchFirstDeviceProfile = (profile?: string): number => {
+export const switchFirstDeviceProfile = (profile?: string, preHook?: (type: number) => void) => {
   const first = sd.info.devices[0];
-  first && sd.switchToProfile(sd.uuid, first.id, profile);
-  return first.type;
+  if (first) {
+    preHook?.(first.type);
+    sd.switchToProfile(sd.uuid, first.id, profile);
+  }
 };

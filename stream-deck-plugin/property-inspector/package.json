@@ -12,7 +12,8 @@
     "styled-components": "^5.3.5"
   },
   "devDependencies": {
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "prettier": "^2.7.1"
   },
   "scripts": {
     "start": "react-scripts start",

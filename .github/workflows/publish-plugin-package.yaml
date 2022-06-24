@@ -62,8 +62,8 @@ jobs:
         with:
           tag_name: "${{steps.version.outputs.prop}}"
           release_name: "${{steps.version.outputs.prop}}"
-          draft: true
-          prerelease: false
+          draft: false
+          prerelease: true
 
       - name: Upload release asset
         uses: actions/upload-release-asset@v1

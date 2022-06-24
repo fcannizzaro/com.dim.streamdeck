@@ -3,8 +3,8 @@ import { HandlerArgs } from '../interfaces';
 import { sd } from '../index';
 import { switchFirstDeviceProfile } from '../util';
 import { join } from 'path';
-import { IMAGE_PATH } from '../constant';
-import { context2Challenge } from '../security/authorization';
+import { CENTER_BY_TYPE, IMAGE_PATH } from '../constant';
+import { setMatrixCell } from '../actions/dim-enhanced';
 
 // copy shareable loadout url to clipboard
 export const shareUrlHandler = ({ data }: HandlerArgs) => {
@@ -19,25 +19,24 @@ export const updateHandler = ({ data }: HandlerArgs) => {
   sd.setPluginSettings(settings);
 };
 
+// remove authentication token related to a specific identifier
 export const authorizationResetHandler = ({ identifier }: HandlerArgs) => {
   const tokens = (sd.pluginSettings.tokens ?? []).filter((it) => it.identifier !== identifier);
   sd.setPluginSettings({ tokens });
 };
 
 export const authorizationChallengeHandler = ({ data, identifier }: HandlerArgs) => {
-  const type: number = switchFirstDeviceProfile('DIM-Enhanced');
-  const positionByType = [7, 1, 11, 7][type];
-  return setTimeout(() => {
-    const tiles = sd.allContexts()['com.dim.streamdeck.page'];
-    const image = join(IMAGE_PATH, './authorization.png');
+  const image = join(IMAGE_PATH, './authorization.png');
+  // show visual challenges
+  switchFirstDeviceProfile('DIM-Enhanced', (type: number) => {
+    const center = CENTER_BY_TYPE[type];
     data.challenges?.forEach((challenge, i) => {
-      const ctx = tiles[positionByType - 1 + i];
-      context2Challenge[ctx] = {
-        ...challenge,
-        identifier,
-      };
-      sd.setImage(ctx, image);
-      sd.setTitle(ctx, challenge.label.toString());
+      const [r, c] = center;
+      setMatrixCell(r, c - 1 + i, {
+        image,
+        title: challenge.label.toString(),
+        data: { challenge, identifier },
+      });
     });
-  }, 500);
+  });
 };

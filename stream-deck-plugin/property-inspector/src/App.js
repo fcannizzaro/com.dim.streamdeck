@@ -4,24 +4,34 @@ import { SettingsBox } from './components/SettingsBox';
 import { SettingBody, SettingsHeader } from './components/SettingsHeader';
 import { InfoBanner } from './components/DiscordBanner';
 
+function SimpleBox({ message }) {
+  return (
+    <SettingsBox>
+      <SettingsHeader>
+        <span>{message}</span>
+      </SettingsHeader>
+    </SettingsBox>
+  );
+}
+
 function App() {
   const { action, info } = useStreamDeck();
   const [pluginSettings] = useGlobalSettings();
 
-  console.log(pluginSettings);
-
   const shortAction = action?.replace(`${info?.plugin.uuid}.`, '');
   const Action = Actions[shortAction];
-
-  if (!Action) {
-    return <></>;
-  }
-
   return (
     <div className='container'>
       <div className='mini-spaced' />
       <div className='content'>
-        {!pluginSettings.connected ? (
+        {!action ? (
+          <SimpleBox message='loading...' />
+        ) : Action && pluginSettings.connected === true ? (
+          <>
+            <Action />
+            <InfoBanner guide={false} discord='DISCORD SERVER' />
+          </>
+        ) : pluginSettings.connected === false ? (
           <SettingsBox error>
             <SettingsHeader error>
               <span>Error</span>
@@ -32,10 +42,7 @@ function App() {
             <InfoBanner />
           </SettingsBox>
         ) : (
-          <>
-            <Action />
-            <InfoBanner guide={false} discord='DISCORD SERVER' />
-          </>
+          <SimpleBox message='No settings for this action' />
         )}
       </div>
     </div>

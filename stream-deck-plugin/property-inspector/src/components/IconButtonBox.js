@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const IconButtonBox = styled.div`
   padding: 6px 4px;
@@ -8,9 +8,9 @@ export const IconButtonBox = styled.div`
   align-items: center;
   cursor: pointer;
   flex-direction: column;
-  color: ${p => !p.selected ? 'rgba(255, 255, 255, .5)' : p.color || '#fff'};
+  color: ${(p) => (!p.selected ? 'rgba(255, 255, 255, .5)' : p.color || '#fff')};
 
   & > span {
     padding-top: 4px;
   }
-`
+`;

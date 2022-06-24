@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const SettingsHeader = styled.div`
   display: flex;
@@ -6,9 +6,9 @@ export const SettingsHeader = styled.div`
   width: calc(100% - 32px);
   background: #3d3d3d;
   color: white;
-  color: rgba(255, 255, 255, .7);
+  color: rgba(255, 255, 255, 0.7);
   flex-direction: column;
-  border-bottom: ${p => p.error ? '2px solid #FF3333' : 'none'};
+  border-bottom: ${(p) => (p.error ? '2px solid #FF3333' : 'none')};
 
   & div:first-of-type {
     font-weight: bold;
@@ -17,12 +17,12 @@ export const SettingsHeader = styled.div`
 
   & div:last-of-type {
     margin-top: 4px;
-    opacity: .7;
+    opacity: 0.7;
   }
-`
+`;
 
 export const SettingBody = styled.span`
   color: white;
   padding: 12px 16px 2px;
   justify-content: space-between;
-`
+`;

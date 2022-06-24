@@ -104,3 +104,11 @@ export type DimAction =
   | 'shareLoadout'
   | 'authorization:init'
   | 'authorization:confirm';
+
+export interface MatrixCell {
+  title?: string;
+  image?: string;
+  data?: Record<string, any>;
+}
+
+export type DimEnhancedMatrix = Record<string, MatrixCell>;
