@@ -2,6 +2,8 @@ name: Publish Stream Deck plugin package
 on:
   workflow_dispatch:
   push:
+    tags-ignore:
+      - '**'
     paths-ignore:
       - 'spa/**'
       - 'media/**'
