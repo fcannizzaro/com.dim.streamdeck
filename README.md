@@ -6,6 +6,8 @@ A Stream Deck plugin to interact with Destiny Item Manager and Destiny 2
 
 > # THIS PLUGIN IS UNDER DEVELOPMENT
 > Download and install only if you can use my development branch of DIM https://github.com/fcannizzaro/DIM/tree/stream-deck-integration
+>
+> Follow this pr https://github.com/DestinyItemManager/DIM/pull/8501 for the integration's state
 
 ## Installation
 
