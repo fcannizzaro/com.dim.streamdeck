@@ -5,7 +5,6 @@ import { createServer } from 'https';
 import {
   authorizationChallengeHandler,
   authorizationResetHandler,
-  shareUrlHandler,
   updateHandler,
 } from './msg-handlers';
 import { certs } from '../security/certs';
@@ -45,7 +44,6 @@ wss.on('error', () => {
 const handlers: MessageHandlers = {
   'authorization:challenges': authorizationChallengeHandler,
   'authorization:reset': authorizationResetHandler,
-  'dim:share-url': shareUrlHandler,
   'dim:update': updateHandler,
 };
 
@@ -78,12 +76,8 @@ export const init = () => {
         return sd.logMessage('missing-token from ' + ws.protocol);
       }
 
-      handlers[action]?.({
-        data,
-        ws,
-        identifier: ws.protocol,
-        token: ws.token,
-      });
+      // execute handler
+      handlers[action]?.({ data, ws, identifier: ws.protocol, token: ws.token });
     });
 
     // on connection close update plugin status

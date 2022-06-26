@@ -76,7 +76,7 @@ export interface WebSocketMessageArgs extends DimSettings {
 
 export interface WebSocketMessage {
   // action to execute on Stream Deck
-  action: 'dim:update' | 'dim:share-url' | 'authorization:challenges' | 'authorization:reset';
+  action: 'dim:update' | 'authorization:challenges' | 'authorization:reset';
   // actions parameters
   data: WebSocketMessageArgs;
 }
@@ -101,7 +101,6 @@ export type DimAction =
   | 'pullItem'
   | 'selection'
   | 'loadout'
-  | 'shareLoadout'
   | 'authorization:init'
   | 'authorization:confirm';
 

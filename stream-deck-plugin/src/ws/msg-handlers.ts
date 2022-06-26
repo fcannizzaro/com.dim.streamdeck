@@ -1,16 +1,9 @@
-import ncp from 'copy-paste';
 import { HandlerArgs } from '../interfaces';
 import { sd } from '../index';
 import { switchFirstDeviceProfile } from '../util';
 import { join } from 'path';
 import { CENTER_BY_TYPE, IMAGE_PATH } from '../constant';
 import { setMatrixCell } from '../actions/dim-enhanced';
-
-// copy shareable loadout url to clipboard
-export const shareUrlHandler = ({ data }: HandlerArgs) => {
-  const url = data.shareUrl;
-  url && ncp.copy(url);
-};
 
 // update global setting with DIM data
 export const updateHandler = ({ data }: HandlerArgs) => {
