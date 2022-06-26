@@ -8,10 +8,10 @@ import './actions/postmaster';
 import './actions/metrics';
 import './actions/max-power';
 import './actions/farming-mode';
-import './actions/free-slot';
 import './actions/pull-item';
 import './actions/dim-enhanced';
 import './actions/rotations';
+// import './actions/free-slot';
 
 import { StreamDeck } from '@stream-deck-for-node/sdk';
 import { sendToDIM, init } from './ws/server';

@@ -1,0 +1,16 @@
+{
+  "actions": [
+    {
+      "Icon": "icons/freeSlotIcon",
+      "Name": "Free Bucket Slot",
+      "States": [
+        {
+          "Image": "icons/freeSlotState"
+        }
+      ],
+      "SupportedInMultiActions": true,
+      "Tooltip": "Free up a single slot in the inventory (helmet, arms, chest, primary, etc..)",
+      "UUID": "com.dim.streamdeck.free-bucket-slot"
+    }
+  ]
+}
