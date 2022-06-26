@@ -23,14 +23,6 @@ export const EquipLoadout = () => {
       </SettingsBox>
       <div>
         <Gesture gesture='Single Tap' action='Equip the selected loadout' />
-        <Gesture
-          gesture='Long Press'
-          action={
-            <>
-              Obtain the <b>shareable</b> loadout link to paste
-            </>
-          }
-        />
       </div>
     </>
   );
