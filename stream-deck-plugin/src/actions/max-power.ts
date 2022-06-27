@@ -50,7 +50,7 @@ export class MaxPower extends BaseAction<PowerSettings> {
 
     await Promise.all(
       Array.from(this.contexts).map(async (context) => {
-        const settings = await sd.getSettings<PowerSettings>(context);
+        const settings = sd.getSettings<PowerSettings>(context);
         this.updateItem(context, settings);
       }),
     );

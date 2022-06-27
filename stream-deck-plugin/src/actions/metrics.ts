@@ -66,7 +66,7 @@ export class Metrics extends BaseAction {
 
     await Promise.all(
       Array.from(this.contexts).map(async (context) => {
-        const settings = await sd.getSettings<MetricsSettings>(context);
+        const settings = sd.getSettings<MetricsSettings>(context);
         this.updateItem(context, settings);
       }),
     );

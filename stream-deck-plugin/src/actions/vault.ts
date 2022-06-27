@@ -48,7 +48,7 @@ export class Vault extends BaseAction<VaultSettings> {
 
     await Promise.all(
       Array.from(this.contexts).map(async (context) => {
-        const settings = await sd.getSettings<VaultSettings>(context);
+        const settings = sd.getSettings<VaultSettings>(context);
         this.updateItem(context, settings);
       }),
     );

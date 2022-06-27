@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@stream-deck-for-node/sdk': 1.0.11
+  '@stream-deck-for-node/sdk': 1.0.12
   '@types/comma-number': ^2.1.0
   '@types/copy-paste': ^1.1.30
   '@types/node': ^16.11.12
@@ -15,7 +15,7 @@ specifiers:
   ws: ^8.4.0
 
 dependencies:
-  '@stream-deck-for-node/sdk': 1.0.11
+  '@stream-deck-for-node/sdk': 1.0.12
   comma-number: 2.1.0
   openurl: 1.1.1
   ws: 8.8.0
@@ -55,8 +55,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.13
     dev: true
 
-  /@stream-deck-for-node/sdk/1.0.11:
-    resolution: {integrity: sha512-GR3QPHsim8bqSDZdL1bSCG07OCcrCSvj4MTr9tKJ4/Ks0QPSYknWT0Hha8zZ0AAhvhCCsI+D1Bdz4Fli4mBQ1Q==}
+  /@stream-deck-for-node/sdk/1.0.12:
+    resolution: {integrity: sha512-WZTZwZz4pPHtdtzDZjSn5fEaF5kKyIfHlpW2xuEgYq3dx8i94fN7qfc4Un6k2TIjd6Sh4pDy3ZyqwkFg1WrF2A==}
     dependencies:
       axios: 0.24.0
       command-line-args: 5.2.1

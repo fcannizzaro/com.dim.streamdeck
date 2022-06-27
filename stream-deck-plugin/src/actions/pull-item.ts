@@ -44,7 +44,7 @@ export class PullItem extends BaseAction {
         sendToDIM('selection', { selection: 'item' });
         break;
       case 'preview':
-        const { item } = await sd.getSettings(e.context);
+        const { item } = sd.getSettings(e.context);
         sendToDIM('search', { search: 'id:' + item });
         break;
     }

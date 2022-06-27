@@ -52,7 +52,7 @@ export class Postmaster extends BaseAction {
 
     await Promise.all(
       Array.from(this.contexts).map(async (context) => {
-        const settings = await sd.getSettings<PostmasterSettings>(context);
+        const settings = sd.getSettings<PostmasterSettings>(context);
         this.updateItem(context, settings);
       }),
     );
