@@ -14,7 +14,7 @@ import './actions/rotations';
 // import './actions/free-slot';
 
 import { StreamDeck } from '@stream-deck-for-node/sdk';
-import { sendToDIM, init } from './ws/server';
+import { init } from './ws/server';
 import { DimSettings } from './interfaces';
 
 export const sd = new StreamDeck<DimSettings>();
@@ -23,9 +23,6 @@ process.on('uncaughtException', (e) => {
   console.log(e);
   sd.logMessage('Error: ' + e.message);
 });
-
-// to keep max power / postmaster always updated every 2.5 minutes
-setInterval(() => sendToDIM('refresh'), 1000 * 60 * 2.5);
 
 init();
 
