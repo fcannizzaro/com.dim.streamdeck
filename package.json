@@ -1,9 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "dev": "pnpm exec next dev",
-    "build": "pnpm exec next build",
-    "start": "pnpm exec next start"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
   "dependencies": {
     "bulma": "^0.9.4",
