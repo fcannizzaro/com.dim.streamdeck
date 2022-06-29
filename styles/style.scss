@@ -1,0 +1,216 @@
+$primary: #fe892a;
+@import '~bulma/bulma';
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+  Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+  sans-serif;
+  min-height: 100vh;
+}
+
+body {
+  background: radial-gradient(circle at 50% 10%, #363636 0%, #000 100%) fixed;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #181818;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #404040;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #404040;
+}
+
+* {
+  box-sizing: border-box;
+  color: white;
+}
+
+.transparent {
+  background: none;
+}
+
+.download-button {
+  width: 300px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  background: #ccc;
+  cursor: pointer;
+}
+
+.download-button span {
+  color: #181818;
+}
+
+.download-button.elgato span {
+  color: white;
+}
+
+.download-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.elgato {
+  background: #0f1c7c;
+}
+
+.here {
+  background: #0bacec;
+}
+
+.download-button > div:first-of-type {
+  height: 100%;
+  min-width: 80px;
+  background: rgba(0, 0, 0, .8);
+  margin-right: 16px;
+}
+
+.download-button > div:last-of-type {
+  display: flex;
+  flex-direction: column;
+}
+
+.download-button div > span:first-of-type {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.download-button div > span:last-of-type {
+  opacity: .8;
+  margin-top: 4px;
+  font-size: 1rem;
+}
+
+.download-button img {
+  width: calc(100% - 32px);
+}
+
+.box-shadow {
+  box-shadow: 0 0 4px 4px rgba(0, 0, 0, .1);
+  border: 3px solid #3f3f3f;
+  border-radius: 8px;
+}
+
+.header-links {
+
+  .container {
+    justify-content: center;
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+  }
+
+  & img {
+    height: 40px;
+    margin-top: 8px;
+    margin-right: 16px;
+  }
+
+  & a {
+    color: rgba(255, 255, 255, .6);
+    padding: 8px 16px;
+    border-radius: 8px;
+
+    &:hover {
+      color: #fff;
+      transition: all .3s;
+      cursor: pointer;
+      text-decoration: underline;
+      background: rgba(255, 255, 255, .1);
+    }
+  }
+}
+
+img.kofiimg {
+  display: initial !important;
+  vertical-align: middle;
+  height: 13px !important;
+  width: auto !important;
+  padding-top: 0;
+  padding-bottom: 0;
+  border: none;
+  margin: 0 5px 3px 0;
+}
+
+.btn-container {
+  display: inline-block !important;
+  white-space: nowrap;
+  min-width: 160px;
+}
+
+span.kofitext {
+  color: #fff !important;
+  letter-spacing: -0.15px !important;
+  vertical-align: middle;
+  line-height: 33px !important;
+  padding: 0;
+  text-align: center;
+  text-decoration: none !important;
+  text-shadow: 0 1px 1px rgba(34, 34, 34, 0.05);
+}
+
+.kofitext a {
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+.kofitext a:hover {
+  color: #fff !important;
+  text-decoration: none;
+}
+
+a.kofi-button {
+  box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+  line-height: 36px !important;
+  min-width: 150px;
+  display: inline-block !important;
+  background-color: #29abe0;
+  padding: 2px 12px !important;
+  text-align: center !important;
+  border-radius: 7px;
+  color: #fff;
+  cursor: pointer;
+  overflow-wrap: break-word;
+  vertical-align: middle;
+  border: 0 none #fff !important;
+  font-family: "Quicksand", Helvetica, Century Gothic, sans-serif !important;
+  text-decoration: none;
+  text-shadow: none;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+}
+
+a.kofi-button:visited {
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+a.kofi-button:hover {
+  opacity: 0.85;
+  color: #f5f5f5 !important;
+  text-decoration: none !important;
+}
+
+a.kofi-button:active {
+  color: #f5f5f5 !important;
+  text-decoration: none !important;
+}
+
+.kofitext img.kofiimg {
+  height: 15px !important;
+  width: 22px !important;
+  display: initial;
+}
