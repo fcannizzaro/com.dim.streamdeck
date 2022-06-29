@@ -1,4 +1,4 @@
-export function DonateButton({color, id, label, icon, patreon = false}) {
+export default function DonateButton({color, id, label, icon, patreon = false}) {
     return (
         <div className="btn-container">
             <a

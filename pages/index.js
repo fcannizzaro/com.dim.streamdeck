@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Elgato from "../resources/elgato.png";
 import Image from 'next/image'
-import {Header} from "./header";
+import Header from "./header";
 import MetricsActions from '../resources/metrics.png';
 import MetricsSettings from '../resources/metrics-settings.png';
 import PullItemActionSettings from '../resources/pull-item-settings.png';
@@ -15,7 +15,7 @@ import PostmasterAction from '../resources/postmaster-action.png';
 import PostmasterSettings from '../resources/postmaster-settings.png';
 import VaultSettings from '../resources/vault-settings.png';
 import FarmingModeSettings from '../resources/farming-mode.png';
-import {DonateButton} from "./DonateButton";
+import DonateButton from "./DonateButton";
 import Patreon from '../resources/patreon.png';
 import Icon from '../resources/icon.png';
 

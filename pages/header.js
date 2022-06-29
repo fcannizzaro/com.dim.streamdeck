@@ -1,4 +1,4 @@
-export function Header() {
+export default function Header() {
     return <div>
         <nav className="header-links" role="navigation" aria-label="main navigation">
             <div className="container">
