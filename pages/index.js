@@ -108,7 +108,8 @@ export default function Home() {
                     <div className="columns">
                         <div className="column">
                             <p className="subtitle is-4 has-text-grey mb-4 pl-2">- tap to equip the select loadout</p>
-                            <p className="subtitle is-4 has-text-grey mb-4 pl-2">- select a loadout on DIM (by clicking on the send button)</p>
+                            <p className="subtitle is-4 has-text-grey mb-4 pl-2">- select a loadout on DIM (by clicking
+                                on the send button)</p>
                             <img className="box-shadow mt-2" src={SendLoadout.src} alt="send-loadout-button"/>
                         </div>
                         <div className="column">
@@ -165,7 +166,8 @@ export default function Home() {
                     <div className="columns">
                         <div className="column">
                             <h1 className="title is-size-4 has-text-white has-text-weight-normal mt1 pb-2">Postmaster</h1>
-                            <p className="subtitle is-4 has-text-grey mb-4 has-text-weight-bold pl-2">- tap to collect lost items</p>
+                            <p className="subtitle is-4 has-text-grey mb-4 has-text-weight-bold pl-2">- tap to collect
+                                lost items</p>
                             <p className="subtitle is-4 has-text-grey mb-4 has-text-weight-bold pl-2">- counter</p>
                             <p className="subtitle is-4 has-text-grey mb-4 pl-6">- lost items</p>
                             <p className="subtitle is-4 has-text-grey mb-4 pl-6">- spoils of conquer</p>
@@ -193,9 +195,8 @@ export default function Home() {
                     <h1 id="donate"
                         className="title is-size-2 has-text-white has-text-weight-normal mt-4 pt-2 pb-2">Donate</h1>
 
-                    <DonateButton color="#12c3ff" id="fcannizzaro" label="Support Me on Ko-fi"/>
-
-                    <div className="ml-3 is-inline-flex">
+                    <div className="donate-buttons">
+                        <DonateButton color="#12c3ff" id="fcannizzaro" label="Support Me on Ko-fi"/>
                         <DonateButton patreon color="#F96854" id="fcannizzaro" icon={Patreon.src}
                                       label="Support Me on Patreon"/>
                     </div>

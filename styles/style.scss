@@ -145,10 +145,17 @@ img.kofiimg {
   margin: 0 5px 3px 0;
 }
 
-.btn-container {
-  display: inline-block !important;
-  white-space: nowrap;
-  min-width: 160px;
+.donate-buttons {
+  display: flex;
+  flex-wrap: wrap;
+
+  & > div {
+    margin-right: 16px;
+
+    &:first-of-type {
+      margin-bottom: 16px;
+    }
+  }
 }
 
 span.kofitext {
@@ -211,6 +218,6 @@ a.kofi-button:active {
 
 .kofitext img.kofiimg {
   height: 15px !important;
-  width: 22px !important;
+  width: auto !important;
   display: initial;
 }
