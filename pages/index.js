@@ -18,6 +18,9 @@ import FarmingModeSettings from '../resources/farming-mode.png';
 import DonateButton from "./DonateButton";
 import Patreon from '../resources/patreon.png';
 import Icon from '../resources/icon.png';
+import LoadoutSettings1 from '../resources/loadout-settings-1.png';
+import LoadoutSettings2 from '../resources/loadout-settings-2.png';
+import SendLoadout from '../resources/send-loadout.png';
 
 export default function Home() {
     return (
@@ -25,11 +28,11 @@ export default function Home() {
             <Head>
                 <title>DIM Stream Deck</title>
                 <meta name="description"
-                      content="A Stream Deck plugin to interact with Destiny Item Manager and Destiny 2"/>
+                      content="A Stream Deck plugin to interact with Destiny Item Manager"/>
                 <meta name="og:description"
-                      content="A Stream Deck plugin to interact with Destiny Item Manager and Destiny 2"/>
+                      content="A Stream Deck plugin to interact with Destiny Item Manager"/>
                 <meta name="og:title" content="DIM Stream Deck"/>
-                <meta name="og:image" content="https://dim-stream-deck.netlify.app/front.png"/>
+                <meta name="og:image" content="https://dim-stream-deck.netlify.app/frontpage.png"/>
                 <link rel="icon" type="image/png" href="/icon.png"/>
             </Head>
 
@@ -100,6 +103,20 @@ export default function Home() {
                         </div>
                     </div>
 
+                    <h1 className="title is-size-2 has-text-white has-text-weight-normal mt1 pb-2">Equip Loadout</h1>
+
+                    <div className="columns">
+                        <div className="column">
+                            <p className="subtitle is-4 has-text-grey mb-4 pl-2">- tap to equip the select loadout</p>
+                            <p className="subtitle is-4 has-text-grey mb-4 pl-2">- select a loadout on DIM (by clicking on the send button)</p>
+                            <img className="box-shadow mt-2" src={SendLoadout.src} alt="send-loadout-button"/>
+                        </div>
+                        <div className="column">
+                            <img className="box-shadow mt-2" src={LoadoutSettings1.src} alt="loadout-settings-1"/>
+                            <img className="box-shadow mt-2" src={LoadoutSettings2.src} alt="loadout-settings-2"/>
+                        </div>
+                    </div>
+
                     <h1 className="title is-size-2 has-text-white has-text-weight-normal mt1 pb-2">Search</h1>
 
                     <div className="columns">
@@ -148,6 +165,7 @@ export default function Home() {
                     <div className="columns">
                         <div className="column">
                             <h1 className="title is-size-4 has-text-white has-text-weight-normal mt1 pb-2">Postmaster</h1>
+                            <p className="subtitle is-4 has-text-grey mb-4 has-text-weight-bold pl-2">- tap to collect lost items</p>
                             <p className="subtitle is-4 has-text-grey mb-4 has-text-weight-bold pl-2">- counter</p>
                             <p className="subtitle is-4 has-text-grey mb-4 pl-6">- lost items</p>
                             <p className="subtitle is-4 has-text-grey mb-4 pl-6">- spoils of conquer</p>
