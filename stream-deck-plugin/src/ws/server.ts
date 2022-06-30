@@ -1,18 +1,19 @@
 import { WebSocket, WebSocketServer } from 'ws';
 import { sd } from '../index';
 import { DimAction, ExtWebSocket, MessageHandlers } from '../interfaces';
-import { createServer } from 'https';
 import {
   authorizationChallengeHandler,
   authorizationResetHandler,
   updateHandler,
 } from './msg-handlers';
-import { certs } from '../security/certs';
 import { tokenOf } from '../security/authorization';
 
 export const clients: Record<string, WebSocket> = {};
-const server = createServer(certs);
-const wss = new WebSocketServer({ server });
+
+const server = new WebSocketServer({
+  port: 9119,
+  host: 'localhost',
+});
 
 export const sendToDIM = (
   action: DimAction,
@@ -33,10 +34,10 @@ export const sendToDIM = (
     }
     return;
   }
-  wss.clients.forEach((client) => sendToDIM(action, args, client));
+  server.clients.forEach((client) => sendToDIM(action, args, client));
 };
 
-wss.on('error', () => {
+server.on('error', () => {
   sd.logMessage('There is another instance of this plugin running');
   process.exit();
 });
@@ -48,7 +49,7 @@ const handlers: MessageHandlers = {
 };
 
 export const init = () => {
-  wss.on('connection', (ws: ExtWebSocket) => {
+  server.on('connection', (ws: ExtWebSocket) => {
     // disallow any not identified connection
     if (!ws.protocol) {
       return ws.close();
@@ -86,5 +87,3 @@ export const init = () => {
     });
   });
 };
-
-server.listen(9119, 'localhost');

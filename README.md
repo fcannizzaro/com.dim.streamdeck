@@ -1,13 +1,8 @@
 # DIM Stream Deck
 
-A Stream Deck plugin to interact with Destiny Item Manager and Destiny 2
+A Stream Deck plugin to interact with Destiny Item Manager
 
 [![](https://img.shields.io/badge/Stream%20Deck%20SDK-for%20Node.js-green)](https://github.com/stream-deck-for-node/sdk)
-
-> # THIS PLUGIN IS UNDER DEVELOPMENT
-> Download and install only if you can use my development branch of DIM https://github.com/fcannizzaro/DIM/tree/stream-deck-integration
->
-> Follow this pr https://github.com/DestinyItemManager/DIM/pull/8501 for the integration's state
 
 ## Installation
 
@@ -22,9 +17,13 @@ Go to [dim-stream-deck.netlify.app](https://dim-stream-deck.netlify.app) to see 
 
 ## Preview
 
-![actions1](https://github.com/fcannizzaro/com.dim.streamdeck/blob/main/media/preview.png?raw=true)
+![actions1](https://github.com/fcannizzaro/com.dim.streamdeck/blob/main/media/page-1.png?raw=true)
 
-![actions2](https://github.com/fcannizzaro/com.dim.streamdeck/blob/main/media/preview-1.png?raw=true)
+![actions2](https://github.com/fcannizzaro/com.dim.streamdeck/blob/main/media/page-2.png?raw=true)
+
+# Contributing
+
+See [contributing.md](https://github.com/fcannizzaro/com.dim.streamdeck/blob/main/CONTRIBUTING.md) for information on how to Contribute to the development of DIM Stream Deck.
 
 ## Author
 
