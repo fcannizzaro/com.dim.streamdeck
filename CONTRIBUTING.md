@@ -17,7 +17,7 @@ First, thank you for contributing to DIM Stream Deck!
 
 ### Clone the repo
 
-To locally **run a copy** of DIM, you can simply clone the code repository:
+To work with this plugin you can simply clone the code repository:
 ```sh
 git clone https://github.com/fcannizzaro/com.dim.streamdeck
 ```
