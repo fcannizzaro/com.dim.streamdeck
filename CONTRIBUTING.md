@@ -41,7 +41,7 @@ This CLI will simplify your development
 
 Enter the stream-deck-plugin directory and
 
-These operations needs to be done only one time until reverted
+These operations should be done only one time until reverted
 
 * Run `stream-deck link`
   > this will link your local project to the Elgato's plugins directory to live develop the plugin (symlink)
@@ -55,7 +55,7 @@ If you edit the `manifest.json` to add new actions, or something else you'll nee
 
 ### Build
 
-The plugin must be linked before build
+The plugin must be linked before the building process
 
 * Remember to change the CodePath to original executable paths [check here](https://github.com/fcannizzaro/com.dim.streamdeck/blob/main/stream-deck-plugin/plugin/manifest.json#L25-L27)
 * Run `yarn build` / `yarn build:win` / `yarn build:mac` 
