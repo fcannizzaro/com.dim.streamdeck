@@ -53,7 +53,6 @@ jobs:
         uses: IsaacShelton/update-existing-release@v1.2.0
         with:
           token: ${{ secrets.SECRET_TOKEN }}
-          tag: "${{steps.version.outputs.prop}}"
           release: "${{steps.version.outputs.prop}}"
           prerelease: true
           replace: true
