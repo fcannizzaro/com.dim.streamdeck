@@ -8,11 +8,13 @@
   "bin": "./dist/index.js",
   "scripts": {
     "start": "npx ts-node ./src/index.ts -debug com.dim.streamdeck",
+    "build": "npm run build:ts && npm run build:bin-all",
     "build:ts": "npx tsc -outDir dist",
     "build:win": "npm run build:ts && npm run build:bin-win",
     "build:mac": "npm run build:ts && npm run build:bin-mac",
     "build:bin-win": "npx pkg package.json --compress GZip --targets node16-windows-x64 -o plugin/com.dim.streamdeck",
-    "build:bin-mac": "npx pkg package.json --compress GZip --targets node16-macos-x64 -o plugin/com.dim.streamdeck"
+    "build:bin-mac": "npx pkg package.json --compress GZip --targets node16-macos-x64 -o plugin/com.dim.streamdeck",
+    "build:bin-all": "npx pkg package.json --compress GZip --targets node16-windows-x64,node16-macos-x64 -o plugin/com.dim.streamdeck"
   },
   "dependencies": {
     "@stream-deck-for-node/sdk": "1.0.14",
