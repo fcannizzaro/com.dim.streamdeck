@@ -21,7 +21,7 @@ Go to [dim-stream-deck.netlify.app](https://dim-stream-deck.netlify.app) to see 
 
 ![actions2](https://github.com/fcannizzaro/com.dim.streamdeck/blob/main/media/page-2.png?raw=true)
 
-# Contributing
+## Contributing
 
 See [contributing.md](https://github.com/fcannizzaro/com.dim.streamdeck/blob/main/CONTRIBUTING.md) for information on how to Contribute to the development of DIM Stream Deck.
 
