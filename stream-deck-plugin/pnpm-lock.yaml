@@ -1,9 +1,8 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@stream-deck-for-node/sdk': 1.0.14
+  '@stream-deck-for-node/sdk': 1.0.15
   '@types/comma-number': ^2.1.0
-  '@types/copy-paste': ^1.1.30
   '@types/node': ^16.11.12
   '@types/openurl': ^1.0.0
   '@types/ws': ^8.2.2
@@ -15,14 +14,13 @@ specifiers:
   ws: ^8.4.0
 
 dependencies:
-  '@stream-deck-for-node/sdk': 1.0.14
+  '@stream-deck-for-node/sdk': 1.0.15
   comma-number: 2.1.0
   openurl: 1.1.1
   ws: 8.8.0
 
 devDependencies:
   '@types/comma-number': 2.1.0
-  '@types/copy-paste': 1.1.30
   '@types/node': 16.11.39
   '@types/openurl': 1.0.0
   '@types/ws': 8.5.3
@@ -55,8 +53,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.13
     dev: true
 
-  /@stream-deck-for-node/sdk/1.0.14:
-    resolution: {integrity: sha512-e5msTDC9Fsg7li7EENtTbTCcPaJrBictX90fUs8ox+MbxIfXQaKv6mILjRBrmb7MxMg7KNfZ3oyTT4MpE+52gg==}
+  /@stream-deck-for-node/sdk/1.0.15:
+    resolution: {integrity: sha512-XHg5l4MNPqpLIc3UfZOffYxliNDvEqr2zdDgxZZB59d7JHbc6RV7lMBTieWEdolkL869iczmjCs6uzYBdOqnpQ==}
     dependencies:
       axios: 0.24.0
       command-line-args: 5.2.1
@@ -87,10 +85,6 @@ packages:
 
   /@types/comma-number/2.1.0:
     resolution: {integrity: sha512-9MoSSdmOOkzhGY4HKeA6Fc59Pvs4k5lryZZK6PrH8PgKQDwDjy/TCP5wuCHD9rTmKpOJlm85KuTlXGSiI1khdg==}
-    dev: true
-
-  /@types/copy-paste/1.1.30:
-    resolution: {integrity: sha512-/pjP3jEYc+JFXjNMjlJaSE7ZVpPYCUz0+jdF1nVzFOsEygxTt0Jr9k3DbfKV3CDfZLjFpJ5p/B+vNLxWVe9Cvw==}
     dev: true
 
   /@types/node/16.11.39:

@@ -1,9 +1,10 @@
 import { HandlerArgs } from '../interfaces';
-import { sd } from '../index';
-import { switchFirstDeviceProfile } from '../util';
+import { DimView, sd } from '../index';
 import { join } from 'path';
-import { CENTER_BY_TYPE, IMAGE_PATH } from '../constant';
-import { setMatrixCell } from '../actions/dim-enhanced';
+import { IMAGE_PATH } from '../constant';
+import { DeviceType } from '@stream-deck-for-node/sdk/lib/types/interfaces';
+import { clients, sendToDIM } from './server';
+import { saveToken } from '../security/authorization';
 
 // update global setting with DIM data
 export const updateHandler = ({ data }: HandlerArgs) => {
@@ -19,17 +20,35 @@ export const authorizationResetHandler = ({ identifier }: HandlerArgs) => {
 };
 
 export const authorizationChallengeHandler = ({ data, identifier }: HandlerArgs) => {
+  const device = sd.info.devices.find((it) => Object.values(DeviceType).includes(it.type));
+  if (!device) return;
+  const view = DimView.show(device);
+  if (!view) return;
+  const { center, approximatedCenter } = view.geometry;
   const image = join(IMAGE_PATH, './authorization.png');
-  // show visual challenges
-  switchFirstDeviceProfile('DIM-Enhanced', (type: number) => {
-    const center = CENTER_BY_TYPE[type];
-    data.challenges?.forEach((challenge, i) => {
-      const [r, c] = center;
-      setMatrixCell(r, c - 1 + i, {
-        image,
-        title: challenge.label.toString(),
-        data: { challenge, identifier },
-      });
+  const c = center || approximatedCenter || 0;
+
+  const onClose = () => {
+    view.clear();
+    view.hide();
+  };
+
+  view.onTapOutside(onClose);
+
+  data.challenges?.forEach((challenge, i) => {
+    view?.update(c - 1 + i, {
+      image,
+      title: challenge.label.toString(),
+      onSingleTap: () => {
+        sendToDIM(
+          'authorization:confirm',
+          { challenge: challenge.label },
+          clients[identifier],
+          true,
+        );
+        saveToken(identifier, challenge.value);
+        onClose();
+      },
     });
   });
 };

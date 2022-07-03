@@ -17,7 +17,7 @@
     "build:bin-all": "npx pkg package.json --compress GZip --targets node16-windows-x64,node16-macos-x64 -o plugin/com.dim.streamdeck"
   },
   "dependencies": {
-    "@stream-deck-for-node/sdk": "1.0.14",
+    "@stream-deck-for-node/sdk": "1.0.15",
     "comma-number": "^2.1.0",
     "openurl": "^1.1.1",
     "ws": "^8.4.0"
@@ -29,7 +29,6 @@
   },
   "devDependencies": {
     "@types/comma-number": "^2.1.0",
-    "@types/copy-paste": "^1.1.30",
     "@types/node": "^16.11.12",
     "@types/openurl": "^1.0.0",
     "@types/ws": "^8.2.2",

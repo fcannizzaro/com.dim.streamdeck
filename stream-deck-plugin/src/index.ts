@@ -9,7 +9,6 @@ import './actions/metrics';
 import './actions/max-power';
 import './actions/farming-mode';
 import './actions/pull-item';
-import './actions/dim-enhanced';
 import './actions/rotations';
 // import './actions/free-slot';
 
@@ -18,6 +17,8 @@ import { init } from './ws/server';
 import { DimSettings } from './interfaces';
 
 export const sd = new StreamDeck<DimSettings>();
+
+export const DimView = sd.registerDynamicView('page', 'DIM-Enhanced');
 
 process.on('uncaughtException', (e) => {
   console.log(e);
