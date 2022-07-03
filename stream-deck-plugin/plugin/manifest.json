@@ -3,9 +3,9 @@
   "Author": "fcannizzaro",
   "Description": "DIM actions",
   "Icon": "icons/pluginIcon",
-  "Version": "1.0.7",
+  "Version": "1.0.8",
   "SDKVersion": 2,
-  "Bundle": "index.js",
+  "URL": "https://dim-stream-deck.netlify.app",
   "uuid": "com.dim.streamdeck",
   "Software": {
     "MinimumVersion": "5.0"
@@ -14,11 +14,16 @@
     {
       "Platform": "windows",
       "MinimumVersion": "10"
+    },
+    {
+      "Platform": "mac",
+      "MinimumVersion": "10.11"
     }
   ],
-  "Category": "DIM / Destiny 2",
+  "Category": "Destiny Item Manager",
   "CategoryIcon": "icons/category",
-  "CodePath": "com.dim.streamdeck.exe",
+  "CodePathWin": "com.dim.streamdeck.exe",
+  "CodePathMac": "com.dim.streamdeck",
   "PropertyInspectorPath": "pi/index.html",
   "Profiles": [
     {

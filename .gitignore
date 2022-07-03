@@ -230,6 +230,8 @@ modules.xml
 
 # built using GitHub workflow
 com.dim.streamdeck.exe
+com.dim.streamdeck
 
 # debug executable
 debug-plugin-win.exe
+debug-plugin-mac

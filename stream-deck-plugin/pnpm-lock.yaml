@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@stream-deck-for-node/sdk': 1.0.12
+  '@stream-deck-for-node/sdk': 1.0.14
   '@types/comma-number': ^2.1.0
   '@types/copy-paste': ^1.1.30
   '@types/node': ^16.11.12
@@ -15,7 +15,7 @@ specifiers:
   ws: ^8.4.0
 
 dependencies:
-  '@stream-deck-for-node/sdk': 1.0.12
+  '@stream-deck-for-node/sdk': 1.0.14
   comma-number: 2.1.0
   openurl: 1.1.1
   ws: 8.8.0
@@ -55,12 +55,13 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.13
     dev: true
 
-  /@stream-deck-for-node/sdk/1.0.12:
-    resolution: {integrity: sha512-WZTZwZz4pPHtdtzDZjSn5fEaF5kKyIfHlpW2xuEgYq3dx8i94fN7qfc4Un6k2TIjd6Sh4pDy3ZyqwkFg1WrF2A==}
+  /@stream-deck-for-node/sdk/1.0.14:
+    resolution: {integrity: sha512-e5msTDC9Fsg7li7EENtTbTCcPaJrBictX90fUs8ox+MbxIfXQaKv6mILjRBrmb7MxMg7KNfZ3oyTT4MpE+52gg==}
     dependencies:
       axios: 0.24.0
       command-line-args: 5.2.1
       mime-types: 2.1.35
+      rxjs: 7.5.5
       ws: 8.8.0
     transitivePeerDependencies:
       - bufferutil
@@ -206,6 +207,12 @@ packages:
     hasBin: true
     dev: true
 
+  /rxjs/7.5.5:
+    resolution: {integrity: sha512-sy+H0pQofO95VDmFLzyaw9xNJU4KTRSwQIGM6+iG3SypAtCiLDzpeG8sJrNCWn2Up9km+KhkvTdbkrdy+yzZdw==}
+    dependencies:
+      tslib: 2.4.0
+    dev: false
+
   /ts-node/10.8.1_pjlhwcktroxhni6x7uirug5lya:
     resolution: {integrity: sha512-Wwsnao4DQoJsN034wePSg5nZiw4YKXf56mPIAeD6wVmiv+RytNSWqc2f3fKvcUoV+Yn2+yocD71VOfQHbmVX4g==}
     hasBin: true
@@ -236,6 +243,10 @@ packages:
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
     dev: true
+
+  /tslib/2.4.0:
+    resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
+    dev: false
 
   /typescript/4.7.3:
     resolution: {integrity: sha512-WOkT3XYvrpXx4vMMqlD+8R8R37fZkjyLGlxavMc4iB8lrl8L0DeTcHbYgw/v0N/z9wAFsgBhcsF0ruoySS22mA==}

@@ -42,7 +42,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build plugin
-        run: pnpm build
+        run: pnpm build:win
 
       - name: Prepare plugin directory
         run: ren plugin com.dim.streamdeck.sdPlugin

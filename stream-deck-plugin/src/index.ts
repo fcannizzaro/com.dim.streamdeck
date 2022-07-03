@@ -24,7 +24,7 @@ process.on('uncaughtException', (e) => {
   sd.logMessage('Error: ' + e.message);
 });
 
-init();
+sd.ready().then(init);
 
 // Reset Plugin (Development Only)
 // setTimeout(() => sd.resetPluginSettings(), 4000);

@@ -1,27 +1,26 @@
 {
   "private": true,
   "name": "dim-stream-deck-plugin",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "author": "Francesco Saverio Cannizzaro (fcannizzaro)",
   "license": "GPL-3",
   "main": "./dist/index.js",
   "bin": "./dist/index.js",
   "scripts": {
     "start": "npx ts-node ./src/index.ts -debug com.dim.streamdeck",
-    "build": "npm run build:ts && npm run build:bin",
     "build:ts": "npx tsc -outDir dist",
-    "build:bin": "npx pkg package.json --compress GZip -o plugin/com.dim.streamdeck"
+    "build:win": "npm run build:ts && npm run build:bin-win",
+    "build:mac": "npm run build:ts && npm run build:bin-mac",
+    "build:bin-win": "npx pkg package.json --compress GZip --targets node16-windows-x64 -o plugin/com.dim.streamdeck",
+    "build:bin-mac": "npx pkg package.json --compress GZip --targets node16-macos-x64 -o plugin/com.dim.streamdeck"
   },
   "dependencies": {
-    "@stream-deck-for-node/sdk": "1.0.12",
+    "@stream-deck-for-node/sdk": "1.0.14",
     "comma-number": "^2.1.0",
     "openurl": "^1.1.1",
     "ws": "^8.4.0"
   },
   "pkg": {
-    "targets": [
-      "node16-windows-x64"
-    ],
     "assets": [
       "./images/**/*"
     ]
