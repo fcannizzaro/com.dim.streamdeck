@@ -229,9 +229,11 @@ modules.xml
 .pkg-cache
 
 # built using GitHub workflow
-com.dim.streamdeck.exe
-com.dim.streamdeck
+com.dim.streamdeck-macos
+com.dim.streamdeck-win.exe
+com.dim.streamdeck.streamDeckPlugin
 
 # debug executable
 debug-plugin-win.exe
 debug-plugin-mac
+

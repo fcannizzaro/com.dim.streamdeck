@@ -1,14 +1,6 @@
 name: Publish Stream Deck plugin package
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - '**'
-    paths-ignore:
-      - 'spa/**'
-      - 'media/**'
-      - '.github/**'
-      - 'stream-deck-plugin/property-inspector/**'
 
 jobs:
   package-stream-deck-plugin:
@@ -41,7 +33,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build plugin
+      - name: Build plugin (Windows and macOS)
         run: pnpm build
 
       - name: Prepare plugin directory

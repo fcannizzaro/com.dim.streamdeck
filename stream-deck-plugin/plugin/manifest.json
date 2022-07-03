@@ -22,9 +22,9 @@
   ],
   "Category": "Destiny Item Manager",
   "CategoryIcon": "icons/category",
-  "CodePath": "com.dim.streamdeck.exe",
-  "CodePathWin": "com.dim.streamdeck.exe",
-  "CodePathMac": "com.dim.streamdeck",
+  "CodePath": "com.dim.streamdeck-win",
+  "CodePathWin": "com.dim.streamdeck-win.exe",
+  "CodePathMac": "com.dim.streamdeck-macos",
   "PropertyInspectorPath": "pi/index.html",
   "Profiles": [
     {
