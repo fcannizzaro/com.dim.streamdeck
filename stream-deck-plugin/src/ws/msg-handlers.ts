@@ -2,7 +2,7 @@ import { HandlerArgs } from '../interfaces';
 import { DimView, sd } from '../index';
 import { join } from 'path';
 import { IMAGE_PATH } from '../constant';
-import { DeviceType } from '@stream-deck-for-node/sdk/lib/types/interfaces';
+import { DeviceType, DynamicViewInstance } from '@stream-deck-for-node/sdk/lib/types/interfaces';
 import { clients, sendToDIM } from './server';
 import { saveToken } from '../security/authorization';
 
@@ -20,35 +20,40 @@ export const authorizationResetHandler = ({ identifier }: HandlerArgs) => {
 };
 
 export const authorizationChallengeHandler = ({ data, identifier }: HandlerArgs) => {
-  const device = sd.info.devices.find((it) => Object.values(DeviceType).includes(it.type));
-  if (!device) return;
-  const view = DimView.show(device);
-  if (!view) return;
-  const { center, approximatedCenter } = view.geometry;
-  const image = join(IMAGE_PATH, './authorization.png');
-  const c = center || approximatedCenter || 0;
+  const devices = sd.info.devices.filter((it) => Object.values(DeviceType).includes(it.type));
+  const views: DynamicViewInstance[] = [];
 
   const onClose = () => {
-    view.clear();
-    view.hide();
+    for (const view of views) {
+      view.clear();
+      view.hide();
+    }
   };
 
-  view.onTapOutside(onClose);
-
-  data.challenges?.forEach((challenge, i) => {
-    view?.update(c - 1 + i, {
-      image,
-      title: challenge.label.toString(),
-      onSingleTap: () => {
-        sendToDIM(
-          'authorization:confirm',
-          { challenge: challenge.label },
-          clients[identifier],
-          true,
-        );
-        saveToken(identifier, challenge.value);
-        onClose();
-      },
+  // render on all devices
+  devices.forEach((device) => {
+    const view = DimView.show(device);
+    if (!view) return;
+    views.push(view);
+    const { center, approximatedCenter } = view.geometry;
+    const image = join(IMAGE_PATH, './authorization.png');
+    const c = center || approximatedCenter || 0;
+    view.onTapOutside(onClose);
+    data.challenges?.forEach((challenge, i) => {
+      view?.update(c - 1 + i, {
+        image,
+        title: challenge.label.toString(),
+        onSingleTap: () => {
+          sendToDIM(
+            'authorization:confirm',
+            { challenge: challenge.label },
+            clients[identifier],
+            true,
+          );
+          saveToken(identifier, challenge.value);
+          onClose();
+        },
+      });
     });
   });
 };
