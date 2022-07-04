@@ -9,8 +9,9 @@ import {
 } from '@stream-deck-for-node/sdk';
 import { sd } from '../index';
 import { sendToDIM } from '../ws/server';
-import { bungify } from '../util';
+import { bungify } from '../util/bungify';
 import { DimSettings } from '../interfaces';
+import { cacheOrImage } from '../util/cache';
 
 interface EquipItemSettings {
   item: string;
@@ -26,14 +27,14 @@ interface EquipItemSettings {
 export class PullItem extends BaseAction {
   pending?: string;
 
-  updateItem(context: string, settings: EquipItemSettings) {
+  async updateItem(context: string, settings: EquipItemSettings) {
     if (settings.icon) {
-      sd.setImage(context, bungify(settings.icon));
+      sd.setImage(context, await cacheOrImage(bungify(settings.icon)));
     }
   }
 
-  onSettingsChanged(e: SettingsChanged<EquipItemSettings>) {
-    this.updateItem(e.context, e.settings);
+  async onSettingsChanged(e: SettingsChanged<EquipItemSettings>) {
+    await this.updateItem(e.context, e.settings);
     sd.showOk(e.context);
   }
 
@@ -50,8 +51,8 @@ export class PullItem extends BaseAction {
     }
   }
 
-  onAppear(e: AppearDisappearEvent<EquipItemSettings>) {
-    this.updateItem(e.context, e.payload.settings);
+  async onAppear(e: AppearDisappearEvent<EquipItemSettings>) {
+    await this.updateItem(e.context, e.payload.settings);
   }
 
   pullItem(e: KeyEvent<EquipItemSettings>, equip: boolean = false) {

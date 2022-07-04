@@ -1,3 +1,4 @@
+/*
 import {
   Action,
   AppearDisappearEvent,
@@ -22,9 +23,7 @@ interface FreeBucketSlotSetting {
     | 'Power';
 }
 
-/*
-   Free up a single slot in the inventory (helmet, arms, chest, primary, etc..)
-*/
+// Free up a single slot in the inventory (helmet, arms, chest, primary, etc..)
 @Action('free-bucket-slot')
 export class FreeSlot extends BaseAction {
   updateItem(context: string, settings: FreeBucketSlotSetting) {
@@ -43,4 +42,4 @@ export class FreeSlot extends BaseAction {
     sendToDIM('freeBucketSlot', e.payload.settings);
     sd.showOk(e.context);
   }
-}
+}*/

@@ -9,8 +9,9 @@ import {
 import { sendToDIM } from '../ws/server';
 import { sd } from '../index';
 import { PropertyInspectorMessagingEvent } from '@stream-deck-for-node/sdk/src/types/events';
-import { bungify } from '../util';
+import { bungify } from '../util/bungify';
 import { DimSettings } from '../interfaces';
+import { cacheOrImage } from '../util/cache';
 
 interface LoadoutSettings {
   character: string;
@@ -26,11 +27,11 @@ interface LoadoutSettings {
 export class EquipLoadout extends BaseAction<LoadoutSettings> {
   pending?: string;
 
-  updateTitle(context: string, settings: LoadoutSettings) {
+  async updateTitle(context: string, settings: LoadoutSettings) {
     if (settings.loadout) {
       sd.setTitle(context, settings.label);
     }
-    sd.setImage(context, bungify(settings.icon));
+    sd.setImage(context, await cacheOrImage(bungify(settings.icon)));
   }
 
   async onMessageFromPropertyInspector(e: PropertyInspectorMessagingEvent) {
@@ -42,12 +43,12 @@ export class EquipLoadout extends BaseAction<LoadoutSettings> {
     }
   }
 
-  onAppear(e: AppearDisappearEvent<LoadoutSettings>) {
-    this.updateTitle(e.context, e.payload.settings);
+  async onAppear(e: AppearDisappearEvent<LoadoutSettings>) {
+    await this.updateTitle(e.context, e.payload.settings);
   }
 
-  onSettingsChanged(e: SettingsChanged<LoadoutSettings>) {
-    this.updateTitle(e.context, e.settings);
+  async onSettingsChanged(e: SettingsChanged<LoadoutSettings>) {
+    await this.updateTitle(e.context, e.settings);
   }
 
   onSingleTap(e: KeyEvent<LoadoutSettings>) {

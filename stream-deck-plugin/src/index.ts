@@ -10,7 +10,6 @@ import './actions/max-power';
 import './actions/farming-mode';
 import './actions/pull-item';
 import './actions/rotations';
-// import './actions/free-slot';
 
 import { StreamDeck } from '@stream-deck-for-node/sdk';
 import { init } from './ws/server';

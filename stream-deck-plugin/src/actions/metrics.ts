@@ -9,7 +9,7 @@ import { sd } from '../index';
 import path from 'path';
 import { IMAGE_PATH } from '../constant';
 import commaNumber from 'comma-number';
-import { bungify } from '../util';
+import { bungify } from '../util/bungify';
 import { DimSettings } from '../interfaces';
 
 const IMAGES = {
