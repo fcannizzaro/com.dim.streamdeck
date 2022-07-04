@@ -11,7 +11,7 @@ import { sd } from '../index';
 import { sendToDIM } from '../ws/server';
 import { bungify } from '../util/bungify';
 import { DimSettings } from '../interfaces';
-import { cacheOrImage } from '../util/cache';
+import { cachedImage } from '../util/cache';
 
 interface EquipItemSettings {
   item: string;
@@ -29,7 +29,7 @@ export class PullItem extends BaseAction {
 
   async updateItem(context: string, settings: EquipItemSettings) {
     if (settings.icon) {
-      sd.setImage(context, await cacheOrImage(bungify(settings.icon)));
+      sd.setImage(context, await cachedImage(bungify(settings.icon)));
     }
   }
 

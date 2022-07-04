@@ -8,7 +8,7 @@ export const cache = Cache({
 });
 
 // cache image on disk
-export const cacheOrImage = async (image?: string) => {
+export const cachedImage = async (image?: string) => {
   if (!image) {
     return;
   }

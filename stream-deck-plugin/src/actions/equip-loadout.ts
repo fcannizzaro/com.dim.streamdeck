@@ -11,7 +11,7 @@ import { sd } from '../index';
 import { PropertyInspectorMessagingEvent } from '@stream-deck-for-node/sdk/src/types/events';
 import { bungify } from '../util/bungify';
 import { DimSettings } from '../interfaces';
-import { cacheOrImage } from '../util/cache';
+import { cachedImage } from '../util/cache';
 
 interface LoadoutSettings {
   character: string;
@@ -31,7 +31,7 @@ export class EquipLoadout extends BaseAction<LoadoutSettings> {
     if (settings.loadout) {
       sd.setTitle(context, settings.label);
     }
-    sd.setImage(context, await cacheOrImage(bungify(settings.icon)));
+    sd.setImage(context, await cachedImage(bungify(settings.icon)));
   }
 
   async onMessageFromPropertyInspector(e: PropertyInspectorMessagingEvent) {
