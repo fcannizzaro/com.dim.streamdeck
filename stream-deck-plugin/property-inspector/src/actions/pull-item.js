@@ -26,7 +26,7 @@ export const PullItem = () => {
       </SettingsBox>
       <div>
         <Gesture gesture='Single Tap' action='Pull Item / Move to vault' />
-        <Gesture gesture='Long Press' action='Pull + Equip Item / Move to vault' />
+        <Gesture gesture='Long Press' action='Equip Item' />
       </div>
     </>
   );
