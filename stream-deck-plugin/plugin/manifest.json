@@ -103,14 +103,14 @@
     },
     {
       "Icon": "icons/equipItemIcon",
-      "Name": "Pull Item",
+      "Name": "Pull/Equip Item",
       "States": [
         {
           "Image": "icons/equipItemState"
         }
       ],
       "SupportedInMultiActions": true,
-      "Tooltip": "Equip a pre-selected item",
+      "Tooltip": "Pull or equip a pre-selected item",
       "UUID": "com.dim.streamdeck.pull-item"
     },
     {
