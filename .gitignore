@@ -232,6 +232,7 @@ modules.xml
 com.dim.streamdeck-macos
 com.dim.streamdeck-win.exe
 com.dim.streamdeck.streamDeckPlugin
+pi/
 
 # debug executable
 debug-plugin-win.exe
