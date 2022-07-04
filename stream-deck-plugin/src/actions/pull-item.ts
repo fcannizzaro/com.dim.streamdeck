@@ -54,13 +54,24 @@ export class PullItem extends BaseAction {
     this.updateItem(e.context, e.payload.settings);
   }
 
-  onSingleTap(e: KeyEvent<EquipItemSettings>) {
+  pullItem(e: KeyEvent<EquipItemSettings>, equip: boolean = false) {
     if (e.payload.settings.item) {
-      sendToDIM('pullItem', e.payload.settings);
+      sendToDIM('pullItem', {
+        ...e.payload.settings,
+        equip,
+      });
       sd.showOk(e.context);
     } else {
       sd.showAlert(e.context);
     }
+  }
+
+  onSingleTap(e: KeyEvent<EquipItemSettings>) {
+    this.pullItem(e);
+  }
+
+  onLongPress(e: KeyEvent<EquipItemSettings>) {
+    this.pullItem(e, true);
   }
 
   onPluginSettingsChanged(e: PluginSettingsChanged<DimSettings>) {
