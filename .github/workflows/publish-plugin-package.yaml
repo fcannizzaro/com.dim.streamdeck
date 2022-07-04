@@ -37,7 +37,7 @@ jobs:
         run: pnpm build
 
       - name: Build Property Inspector
-        run: cd property-inspector && pnpm install && pnpm build
+        run: cd property-inspector && pnpm install --frozen-lockfile && pnpm build
 
       - name: Prepare plugin directory
         run: ren plugin com.dim.streamdeck.sdPlugin
