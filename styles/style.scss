@@ -221,3 +221,21 @@ a.kofi-button:active {
   width: auto !important;
   display: initial;
 }
+
+.beta {
+  border: 2px solid #03b7d3;
+  color: white;
+  display: flex;
+  justify-content: center;
+  & span {
+    color: white;
+    padding: 12px;
+  }
+  & a {
+    color: #03b7d3;
+    font-weight: bold;
+    &:hover {
+      color: #05cceb;
+    }
+  }
+}

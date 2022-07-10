@@ -63,6 +63,14 @@ export default function Home() {
                         </div>
                     </a>
 
+                    <h2 className="beta title is-size-2 has-text-white has-text-weight-normal mt-6 pt-2 pb-2">
+                        <span>
+                            Available on <a href="https://beta.destinyitemmanager.com/" target="_blank">
+                            beta.destinyitemmanager.com
+                        </a>
+                        </span>
+                    </h2>
+
                     <h1 className="title is-size-2 has-text-white has-text-weight-normal mt-6 pt-2 pb-2">Metrics</h1>
 
                     <div className="columns">
