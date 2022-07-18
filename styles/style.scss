@@ -67,6 +67,10 @@ body {
   background: #0f1c7c;
 }
 
+.discord {
+  background: #5865F2;
+}
+
 .here {
   background: #0bacec;
 }
@@ -158,6 +162,16 @@ img.kofiimg {
   }
 }
 
+.intro-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  & > a {
+    margin-right: 16px;
+  }
+}
+
 span.kofitext {
   color: #fff !important;
   letter-spacing: -0.15px !important;
@@ -226,6 +240,7 @@ a.kofi-button:active {
   border: 2px solid #03b7d3;
   color: white;
   display: flex;
+  margin-top: 36px !important;
   justify-content: center;
   & span {
     color: white;

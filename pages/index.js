@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Elgato from "../resources/elgato.png";
+import Discord from "../resources/discord.png";
 import Image from 'next/image'
 import Header from "./header";
 import MetricsActions from '../resources/metrics.png';
@@ -50,18 +51,32 @@ export default function Home() {
 
                     <p className="subtitle is-3 has-text-grey">Equip Loadouts, Pull items, Search, and much more.</p>
 
-                    <a href='https://apps.elgato.com/plugins/com.dim.streamdeck'
-                       target='_blank'>
-                        <div className="download-button elgato">
-                            <div className="download-icon">
-                                <Image src={Elgato} alt="elgato"/>
+                    <div className="intro-buttons">
+                        <a href='https://apps.elgato.com/plugins/com.dim.streamdeck'
+                           target='_blank'>
+                            <div className="download-button elgato">
+                                <div className="download-icon">
+                                    <Image src={Elgato} alt="elgato"/>
+                                </div>
+                                <div className="download-text">
+                                    <span>Install the plugin</span>
+                                    <span>com.dim.streamdeck</span>
+                                </div>
                             </div>
-                            <div className="download-text">
-                                <span>Install the plugin</span>
-                                <span>com.dim.streamdeck</span>
+                        </a>
+                        <a href='https://discord.gg/evUfsxmGuv'
+                           target='_blank'>
+                            <div className="download-button elgato discord">
+                                <div className="download-icon">
+                                    <Image src={Discord} alt="discord"/>
+                                </div>
+                                <div className="download-text">
+                                    <span>Discord Server</span>
+                                    <span>discord.gg/evUfsxmGuv</span>
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
 
                     <h2 className="beta title is-size-2 has-text-white has-text-weight-normal mt-6 pt-2 pb-2">
                         <span>
