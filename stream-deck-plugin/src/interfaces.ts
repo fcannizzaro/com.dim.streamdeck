@@ -1,4 +1,5 @@
 import WebSocket from 'ws';
+import { EquipItemSettings } from './actions/pull-item';
 
 interface Loadout {
   id: string;
@@ -50,6 +51,7 @@ export interface DimSettings {
     label: string;
     subtitle: string;
     icon: string;
+    overlay: string;
     item: string;
     loadout: string;
     character: string;
@@ -71,14 +73,19 @@ export interface Challenge {
 
 export interface WebSocketMessageArgs extends DimSettings {
   challenges?: Challenge[];
+  info: InfoItem[];
   shareUrl?: string;
 }
 
 export interface WebSocketMessage {
   // action to execute on Stream Deck
-  action: 'dim:update' | 'authorization:challenges' | 'authorization:reset';
+  action: 'dim:update' | 'authorization:challenges' | 'authorization:reset' | 'items:info';
   // actions parameters
   data: WebSocketMessageArgs;
+}
+
+interface InfoItem extends Pick<EquipItemSettings, 'element' | 'power' | 'overlay' | 'isExotic'> {
+  identifier: string;
 }
 
 export interface HandlerArgs {
@@ -99,6 +106,7 @@ export type DimAction =
   | 'maxPower'
   | 'freeBucketSlot'
   | 'pullItem'
+  | 'pullItem:items-request'
   | 'selection'
   | 'loadout'
   | 'authorization:init'

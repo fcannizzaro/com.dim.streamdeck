@@ -17,7 +17,7 @@ import { DimSettings } from './interfaces';
 
 export const sd = new StreamDeck<DimSettings>();
 
-export const DimView = sd.registerDynamicView('page', 'DIM-Enhanced');
+// export const DimView = sd.registerDynamicView('page', 'DIM-Enhanced');
 
 process.on('uncaughtException', (e) => {
   console.log(e);
@@ -25,6 +25,5 @@ process.on('uncaughtException', (e) => {
 });
 
 sd.ready().then(init);
-
 // Reset Plugin (Development Only)
-// setTimeout(() => sd.resetPluginSettings(), 4000);
+// .then(() => sd.resetPluginSettings());

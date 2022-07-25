@@ -1,16 +1,16 @@
 import {
   Action,
   AppearDisappearEvent,
-  BaseAction,
   PluginSettingsChanged,
   SettingsChanged,
 } from '@stream-deck-for-node/sdk';
 import { sd } from '../index';
 import path from 'path';
-import { IMAGE_PATH } from '../constant';
+import { IMAGE_PATH } from '../util/shared';
 import commaNumber from 'comma-number';
 import { bungify } from '../util/bungify';
 import { DimSettings } from '../interfaces';
+import { BaseDimAction } from './BaseAction';
 
 const IMAGES = {
   vanguard: path.join(IMAGE_PATH, './metrics/metrics-vanguard.png'),
@@ -38,7 +38,7 @@ interface MetricsSettings {
    Show playlists metrics, progress, etc..
 */
 @Action('metrics')
-export class Metrics extends BaseAction {
+export class Metrics extends BaseDimAction<MetricsSettings> {
   updateItem(context: string, settings: MetricsSettings) {
     const metrics = sd.pluginSettings.metrics || {};
     const title = commaNumber(metrics?.[settings.metric]) || '-';

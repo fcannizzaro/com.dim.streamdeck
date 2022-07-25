@@ -7,12 +7,32 @@ export const cache = Cache({
   basePath: join(tmpdir(), './com.dim.stream-deck/cache'),
 });
 
+const inMemoryCache: Record<string, any> = {};
+
+// cache any resource
+export const cachedAny = async (key: string, generator: () => Promise<any>) => {
+  if (!inMemoryCache[key]) {
+    inMemoryCache[key] = await generator();
+  }
+  return inMemoryCache[key];
+};
+
+// cache canvas images on disk
+export const cachedCanvas = async (imageKey: string, generator: () => Promise<string>) => {
+  let cached = await cache.get(imageKey);
+  if (!cached) {
+    cached = await generator();
+    await cache.set(imageKey, cached);
+  }
+  return cached;
+};
+
 // cache image on disk
-export const cachedImage = async (image?: string) => {
+export const cachedImage = async (image?: string, key?: string) => {
   if (!image) {
     return;
   }
-  let cached = await cache.get(image);
+  let cached = await cache.get(key ?? image);
   let img;
   if (!cached) {
     const { data, headers } = await axios({ url: image, responseType: 'arraybuffer' });

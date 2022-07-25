@@ -1,7 +1,6 @@
 import {
   Action,
   AppearDisappearEvent,
-  BaseAction,
   KeyEvent,
   PluginSettingsChanged,
   SettingsChanged,
@@ -9,8 +8,9 @@ import {
 import { sd } from '../index';
 import { sendToDIM } from '../ws/server';
 import path from 'path';
-import { IMAGE_PATH } from '../constant';
+import { IMAGE_PATH } from '../util/shared';
 import { DimSettings } from '../interfaces';
+import { BaseDimAction } from './BaseAction';
 
 const IMAGES = {
   postmaster: path.join(IMAGE_PATH, './postmaster/postmaster.png'),
@@ -29,7 +29,7 @@ interface PostmasterSettings {
    Tap to pull items
 */
 @Action('postmaster')
-export class Postmaster extends BaseAction {
+export class Postmaster extends BaseDimAction<PostmasterSettings> {
   onSettingsChanged(e: SettingsChanged<PostmasterSettings>) {
     this.updateItem(e.context, e.settings);
   }
@@ -53,7 +53,7 @@ export class Postmaster extends BaseAction {
     await Promise.all(
       Array.from(this.contexts).map(async (context) => {
         const settings = sd.getSettings<PostmasterSettings>(context);
-        this.updateItem(context, settings);
+        settings && this.updateItem(context, settings);
       }),
     );
   }

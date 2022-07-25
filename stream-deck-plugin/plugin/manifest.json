@@ -10,6 +10,10 @@
   "Software": {
     "MinimumVersion": "5.0"
   },
+  "DefaultWindowSize": [
+    500,
+    300
+  ],
   "OS": [
     {
       "Platform": "windows",
@@ -22,8 +26,8 @@
   ],
   "Category": "Destiny Item Manager",
   "CategoryIcon": "icons/category",
-  "CodePath": "com.dim.streamdeck-win",
-  "CodePathWin": "com.dim.streamdeck-win.exe",
+  "CodePath": "com.dim.streamdeck-win.exe",
+  "CodePathWin": "debug-plugin-win.exe",
   "CodePathMac": "com.dim.streamdeck-macos",
   "PropertyInspectorPath": "pi/index.html",
   "Profiles": [
@@ -31,25 +35,25 @@
       "Name": "DIM-Enhanced",
       "ReadOnly": true,
       "DeviceType": 0,
-      "DontAutoSwitchWhenInstalled": true
+      "DontAutoSwitchWhenInstalled": false
     },
     {
       "Name": "DIM-EnhancedMini",
       "ReadOnly": true,
       "DeviceType": 1,
-      "DontAutoSwitchWhenInstalled": true
+      "DontAutoSwitchWhenInstalled": false
     },
     {
       "Name": "DIM-EnhancedXL",
       "ReadOnly": true,
       "DeviceType": 2,
-      "DontAutoSwitchWhenInstalled": true
+      "DontAutoSwitchWhenInstalled": false
     },
     {
       "Name": "DIM-Enhanced",
       "ReadOnly": true,
       "DeviceType": 3,
-      "DontAutoSwitchWhenInstalled": true
+      "DontAutoSwitchWhenInstalled": false
     }
   ],
   "Actions": [
@@ -62,6 +66,7 @@
         }
       ],
       "SupportedInMultiActions": true,
+      "DisableCaching": true,
       "Tooltip": "Allow to switch Destiny 2 Loadout",
       "UUID": "com.dim.streamdeck.loadout"
     },
@@ -74,6 +79,7 @@
         }
       ],
       "SupportedInMultiActions": true,
+      "DisableCaching": true,
       "Tooltip": "Search with a specific query",
       "UUID": "com.dim.streamdeck.search"
     },
@@ -86,6 +92,7 @@
         }
       ],
       "SupportedInMultiActions": true,
+      "DisableCaching": true,
       "Tooltip": "Refresh DIM",
       "UUID": "com.dim.streamdeck.refresh"
     },
@@ -98,6 +105,7 @@
         }
       ],
       "SupportedInMultiActions": true,
+      "DisableCaching": true,
       "Tooltip": "Randomize a specific character",
       "UUID": "com.dim.streamdeck.randomize"
     },
@@ -110,6 +118,7 @@
         }
       ],
       "SupportedInMultiActions": true,
+      "DisableCaching": true,
       "Tooltip": "Pull or equip a pre-selected item",
       "UUID": "com.dim.streamdeck.pull-item"
     },
@@ -122,6 +131,7 @@
         }
       ],
       "SupportedInMultiActions": true,
+      "DisableCaching": true,
       "Tooltip": "Open DIM on the browser",
       "UUID": "com.dim.streamdeck.app"
     },
@@ -135,6 +145,7 @@
         }
       ],
       "SupportedInMultiActions": false,
+      "DisableCaching": true,
       "Tooltip": "Show a specific param from the vault",
       "UUID": "com.dim.streamdeck.vault"
     },
@@ -152,6 +163,7 @@
         }
       ],
       "SupportedInMultiActions": false,
+      "DisableCaching": true,
       "Tooltip": "Show the used percentage of the current character postmaster",
       "UUID": "com.dim.streamdeck.postmaster"
     },
@@ -165,6 +177,7 @@
         }
       ],
       "SupportedInMultiActions": false,
+      "DisableCaching": true,
       "Tooltip": "Show a specific game metric",
       "UUID": "com.dim.streamdeck.metrics"
     },
@@ -178,6 +191,7 @@
         }
       ],
       "SupportedInMultiActions": false,
+      "DisableCaching": true,
       "Tooltip": "Show the current character Max Power and tap to apply",
       "UUID": "com.dim.streamdeck.power"
     },
@@ -193,6 +207,7 @@
         }
       ],
       "SupportedInMultiActions": false,
+      "DisableCaching": true,
       "Tooltip": "Turn on/off the DIM Farming mode",
       "UUID": "com.dim.streamdeck.farming-mode"
     },

@@ -1,8 +1,10 @@
 import { Actions } from './actions';
-import { useGlobalSettings, useStreamDeck } from './hooks/stream-deck';
+import { useGlobalSettings, useSendToPlugin, useStreamDeck } from './hooks/stream-deck';
 import { SettingsBox } from './components/SettingsBox';
 import { SettingBody, SettingsHeader } from './components/SettingsHeader';
 import { InfoBanner } from './components/DiscordBanner';
+import { useEffect, useRef } from 'react';
+import { SetupModal } from './components/SetupModal';
 
 function SimpleBox({ message }) {
   return (
@@ -14,9 +16,33 @@ function SimpleBox({ message }) {
   );
 }
 
-function App() {
-  const { action, info } = useStreamDeck();
+function SettingsPanel() {
+  const { action, info, messageFromPlugin, setMessageFromPlugin } = useStreamDeck();
+  const sendToPlugin = useSendToPlugin();
   const [pluginSettings] = useGlobalSettings();
+
+  const w = useRef(null);
+
+  useEffect(() => {
+    const listener = async ({ detail }) => {
+      setMessageFromPlugin({});
+      sendToPlugin({
+        identifier: messageFromPlugin.identifier,
+        challenge: detail,
+      });
+    };
+    document.addEventListener('saveChallenge', listener);
+    return () => document.removeEventListener('saveChallenge', listener);
+  }, [messageFromPlugin, sendToPlugin, setMessageFromPlugin]);
+
+  useEffect(() => {
+    const challenges = messageFromPlugin['challenges'];
+    if (challenges) {
+      const setup = encodeURIComponent(JSON.stringify(challenges));
+      w.current && w.current.close();
+      w.current = window.open(`index.html?setup=${setup}`);
+    }
+  }, [messageFromPlugin]);
 
   const shortAction = action?.replace(`${info?.plugin.uuid}.`, '');
   const Action = Actions[shortAction];
@@ -47,6 +73,10 @@ function App() {
       </div>
     </div>
   );
+}
+
+function App({ isSetup }) {
+  return isSetup ? <SetupModal /> : <SettingsPanel />;
 }
 
 export default App;

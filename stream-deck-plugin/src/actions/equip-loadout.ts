@@ -1,7 +1,6 @@
 import {
   Action,
   AppearDisappearEvent,
-  BaseAction,
   KeyEvent,
   PluginSettingsChanged,
   SettingsChanged,
@@ -12,6 +11,7 @@ import { PropertyInspectorMessagingEvent } from '@stream-deck-for-node/sdk/src/t
 import { bungify } from '../util/bungify';
 import { DimSettings } from '../interfaces';
 import { cachedImage } from '../util/cache';
+import { BaseDimAction } from './BaseAction';
 
 interface LoadoutSettings {
   character: string;
@@ -24,7 +24,7 @@ interface LoadoutSettings {
    Equip a selected loadout
 */
 @Action('loadout')
-export class EquipLoadout extends BaseAction<LoadoutSettings> {
+export class EquipLoadout extends BaseDimAction<LoadoutSettings> {
   pending?: string;
 
   async updateTitle(context: string, settings: LoadoutSettings) {

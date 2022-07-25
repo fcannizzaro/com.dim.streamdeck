@@ -4,9 +4,10 @@ import { DimAction, ExtWebSocket, MessageHandlers } from '../interfaces';
 import {
   authorizationChallengeHandler,
   authorizationResetHandler,
+  itemsInfoHandler,
   updateHandler,
 } from './msg-handlers';
-import { tokenOf } from '../security/authorization';
+import { tokenOf } from './authorization';
 
 export const clients: Record<string, WebSocket> = {};
 
@@ -45,6 +46,7 @@ server.on('error', () => {
 const handlers: MessageHandlers = {
   'authorization:challenges': authorizationChallengeHandler,
   'authorization:reset': authorizationResetHandler,
+  'items:info': itemsInfoHandler,
   'dim:update': updateHandler,
 };
 
@@ -58,13 +60,14 @@ export const init = () => {
     // keep track of WebSocket
     clients[ws.protocol] = ws;
 
-    // retrieve the identifier's challenge
-    if (!(ws.token = tokenOf(ws.protocol))) {
-      sendToDIM('authorization:init', undefined, ws, true);
-    }
+    ws.token = tokenOf(ws.protocol);
 
-    // on any client connect set plugin connected
-    sd.setPluginSettings({ connected: true });
+    // retrieve the identifier's challenge
+    if (!ws.token) {
+      sendToDIM('authorization:init', undefined, ws, true);
+    } else {
+      sd.setPluginSettings({ connected: true });
+    }
 
     // check if data is an authentication flow or not
     ws.on('message', (msg: string) => {

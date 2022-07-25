@@ -1,15 +1,15 @@
 import {
   Action,
   AppearDisappearEvent,
-  BaseAction,
   PluginSettingsChanged,
   SettingsChanged,
 } from '@stream-deck-for-node/sdk';
 import { sd } from '../index';
 import path from 'path';
-import { IMAGE_PATH } from '../constant';
+import { IMAGE_PATH } from '../util/shared';
 import commaNumber from 'comma-number';
 import { DimSettings } from '../interfaces';
+import { BaseDimAction } from './BaseAction';
 
 const IMAGES = {
   vault: path.join(IMAGE_PATH, './vault/vault-count.png'),
@@ -26,7 +26,7 @@ interface VaultSettings {
   Show Vault stats like currencies, total slots, etc...
 */
 @Action('vault')
-export class Vault extends BaseAction<VaultSettings> {
+export class Vault extends BaseDimAction<VaultSettings> {
   updateItem(context: string, settings: VaultSettings) {
     sd.setTitle(context, commaNumber(sd.pluginSettings?.vault?.[settings.item]));
     const image = IMAGES[settings.item];

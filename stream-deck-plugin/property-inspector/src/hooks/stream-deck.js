@@ -17,6 +17,7 @@ export const StreamDeckProvider = ({ children, registration }) => {
   const [state, setState] = useState(undefined);
   const [settings, setSettings] = useState({});
   const [globalSettings, setGlobalSettings] = useState({});
+  const [messageFromPlugin, setMessageFromPlugin] = useState({});
 
   useEffect(() => {
     ws = new WebSocket('ws://localhost:' + registration.port);
@@ -38,7 +39,9 @@ export const StreamDeckProvider = ({ children, registration }) => {
 
     ws.onmessage = ({ data }) => {
       const { event, payload } = JSON.parse(data);
-      if (event === 'didReceiveSettings') {
+      if (event === 'sendToPropertyInspector') {
+        setMessageFromPlugin(payload);
+      } else if (event === 'didReceiveSettings') {
         setSettings(payload.settings);
       } else if (event === 'didReceiveGlobalSettings') {
         setGlobalSettings(payload.settings);
@@ -52,6 +55,8 @@ export const StreamDeckProvider = ({ children, registration }) => {
     globalSettings,
     setSettings,
     setGlobalSettings,
+    messageFromPlugin,
+    setMessageFromPlugin,
   };
 
   return <StreamDeckContext.Provider value={providerValue}>{children}</StreamDeckContext.Provider>;

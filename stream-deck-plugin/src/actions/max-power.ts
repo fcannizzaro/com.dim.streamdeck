@@ -1,7 +1,6 @@
 import {
   Action,
   AppearDisappearEvent,
-  BaseAction,
   KeyEvent,
   PluginSettingsChanged,
   SettingsChanged,
@@ -9,8 +8,9 @@ import {
 import { sendToDIM } from '../ws/server';
 import { sd } from '../index';
 import path from 'path';
-import { IMAGE_PATH } from '../constant';
+import { IMAGE_PATH } from '../util/shared';
 import { DimSettings } from '../interfaces';
+import { BaseDimAction } from './BaseAction';
 
 const IMAGES = {
   total: path.join(IMAGE_PATH, './max-power/power-total.png'),
@@ -27,7 +27,7 @@ interface PowerSettings {
    Tap to Equip the Max Power Loadout
 */
 @Action('power')
-export class MaxPower extends BaseAction<PowerSettings> {
+export class MaxPower extends BaseDimAction<PowerSettings> {
   updateItem(context: string, settings: PowerSettings) {
     const powerType = settings.powerType ?? 'total';
     sd.setTitle(context, sd.pluginSettings.maxPower?.[powerType]?.toString() || '?');

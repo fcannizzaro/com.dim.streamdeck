@@ -5,37 +5,42 @@
   "author": "Francesco Saverio Cannizzaro (fcannizzaro)",
   "license": "GPL-3",
   "main": "./dist/index.js",
-  "bin": "./dist/index.js",
   "scripts": {
     "start": "npx ts-node ./src/index.ts -debug com.dim.streamdeck",
-    "build": "npm run build:ts && npm run build:bin-all",
-    "build:ts": "npx tsc -outDir dist",
-    "build:win": "npm run build:ts && npm run build:bin-win",
-    "build:mac": "npm run build:ts && npm run build:bin-mac",
-    "build:bin-win": "npx pkg package.json --compress GZip --targets node16-windows-x64 -o plugin/com.dim.streamdeck",
-    "build:bin-mac": "npx pkg package.json --compress GZip --targets node16-macos-x64 -o plugin/com.dim.streamdeck",
-    "build:bin-all": "npx pkg package.json --compress GZip --targets node16-windows-x64,node16-macos-x64 -o plugin/com.dim.streamdeck"
+    "build": "npx webpack-cli"
   },
   "dependencies": {
     "@stream-deck-for-node/sdk": "1.0.15",
     "axios": "^0.27.2",
     "comma-number": "^2.1.0",
+    "debounce": "^1.2.1",
     "file-system-cache": "^2.0.0",
     "openurl": "^1.1.1",
+    "skia-canvas": "^0.9.30",
     "ws": "^8.4.0"
-  },
-  "pkg": {
-    "assets": [
-      "./images/**/*"
-    ]
   },
   "devDependencies": {
     "@types/comma-number": "^2.1.0",
+    "@types/debounce": "^1.2.1",
     "@types/node": "^16.11.12",
     "@types/openurl": "^1.0.0",
     "@types/ws": "^8.2.2",
+    "asar-node": "^3.1.0",
+    "get-stream": "^6.0.1",
+    "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
+    "gulp-cli": "^2.3.0",
+    "gulp-shell": "^0.8.0",
+    "gulp-zip": "^5.1.0",
+    "merge-stream": "^2.0.0",
+    "native-addon-loader": "^2.0.1",
+    "node-loader": "^2.0.0",
     "prettier": "^2.7.1",
+    "terser-webpack-plugin": "^5.3.3",
+    "ts-loader": "^9.3.1",
     "ts-node": "^10.4.0",
-    "typescript": "^4.5.3"
+    "typescript": "^4.5.3",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0"
   }
 }

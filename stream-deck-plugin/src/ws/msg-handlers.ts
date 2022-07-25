@@ -1,10 +1,6 @@
 import { HandlerArgs } from '../interfaces';
-import { DimView, sd } from '../index';
-import { join } from 'path';
-import { IMAGE_PATH } from '../constant';
-import { DeviceType, DynamicViewInstance } from '@stream-deck-for-node/sdk/lib/types/interfaces';
-import { clients, sendToDIM } from './server';
-import { saveToken } from '../security/authorization';
+import { sd } from '../index';
+import { sharedItemsData } from '../util/shared';
 
 // update global setting with DIM data
 export const updateHandler = ({ data }: HandlerArgs) => {
@@ -20,40 +16,20 @@ export const authorizationResetHandler = ({ identifier }: HandlerArgs) => {
 };
 
 export const authorizationChallengeHandler = ({ data, identifier }: HandlerArgs) => {
-  const devices = sd.info.devices.filter((it) => Object.values(DeviceType).includes(it.type));
-  const views: DynamicViewInstance[] = [];
-
-  const onClose = () => {
-    for (const view of views) {
-      view.clear();
-      view.hide();
-    }
-  };
-
-  // render on all devices
-  devices.forEach((device) => {
-    const view = DimView.show(device);
-    if (!view) return;
-    views.push(view);
-    const { center, approximatedCenter } = view.geometry;
-    const image = join(IMAGE_PATH, './authorization.png');
-    const c = center || approximatedCenter || 0;
-    view.onTapOutside(onClose);
-    data.challenges?.forEach((challenge, i) => {
-      view?.update(c - 1 + i, {
-        image,
-        title: challenge.label.toString(),
-        onSingleTap: () => {
-          sendToDIM(
-            'authorization:confirm',
-            { challenge: challenge.label },
-            clients[identifier],
-            true,
-          );
-          saveToken(identifier, challenge.value);
-          onClose();
-        },
+  const items: [string, string[]][] = Object.entries(sd.allContexts());
+  items.forEach(([action, contexts]) => {
+    contexts.forEach((ctx) => {
+      sd.sendToPropertyInspector(ctx, action, {
+        ...data,
+        identifier,
       });
     });
   });
+};
+
+export const itemsInfoHandler = ({ data }: HandlerArgs) => {
+  Object.assign(
+    sharedItemsData,
+    Object.fromEntries(data.info.map(({ identifier, ...info }) => [identifier, info])),
+  );
 };
