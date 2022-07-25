@@ -80,7 +80,6 @@ func main() {
 	offlineVersion := manifest["Version"].(string)
 	vOnline, _ := version.NewVersion(onlineVersion)
 	vOffline, _ := version.NewVersion(offlineVersion)
-
 	binary := getBinaryFile()
 	downloadFilename := getNodeDownloadFile()
 
