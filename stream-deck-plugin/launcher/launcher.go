@@ -101,10 +101,10 @@ func main() {
 	_, appDirErr := os.Stat("./app")
 
 	if errors.Is(appDirErr, os.ErrNotExist) || vOffline.LessThan(vOnline) {
-		downloadFile("plugin.zip", "***REMOVED***/plugin.zip")
-		uz := unzip.New("./plugin.zip", cwd)
+		downloadFile("release.zip", "https://github.com/fcannizzaro/com.dim.streamdeck/releases/latest/release.zip")
+		uz := unzip.New("./release.zip", cwd)
 		_ = uz.Extract()
-		_ = os.Remove("./plugin.zip")
+		_ = os.Remove("./release.zip")
 		// dialog.Alert("A Stream Deck Application restart is required!")
 	}
 
