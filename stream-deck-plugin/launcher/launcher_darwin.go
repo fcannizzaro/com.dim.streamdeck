@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/ncruces/zenity"
 	"os"
 	"runtime"
 )
