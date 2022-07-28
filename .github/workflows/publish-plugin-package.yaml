@@ -1,4 +1,4 @@
-name: Publish Stream Deck plugin package
+name: publish-elgato-plugin-package
 on:
   workflow_dispatch:
 
@@ -7,10 +7,6 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Use Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16.x'
 
       - name: Move plugin code to root dir
         run: move stream-deck-plugin/* .
@@ -25,22 +21,17 @@ jobs:
       - name: Extract DistributionTool.exe
         run: 7z x "${{ steps.distribution_tool.outputs.filename }}"
 
-      - name: Use pnpm
-        uses: pnpm/action-setup@v2.2.2
+      - name: Download artifacts
+        uses: dawidd6/action-download-artifact@v2
         with:
-          version: latest
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Build plugin (Windows and macOS)
-        run: pnpm build
-
-      - name: Build Property Inspector
-        run: cd property-inspector && pnpm install --frozen-lockfile && pnpm build
+          github_token: ${{secrets.SECRET_TOKEN}}
+          workflow: build-plugin-launcher.yaml
 
       - name: Prepare plugin directory
-        run: ren plugin com.dim.streamdeck.sdPlugin
+        run: |
+          move com.dim.streamdeck.exe/com.dim.streamdeck.exe plugin/com.dim.streamdeck.exe
+          move com.dim.streamdeck/com.dim.streamdeck plugin/com.dim.streamdeck
+          ren plugin com.dim.streamdeck.sdPlugin
 
       - name: Package plugin
         run: ./DistributionTool.exe -b -i com.dim.streamdeck.sdPlugin -o .
@@ -52,13 +43,13 @@ jobs:
           path: 'package.json'
           prop_path: 'version'
 
-      - name: Publish/Update Release
-        uses: IsaacShelton/update-existing-release@v1.2.0
+      - name: Publish update.zip
+        uses: marvinpinto/action-automatic-releases@latest
         with:
-          token: ${{ secrets.SECRET_TOKEN }}
-          release: "${{steps.version.outputs.prop}}"
+          repo_token: "${{ secrets.SECRET_TOKEN }}"
+          automatic_release_tag: "latest-plugin-package"
           prerelease: true
-          replace: true
+          title: "${{steps.version.outputs.prop}}"
           files: ./com.dim.streamdeck.streamDeckPlugin
 
 

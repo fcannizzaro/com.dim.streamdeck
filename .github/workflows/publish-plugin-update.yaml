@@ -1,0 +1,43 @@
+name: publish-plugin-update
+on:
+  workflow_dispatch:
+
+jobs:
+  publish-plugin-update:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: ./stream-deck-plugin/
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+
+      - name: Use pnpm
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: latest
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build plugin release.zip
+        run: pnpm build:update
+
+      - name: Extract plugin version
+        id: version
+        uses: notiz-dev/github-action-json-property@release
+        with:
+          path: 'package.json'
+          prop_path: 'version'
+
+      - name: Publish update.zip
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: "${{ secrets.SECRET_TOKEN }}"
+          automatic_release_tag: "latest-update"
+          prerelease: true
+          title: "${{steps.version.outputs.prop}}"
+          files: ./stream-deck-plugin/update.zip

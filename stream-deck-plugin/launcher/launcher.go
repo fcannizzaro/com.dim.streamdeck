@@ -10,7 +10,6 @@ import (
 	"net/http"
 	"os"
 	"os/exec"
-	"runtime"
 	"strings"
 )
 
@@ -25,7 +24,7 @@ func checkLocalManifest() map[string]interface{} {
 
 // check latest release tag
 func checkGitHubVersion() string {
-	resp, _ := http.Get("https://github.com/fcannizzaro/com.dim.streamdeck/releases/latest")
+	resp, _ := http.Get("https://github.com/fcannizzaro/com.dim.streamdeck/releases/download/latest/update.zip")
 	return strings.Split(resp.Request.URL.Path, "tag/")[1]
 }
 
@@ -36,69 +35,32 @@ func downloadFile(filename string, url string) {
 	_, _ = io.Copy(out, resp.Body)
 }
 
-// os detection
-
-func isWin() bool {
-	return runtime.GOOS == "windows"
-}
-
-func isMac() bool {
-	return runtime.GOOS == "darwin"
-}
-
-func isARM() bool {
-	return isMac() && runtime.GOARCH == "arm64"
-}
-
-// filenames
-
-func getBinaryFile() string {
-	if isWin() {
-		return "node.exe"
-	} else {
-		return "node"
-	}
-}
-
-func getNodeDownloadFile() string {
-	if isWin() {
-		return "node.exe"
-	} else if isARM() {
-		return "node-v16.14.0-darwin-arm64"
-	} else {
-		return "node-v16.14.0-darwin-x64"
-	}
-}
-
-// main
-
-func main() {
-	cwd, _ := os.Getwd()
+// start NodeJS
+func startPlugin(binary string) {
 	var args []string
+	cwd, _ := os.Getwd()
+	args = append(args, "app")
+	args = append(args, os.Args[1:]...)
+	cmd := exec.Command(binary, args...)
+	cmd.Dir = cwd
+	_ = cmd.Run()
+}
+
+// check if Node.js is already downloaded
+func hasNode(name string) bool {
+	_, err := os.Stat(name)
+	return errors.Is(err, os.ErrNotExist)
+}
+
+// download a new update or initial plugin
+func updatePlugin() {
+	cwd, _ := os.Getwd()
 	manifest := checkLocalManifest()
 	onlineVersion := checkGitHubVersion()
 	offlineVersion := manifest["Version"].(string)
 	vOnline, _ := version.NewVersion(onlineVersion)
 	vOffline, _ := version.NewVersion(offlineVersion)
-	binary := getBinaryFile()
-	downloadFilename := getNodeDownloadFile()
-
-	// download node if needed
-	if _, err := os.Stat(binary); errors.Is(err, os.ErrNotExist) {
-		if isWin() {
-			downloadFile(downloadFilename, "https://nodejs.org/dist/v16.14.0/win-x64/node.exe")
-		} else {
-			downloadFile(downloadFilename+".tar.gz", "https://nodejs.org/dist/v16.14.0/"+downloadFilename+".tar.gz")
-			macUnzip(downloadFilename, cwd)
-			_ = os.Remove("./" + downloadFilename + ".tar.gz")
-			_ = os.Rename("./node-binaries/"+downloadFilename+"/bin/node", cwd+"/node")
-			_ = os.Remove("./node-binaries")
-		}
-	}
-
-	// download a new update or initial plugin
 	_, appDirErr := os.Stat("./app")
-
 	if errors.Is(appDirErr, os.ErrNotExist) || vOffline.LessThan(vOnline) {
 		downloadFile("release.zip", "https://github.com/fcannizzaro/com.dim.streamdeck/releases/latest/release.zip")
 		uz := unzip.New("./release.zip", cwd)
@@ -106,11 +68,4 @@ func main() {
 		_ = os.Remove("./release.zip")
 		// dialog.Alert("A Stream Deck Application restart is required!")
 	}
-
-	// run the plugin
-	args = append(args, "app")
-	args = append(args, os.Args[1:]...)
-	cmd := exec.Command(binary, args...)
-	cmd.Dir = cwd
-	_ = cmd.Run()
 }

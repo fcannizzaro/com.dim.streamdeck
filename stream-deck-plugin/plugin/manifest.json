@@ -3,7 +3,7 @@
   "Author": "fcannizzaro",
   "Description": "DIM actions",
   "Icon": "icons/pluginIcon",
-  "Version": "1.0.8",
+  "Version": "1.0.9",
   "SDKVersion": 2,
   "URL": "https://dim-stream-deck.netlify.app",
   "uuid": "com.dim.streamdeck",
@@ -26,9 +26,9 @@
   ],
   "Category": "Destiny Item Manager",
   "CategoryIcon": "icons/category",
-  "CodePath": "com.dim.streamdeck-win.exe",
-  "CodePathWin": "debug-plugin-win.exe",
-  "CodePathMac": "com.dim.streamdeck-macos",
+  "CodePath": "com.dim.streamdeck",
+  "CodePathWin": "com.dim.streamdeck.exe",
+  "CodePathMac": "com.dim.streamdeck",
   "PropertyInspectorPath": "pi/index.html",
   "Profiles": [
     {

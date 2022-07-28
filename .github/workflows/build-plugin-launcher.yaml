@@ -1,0 +1,49 @@
+name: build-plugin-launcher
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - auto-updater
+    paths:
+      - /stream-deck-plugin/launcher/**
+
+jobs:
+  launcher-windows:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: ./stream-deck-plugin/launcher
+    steps:
+      - uses: actions/checkout@v3
+      - name: Prepare go environment
+        uses: actions/setup-go@v3
+        with:
+          go-version: '1.18'
+      - name: Build the launcher code
+        run: go build
+
+      - name: Temporary store launcher binary
+        uses: actions/upload-artifact@v3
+        with:
+          name: com.dim.streamdeck.exe
+          path: ./stream-deck-plugin/launcher/com.dim.streamdeck.exe
+          retention-days: 1
+  launcher-mac:
+    runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: ./stream-deck-plugin/launcher
+    steps:
+      - uses: actions/checkout@v3
+      - name: Prepare go environment
+        uses: actions/setup-go@v3
+        with:
+          go-version: '1.18'
+      - name: Build the launcher code
+        run: go build
+
+      - name: Temporary store launcher binary
+        uses: actions/upload-artifact@v3
+        with:
+          name: com.dim.streamdeck
+          path: ./stream-deck-plugin/launcher/com.dim.streamdeck

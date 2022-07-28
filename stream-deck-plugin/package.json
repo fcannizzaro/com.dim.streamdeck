@@ -1,13 +1,14 @@
 {
   "private": true,
   "name": "dim-stream-deck-plugin",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "author": "Francesco Saverio Cannizzaro (fcannizzaro)",
   "license": "GPL-3",
   "main": "./dist/index.js",
   "scripts": {
     "start": "npx ts-node ./src/index.ts -debug com.dim.streamdeck",
-    "build": "npx webpack-cli"
+    "build": "npx webpack-cli",
+    "build:update": "npx gulp"
   },
   "dependencies": {
     "@stream-deck-for-node/sdk": "1.0.15",

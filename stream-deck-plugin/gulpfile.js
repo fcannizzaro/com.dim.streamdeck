@@ -6,14 +6,15 @@ const clean = require('gulp-clean');
 const zip = require('gulp-zip');
 const shell = require('gulp-shell');
 
-gulp.task('buildPropertyInspector', shell.task('cd property-inspector && pnpm build'));
+gulp.task(
+  'buildPropertyInspector',
+  shell.task('cd property-inspector && pnpm install && pnpm build'),
+);
 
 gulp.task('buildPlugin', shell.task('pnpm build'));
 
 function prepareZipRelease() {
-  const manifest = gulp
-    .src('./plugin/manifest.json')
-    .pipe(gulp.dest('./plugin-release/manifest.json'));
+  const manifest = gulp.src('./plugin/manifest.json').pipe(gulp.dest('./plugin-release/'));
   const pi = gulp.src('./plugin/pi/**/*').pipe(gulp.dest('./plugin-release/pi'));
   const icons = gulp.src('./plugin/icons/**/*').pipe(gulp.dest('./plugin-release/icons'));
   const images = gulp.src('./images/**/*').pipe(gulp.dest('./plugin-release/images'));
@@ -39,7 +40,7 @@ function addPackageJSON(cb) {
 }
 
 function zipRelease() {
-  return gulp.src('./plugin-release/**').pipe(zip('release.zip')).pipe(gulp.dest('./'));
+  return gulp.src('./plugin-release/**').pipe(zip('update.zip')).pipe(gulp.dest('./'));
 }
 
 exports.default = series(
