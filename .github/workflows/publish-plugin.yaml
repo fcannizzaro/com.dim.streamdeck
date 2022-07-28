@@ -1,0 +1,88 @@
+name: publish-plugin
+on:
+  workflow_dispatch:
+
+jobs:
+  package-stream-deck-plugin:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Move plugin code to root dir
+        run: move stream-deck-plugin/* .
+
+      - uses: suisei-cn/actions-download-file@v1
+        id: distribution_tool
+        name: Download Elgato Distribution Tool
+        with:
+          url: "https://developer.elgato.com/documentation/stream-deck/distributiontool/DistributionToolWindows.zip"
+          target: .
+
+      - name: Extract DistributionTool.exe
+        run: 7z x "${{ steps.distribution_tool.outputs.filename }}"
+
+      - name: Download artifacts
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          github_token: ${{secrets.SECRET_TOKEN}}
+          workflow: build-plugin-launcher.yaml
+
+      - name: Prepare plugin directory
+        run: |
+          move com.dim.streamdeck.exe/com.dim.streamdeck.exe plugin/com.dim.streamdeck.exe
+          move com.dim.streamdeck/com.dim.streamdeck plugin/com.dim.streamdeck
+          ren plugin com.dim.streamdeck.sdPlugin
+
+      - name: Package plugin
+        run: ./DistributionTool.exe -b -i com.dim.streamdeck.sdPlugin -o .
+
+      - name: Store artifact in job
+        uses: actions/upload-artifact@master
+        with:
+          name: plugin-package
+          path: ./com.dim.streamdeck.streamDeckPlugin
+
+  publish-plugin-update:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: ./stream-deck-plugin/
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+
+      - name: Use pnpm
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: latest
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build plugin release.zip
+        run: pnpm build:update
+
+      - name: Extract plugin version
+        id: version
+        uses: notiz-dev/github-action-json-property@release
+        with:
+          path: 'stream-deck-plugin/package.json'
+          prop_path: 'version'
+
+      - uses: actions/download-artifact@master
+        with:
+          name: plugin-package
+
+      - name: Publish update.zip and elgato package
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: "${{ secrets.SECRET_TOKEN }}"
+          automatic_release_tag: "${{steps.version.outputs.prop}}"
+          prerelease: true
+          title: "${{steps.version.outputs.prop}} (update)"
+          files: |
+            ./stream-deck-plugin/update.zip
+            ./plugin-package/com.dim.streamdeck.streamDeckPlugin
