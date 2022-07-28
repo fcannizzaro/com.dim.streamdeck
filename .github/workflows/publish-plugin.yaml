@@ -1,4 +1,4 @@
-name: publish-plugin-update
+name: publish-plugin
 on:
   workflow_dispatch:
 
@@ -37,12 +37,13 @@ jobs:
         run: ./DistributionTool.exe -b -i com.dim.streamdeck.sdPlugin -o .
 
       - name: Store artifact in job
-        uses: actions/upload-artifact@master
+        uses: actions/upload-artifact@v3
         with:
-          name: plugin-package
+          name: com.dim.streamdeck.streamDeckPlugin
           path: ./com.dim.streamdeck.streamDeckPlugin
 
   publish-plugin-update:
+    needs: package-stream-deck-plugin
     runs-on: windows-latest
     defaults:
       run:
@@ -72,9 +73,14 @@ jobs:
           path: 'stream-deck-plugin/package.json'
           prop_path: 'version'
 
-      - uses: actions/download-artifact@master
+      - name: Download artifact from previous job
+        id: download
+        uses: actions/download-artifact@v3
         with:
-          name: plugin-package
+          name: com.dim.streamdeck.streamDeckPlugin
+
+      - name: Move artifact to working dir
+        run: move ${{steps.download.outputs.download-path}}\com.dim.streamdeck.streamDeckPlugin ./com.dim.streamdeck.streamDeckPlugin
 
       - name: Publish update.zip and elgato package
         uses: marvinpinto/action-automatic-releases@latest
@@ -82,7 +88,7 @@ jobs:
           repo_token: "${{ secrets.SECRET_TOKEN }}"
           automatic_release_tag: "${{steps.version.outputs.prop}}"
           prerelease: true
-          title: "${{steps.version.outputs.prop}} (update)"
+          title: "${{steps.version.outputs.prop}}"
           files: |
             ./stream-deck-plugin/update.zip
-            ./plugin-package/com.dim.streamdeck.streamDeckPlugin
+            ./stream-deck-plugin/com.dim.streamdeck.streamDeckPlugin
