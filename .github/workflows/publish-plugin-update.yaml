@@ -39,5 +39,5 @@ jobs:
           repo_token: "${{ secrets.SECRET_TOKEN }}"
           automatic_release_tag: "${{steps.version.outputs.prop}}"
           prerelease: true
-          title: "${{steps.version.outputs.prop}}"
+          title: "${{steps.version.outputs.prop}} (update)"
           files: ./stream-deck-plugin/update.zip
