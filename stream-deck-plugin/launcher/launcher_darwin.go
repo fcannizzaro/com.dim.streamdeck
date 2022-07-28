@@ -18,15 +18,18 @@ func getNodeDownloadFile() string {
 }
 
 func main() {
+	var dlg zenity.ProgressDialog
 	cwd, _ := os.Getwd()
 	zipFile := getNodeDownloadFile()
-	if !hasNode("node") {
+	if missingNode("./node") {
+		dlg := showProgress()
+		_ = dlg.Text("Downloading Node.JS engine..")
 		downloadFile(zipFile+".tar.gz", "https://nodejs.org/dist/v16.14.0/"+zipFile+".tar.gz")
 		macUnzip(zipFile, cwd)
 		_ = os.Remove("./" + zipFile + ".tar.gz")
 		_ = os.Rename("./node-binaries/"+zipFile+"/bin/node", cwd+"/node")
 		_ = os.Remove("./node-binaries")
 	}
-	updatePlugin()
-	startPlugin("node")
+	updatePlugin(dlg)
+	startPlugin("./node")
 }

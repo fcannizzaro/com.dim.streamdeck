@@ -3,8 +3,10 @@ package main
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"github.com/artdarek/go-unzip"
 	"github.com/hashicorp/go-version"
+	"github.com/ncruces/zenity"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -24,7 +26,7 @@ func checkLocalManifest() map[string]interface{} {
 
 // check latest release tag
 func checkGitHubVersion() string {
-	resp, _ := http.Get("https://github.com/fcannizzaro/com.dim.streamdeck/releases/download/latest/update.zip")
+	resp, _ := http.Get("https://github.com/fcannizzaro/com.dim.streamdeck/releases/latest")
 	return strings.Split(resp.Request.URL.Path, "tag/")[1]
 }
 
@@ -43,17 +45,19 @@ func startPlugin(binary string) {
 	args = append(args, os.Args[1:]...)
 	cmd := exec.Command(binary, args...)
 	cmd.Dir = cwd
+	fmt.Println(binary)
+	fmt.Println(args)
 	_ = cmd.Run()
 }
 
 // check if Node.js is already downloaded
-func hasNode(name string) bool {
+func missingNode(name string) bool {
 	_, err := os.Stat(name)
 	return errors.Is(err, os.ErrNotExist)
 }
 
 // download a new update or initial plugin
-func updatePlugin() {
+func updatePlugin(dlg zenity.ProgressDialog) {
 	cwd, _ := os.Getwd()
 	manifest := checkLocalManifest()
 	onlineVersion := checkGitHubVersion()
@@ -62,10 +66,24 @@ func updatePlugin() {
 	vOffline, _ := version.NewVersion(offlineVersion)
 	_, appDirErr := os.Stat("./app")
 	if errors.Is(appDirErr, os.ErrNotExist) || vOffline.LessThan(vOnline) {
-		downloadFile("release.zip", "https://github.com/fcannizzaro/com.dim.streamdeck/releases/latest/release.zip")
-		uz := unzip.New("./release.zip", cwd)
+		if dlg == nil {
+			dlg = showProgress()
+		}
+		_ = dlg.Text("Downloading plugin update...")
+		downloadFile("update.zip", "https://github.com/fcannizzaro/com.dim.streamdeck/releases/latest/download/update.zip")
+		uz := unzip.New("./update.zip", cwd)
 		_ = uz.Extract()
-		_ = os.Remove("./release.zip")
-		// dialog.Alert("A Stream Deck Application restart is required!")
+		_ = os.Remove("./update.zip")
 	}
+	if dlg != nil {
+		_ = dlg.Complete()
+	}
+}
+
+func showProgress() zenity.ProgressDialog {
+	dlg, _ := zenity.Progress(
+		zenity.Title("DIM Stream Deck"),
+		zenity.Pulsate(),
+	)
+	return dlg
 }

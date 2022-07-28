@@ -234,6 +234,7 @@ com.dim.streamdeck-macos
 com.dim.streamdeck-win.exe
 com.dim.streamdeck.streamDeckPlugin
 pi/
+build/
 
 # debug executable
 debug-plugin-win.exe

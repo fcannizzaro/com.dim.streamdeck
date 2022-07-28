@@ -80,6 +80,10 @@ export const init = () => {
         return sd.logMessage('missing-token from ' + ws.protocol);
       }
 
+      if (ws.token) {
+        sd.setPluginSettings({ connected: true });
+      }
+
       // execute handler
       handlers[action]?.({ data, ws, identifier: ws.protocol, token: ws.token });
     });
