@@ -30,7 +30,7 @@ jobs:
         id: version
         uses: notiz-dev/github-action-json-property@release
         with:
-          path: 'package.json'
+          path: 'stream-deck-plugin/package.json'
           prop_path: 'version'
 
       - name: Publish update.zip
