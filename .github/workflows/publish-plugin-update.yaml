@@ -37,7 +37,7 @@ jobs:
         uses: marvinpinto/action-automatic-releases@latest
         with:
           repo_token: "${{ secrets.SECRET_TOKEN }}"
-          automatic_release_tag: "latest-update"
+          automatic_release_tag: "${{steps.version.outputs.prop}}"
           prerelease: true
           title: "${{steps.version.outputs.prop}}"
           files: ./stream-deck-plugin/update.zip

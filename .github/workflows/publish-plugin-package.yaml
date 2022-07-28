@@ -43,11 +43,11 @@ jobs:
           path: 'package.json'
           prop_path: 'version'
 
-      - name: Publish update.zip
+      - name: Publish plugin package
         uses: marvinpinto/action-automatic-releases@latest
         with:
           repo_token: "${{ secrets.SECRET_TOKEN }}"
-          automatic_release_tag: "latest-plugin-package"
+          automatic_release_tag: "${{steps.version.outputs.prop}}"
           prerelease: true
           title: "${{steps.version.outputs.prop}}"
           files: ./com.dim.streamdeck.streamDeckPlugin
