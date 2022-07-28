@@ -76,7 +76,7 @@ func updatePlugin(dlg zenity.ProgressDialog) {
 		_ = os.Remove("./update.zip")
 	}
 	if dlg != nil {
-		_ = dlg.Complete()
+		_ = dlg.Close()
 	}
 }
 
