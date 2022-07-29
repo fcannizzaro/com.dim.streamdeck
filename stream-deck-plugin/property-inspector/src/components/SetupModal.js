@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
 const AuthorizationBox = styled.div`
-  width: calc(100vw - 32px);
+  width: calc(100vw - 50px);
   height: 100vh;
+  margin-left: 16px;
+  margin-top: 8px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -29,21 +31,11 @@ const AuthorizationBox = styled.div`
   }
 `;
 
-export function SetupModal() {
-  const challenges = JSON.parse(decodeURIComponent(window.location.href.split('?setup=')[1]));
-
-  const onChallengeClick = (challenge) => {
-    const event = new CustomEvent('saveChallenge', {
-      detail: challenge,
-    });
-    window.opener.document.dispatchEvent(event);
-    window.close();
-  };
-
+export function SetupModal({ challenges, onSave }) {
   return (
     <AuthorizationBox>
       {challenges.map((challenge) => (
-        <div key={challenge} onClick={() => onChallengeClick(challenge)}>
+        <div key={challenge} onClick={() => onSave(challenge)}>
           {challenge.label}
         </div>
       ))}

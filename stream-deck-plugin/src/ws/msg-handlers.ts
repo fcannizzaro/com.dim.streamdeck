@@ -16,14 +16,13 @@ export const authorizationResetHandler = ({ identifier }: HandlerArgs) => {
 };
 
 export const authorizationChallengeHandler = ({ data, identifier }: HandlerArgs) => {
-  const items: [string, string[]][] = Object.entries(sd.allContexts());
-  items.forEach(([action, contexts]) => {
-    contexts.forEach((ctx) => {
-      sd.sendToPropertyInspector(ctx, action, {
-        ...data,
+  sd.setPluginSettings({
+    ui: {
+      authorization: {
+        challenges: data.challenges!,
         identifier,
-      });
-    });
+      },
+    },
   });
 };
 

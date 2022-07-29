@@ -17,5 +17,5 @@ export const saveToken = (identifier: string, token: string) => {
       token,
     });
   }
-  sd.setPluginSettings({ tokens: sd.pluginSettings.tokens });
+  sd.setPluginSettings({ tokens: sd.pluginSettings.tokens, ui: undefined });
 };

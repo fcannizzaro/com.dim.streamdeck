@@ -31,6 +31,8 @@ jobs:
         run: |
           move com.dim.streamdeck.exe/com.dim.streamdeck.exe plugin/com.dim.streamdeck.exe
           move com.dim.streamdeck/com.dim.streamdeck plugin/com.dim.streamdeck
+          mkdir plugin/pi
+          echo "<html>PI are auto-downloaded from GitHub</html>" > plugin/pi/index.html
           ren plugin com.dim.streamdeck.sdPlugin
 
       - name: Package plugin

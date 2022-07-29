@@ -56,6 +56,12 @@ export interface DimSettings {
     loadout: string;
     character: string;
   };
+  ui?: {
+    authorization?: {
+      challenges: Challenge[];
+      identifier: string;
+    };
+  };
   selectionType: 'item' | 'loadout';
   farmingMode: boolean;
   tokens: Token[];
