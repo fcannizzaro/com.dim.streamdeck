@@ -1,6 +1,11 @@
 name: publish-plugin
 on:
   workflow_dispatch:
+    inputs:
+      print_tags:
+        description: 'beta'
+        required: true
+        type: boolean
 
 jobs:
   package-stream-deck-plugin:
@@ -88,9 +93,9 @@ jobs:
         uses: marvinpinto/action-automatic-releases@latest
         with:
           repo_token: "${{ secrets.SECRET_TOKEN }}"
-          automatic_release_tag: "${{steps.version.outputs.prop}}"
+          automatic_release_tag: "${{steps.version.outputs.prop}} (${{ inputs.beta && 'beta' || 'stable'}})"
           prerelease: true
-          title: "${{steps.version.outputs.prop}}"
+          title: "${{ steps.version.outputs.prop }}"
           files: |
             ./stream-deck-plugin/update.zip
             ./stream-deck-plugin/com.dim.streamdeck.streamDeckPlugin
