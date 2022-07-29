@@ -16,7 +16,7 @@ import { ButtonsGroup } from '../../components/ButtonsGroup';
 
 const currencies = [
   [PostmasterIcon, '#e6811e', ''],
-  [Spoils, '#7ó13393', 'spoils'],
+  [Spoils, '#713393', 'spoils'],
   [Prism, '#713393', 'enhancementPrisms'],
   [Shard, '#cab14a', 'ascendantShards'],
 ];
