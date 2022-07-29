@@ -11,11 +11,12 @@ function SimpleBox({ message }) {
       <SettingsHeader>
         <span>{message}</span>
       </SettingsHeader>
+      <InfoBanner guide={false} />
     </SettingsBox>
   );
 }
 
-function SettingsPanel() {
+function App() {
   const { action, info, setMessageFromPlugin } = useStreamDeck();
   const sendToPlugin = useSendToPlugin();
   const [pluginSettings] = useGlobalSettings();
@@ -43,14 +44,14 @@ function SettingsPanel() {
     <div className='container'>
       <div className='mini-spaced' />
       <div className='content'>
-        {!action ? (
+        {!action || !pluginSettings ? (
           <SimpleBox message='loading...' />
-        ) : Action && pluginSettings.connected === true ? (
+        ) : Action && pluginSettings?.connected === true ? (
           <>
             <Action />
-            <InfoBanner guide={false} discord='DISCORD SERVER' />
+            <InfoBanner guide={false} />
           </>
-        ) : pluginSettings.connected === false ? (
+        ) : !pluginSettings?.connected ? (
           <SettingsBox error>
             <SettingsHeader error>
               <span>Error</span>
@@ -66,10 +67,6 @@ function SettingsPanel() {
       </div>
     </div>
   );
-}
-
-function App({ isSetup }) {
-  return isSetup ? <SetupModal /> : <SettingsPanel />;
 }
 
 export default App;

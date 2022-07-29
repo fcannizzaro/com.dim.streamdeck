@@ -11,8 +11,8 @@
     "MinimumVersion": "5.0"
   },
   "DefaultWindowSize": [
-    500,
-    300
+    1024,
+    768
   ],
   "OS": [
     {

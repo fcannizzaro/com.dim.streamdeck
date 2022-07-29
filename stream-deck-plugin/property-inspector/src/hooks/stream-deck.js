@@ -16,7 +16,7 @@ const send = (event, data) => {
 export const StreamDeckProvider = ({ children, registration }) => {
   const [state, setState] = useState(undefined);
   const [settings, setSettings] = useState({});
-  const [globalSettings, setGlobalSettings] = useState({});
+  const [globalSettings, setGlobalSettings] = useState(null);
   const [messageFromPlugin, setMessageFromPlugin] = useState({});
 
   useEffect(() => {
@@ -108,5 +108,5 @@ export const useGlobalSettings = () => {
     });
     sd.setGlobalSettings(newSettings);
   };
-  return [sd?.globalSettings || {}, setGlobalSettings];
+  return [sd?.globalSettings, setGlobalSettings];
 };

@@ -22,6 +22,7 @@ const IMAGES = {
 interface PostmasterSettings {
   style: 'percentage' | 'counter';
   postmasterItem: '' | 'ascendantShards' | 'enhancementPrisms' | 'spoils';
+  tapToCollect: boolean;
 }
 
 /*
@@ -39,7 +40,10 @@ export class Postmaster extends BaseDimAction<PostmasterSettings> {
   }
 
   onKeyDown(e: KeyEvent<PostmasterSettings>) {
-    if (e.payload.settings.postmasterItem === '') {
+    // default behaviour
+    const tapToCollect = [undefined, true].includes(e.payload.settings.tapToCollect);
+    // if button show the postmaster count
+    if (e.payload.settings.postmasterItem === '' && tapToCollect) {
       sendToDIM('collectPostmaster');
       sd.showOk(e.context);
     }
