@@ -2,7 +2,7 @@ name: publish-plugin
 on:
   workflow_dispatch:
     inputs:
-      print_tags:
+      beta:
         description: 'beta'
         required: true
         type: boolean
