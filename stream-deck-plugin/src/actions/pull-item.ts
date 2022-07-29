@@ -98,7 +98,6 @@ export class PullItem extends BaseDimAction<EquipItemSettings> {
 
   async onSettingsChanged(e: SettingsChanged<EquipItemSettings>) {
     await this.updateItem(e.context, e.settings);
-    // sd.showOk(e.context);
   }
 
   async onMessageFromPropertyInspector(e: PropertyInspectorMessagingEvent) {
@@ -161,6 +160,7 @@ export class PullItem extends BaseDimAction<EquipItemSettings> {
     }
     if (sd.pluginSettings.selectionType === 'item') {
       sd.setSettings<EquipItemSettings>(this.pending, sd.pluginSettings.selection);
+      addNewItem(sd.pluginSettings.selection.item);
       this.pending = undefined;
     }
   }

@@ -1,6 +1,7 @@
 import { HandlerArgs } from '../interfaces';
 import { sd } from '../index';
 import { sharedItemsData } from '../util/shared';
+import { EquipItemSettings } from '../actions/pull-item';
 
 // update global setting with DIM data
 export const updateHandler = ({ data }: HandlerArgs) => {
@@ -31,4 +32,15 @@ export const itemsInfoHandler = ({ data }: HandlerArgs) => {
     sharedItemsData,
     Object.fromEntries(data.info.map(({ identifier, ...info }) => [identifier, info])),
   );
+
+  // update current
+  sd.contextsOf('com.dim.streamdeck.pull-item').forEach((ctx) => {
+    const settings: EquipItemSettings = sd.getSettings(ctx) || {};
+    if (sharedItemsData[settings.item]) {
+      sd.setSettings(ctx, {
+        ...settings,
+        ...sharedItemsData[settings.item],
+      });
+    }
+  });
 };
