@@ -17,18 +17,25 @@ function SimpleBox({ message }) {
 }
 
 function App() {
-  const { action, info, setMessageFromPlugin } = useStreamDeck();
+  const { action, info } = useStreamDeck();
   const sendToPlugin = useSendToPlugin();
-  const [pluginSettings] = useGlobalSettings();
+  const [pluginSettings, setPluginSettings] = useGlobalSettings();
 
   const { challenges, identifier } = pluginSettings?.ui?.authorization || {};
+
+  // reset authorization
+  const onClose = () => {
+    setPluginSettings({ ui: { authorization: undefined } });
+  };
 
   if (challenges) {
     return (
       <SetupModal
         challenges={challenges}
+        onClose={onClose}
         onSave={(challenge) => {
-          setMessageFromPlugin({});
+          onClose();
+          // send challenge to plugin
           sendToPlugin({
             identifier,
             challenge,
