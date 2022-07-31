@@ -9,6 +9,7 @@ body {
   Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
   sans-serif;
   min-height: 100vh;
+  overflow: auto;
 }
 
 body {
@@ -253,4 +254,13 @@ a.kofi-button:active {
       color: #05cceb;
     }
   }
+}
+
+.donate-box {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  background: radial-gradient(circle at 50% 10%, #34344f 0%, #1a1a2c 100%) fixed;
+  align-items: center;
+  justify-content: center;
 }
