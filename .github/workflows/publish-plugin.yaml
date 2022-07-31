@@ -92,7 +92,7 @@ jobs:
       - name: Publish update.zip and elgato package
         uses: marvinpinto/action-automatic-releases@latest
         with:
-          repo_token: "${{ secrets.SECRET_TOKEN }}"
+          repo_token: "${{ github.token }}"
           automatic_release_tag: "${{steps.version.outputs.prop}}"
           prerelease: true
           title: "${{ steps.version.outputs.prop }} (${{ inputs.beta && 'beta' || 'stable'}})"

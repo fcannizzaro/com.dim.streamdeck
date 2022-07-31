@@ -3,7 +3,6 @@ package main
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"github.com/artdarek/go-unzip"
 	"github.com/hashicorp/go-version"
 	"github.com/ncruces/zenity"
@@ -45,8 +44,6 @@ func startPlugin(binary string) {
 	args = append(args, os.Args[1:]...)
 	cmd := exec.Command(binary, args...)
 	cmd.Dir = cwd
-	fmt.Println(binary)
-	fmt.Println(args)
 	_ = cmd.Run()
 }
 
@@ -80,10 +77,22 @@ func updatePlugin(dlg zenity.ProgressDialog) {
 	}
 }
 
+// show the progress dialog
 func showProgress() zenity.ProgressDialog {
 	dlg, _ := zenity.Progress(
 		zenity.Title("DIM Stream Deck"),
 		zenity.Pulsate(),
 	)
 	return dlg
+}
+
+// get the path of the binary's directory
+func binaryPath() string {
+	path, err := os.UserConfigDir()
+	if err != nil {
+		path = os.TempDir()
+	}
+	path += string(os.PathSeparator) + "stream-deck-node"
+	_ = os.MkdirAll(path, os.ModePerm)
+	return path + string(os.PathSeparator)
 }
