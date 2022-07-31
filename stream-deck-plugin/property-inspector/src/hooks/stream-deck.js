@@ -74,6 +74,13 @@ export const useSendToPlugin = () => {
     });
 };
 
+export const useOpenUrl = () => {
+  return (url) =>
+    send('openUrl', {
+      payload: { url },
+    });
+};
+
 export const useSettings = () => {
   const sd = useStreamDeck();
   const setSettings = (payload) => {

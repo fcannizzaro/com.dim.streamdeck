@@ -13,28 +13,18 @@ const render = (registration = null) => {
         <App />
       </StreamDeckProvider>
     ) : (
-      <App isDonate />
+      <App />
     ),
   );
 };
 
-if (window.location.href.includes('?donate')) {
-  render();
-} else {
-  window.connectElgatoStreamDeckSocket = (
-    inPort,
-    inUUID,
-    inRegisterEvent,
-    inInfo,
-    inActionInfo,
-  ) => {
-    const registration = {
-      port: inPort,
-      uuid: inUUID,
-      registerEvent: inRegisterEvent,
-      info: JSON.parse(inInfo),
-      actionInfo: JSON.parse(inActionInfo),
-    };
-    render(registration);
+window.connectElgatoStreamDeckSocket = (inPort, inUUID, inRegisterEvent, inInfo, inActionInfo) => {
+  const registration = {
+    port: inPort,
+    uuid: inUUID,
+    registerEvent: inRegisterEvent,
+    info: JSON.parse(inInfo),
+    actionInfo: JSON.parse(inActionInfo),
   };
-}
+  render(registration);
+};

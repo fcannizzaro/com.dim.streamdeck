@@ -2,6 +2,7 @@ import { SettingsButtons } from './SettingsButtons';
 import { DISCORD_INVITE } from '../constant';
 import Discord from '../images/discord.png';
 import styled from 'styled-components';
+import { useOpenUrl } from '../hooks/stream-deck';
 
 const DiscordButton = styled.button`
   display: flex;
@@ -14,14 +15,15 @@ const DiscordButton = styled.button`
 `;
 
 export const InfoBanner = ({ discord = 'DISCORD' }) => {
+  const openUrl = useOpenUrl();
   return (
     <SettingsButtons opacity>
-      <button onClick={() => window.open('https://dim-stream-deck.netlify.app/')}>SITE</button>
-      <DiscordButton onClick={() => window.open(DISCORD_INVITE)}>
+      <button onClick={() => openUrl('https://dim-stream-deck.netlify.app/')}>SITE</button>
+      <DiscordButton onClick={() => openUrl(DISCORD_INVITE)}>
         <img src={Discord} alt='discord' />
         <span>{discord}</span>
       </DiscordButton>
-      <button onClick={() => window.open('?donate')}>DONATE</button>
+      <button onClick={() => openUrl('https://dim-stream-deck.netlify.app/donate')}>DONATE</button>
     </SettingsButtons>
   );
 };
