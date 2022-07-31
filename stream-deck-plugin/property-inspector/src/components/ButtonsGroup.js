@@ -23,12 +23,24 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
-export const ButtonsGroup = ({ items, value, onChange }) => {
+const ButtonGroupTitle = styled.div`
+  color: #f6882d;
+  font-weight: bold;
+  padding: 4px 16px;
+  text-transform: uppercase;
+`;
+
+export const ButtonsGroup = ({ title, items, value, onChange }) => {
   const buttons = items.map((it) => (
     <Button onClick={() => onChange(it.toLowerCase())} selected={value === it.toLowerCase()}>
       {it}
     </Button>
   ));
 
-  return <ButtonsGroupContainer>{buttons}</ButtonsGroupContainer>;
+  return (
+    <>
+      {title && <ButtonGroupTitle>{title}</ButtonGroupTitle>}
+      <ButtonsGroupContainer>{buttons}</ButtonsGroupContainer>;
+    </>
+  );
 };

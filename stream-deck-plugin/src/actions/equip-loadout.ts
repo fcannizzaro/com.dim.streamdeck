@@ -18,6 +18,7 @@ interface LoadoutSettings {
   loadout: string;
   label: string;
   icon: string;
+  sendBackGesture?: 'doubleTap' | 'longPress' | undefined;
 }
 
 /*
@@ -57,15 +58,17 @@ export class EquipLoadout extends BaseDimAction<LoadoutSettings> {
   }
 
   onDoubleTap(e: KeyEvent<LoadoutSettings>) {
-    e.payload.settings.character = 'vault'
-    sendToDIM('loadout', e.payload.settings);
-    sd.showOk(e.context);
+    if (e.payload.settings.sendBackGesture === 'doubleTap') {
+      sendToDIM('loadout', { ...e.payload.settings, character: 'vault' });
+      sd.showOk(e.context);
+    }
   }
 
   onLongPress(e: KeyEvent<LoadoutSettings>) {
-    e.payload.settings.character = 'vault'
-    sendToDIM('loadout', e.payload.settings);
-    sd.showOk(e.context);
+    if (['longPress', undefined].includes(e.payload.settings.sendBackGesture)) {
+      sendToDIM('loadout', { ...e.payload.settings, character: 'vault' });
+      sd.showOk(e.context);
+    }
   }
 
   onPluginSettingsChanged(e: PluginSettingsChanged<DimSettings>) {
