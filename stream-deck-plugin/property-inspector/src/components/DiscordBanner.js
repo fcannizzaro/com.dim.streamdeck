@@ -21,9 +21,7 @@ export const InfoBanner = ({ discord = 'DISCORD' }) => {
         <img src={Discord} alt='discord' />
         <span>{discord}</span>
       </DiscordButton>
-      <button onClick={() => window.open('https://dim-stream-deck.netlify.app/#donate')}>
-        DONATE
-      </button>
+      <button onClick={() => window.open('?donate')}>DONATE</button>
     </SettingsButtons>
   );
 };

@@ -18,13 +18,23 @@ const render = (registration = null) => {
   );
 };
 
-window.connectElgatoStreamDeckSocket = (inPort, inUUID, inRegisterEvent, inInfo, inActionInfo) => {
-  const registration = {
-    port: inPort,
-    uuid: inUUID,
-    registerEvent: inRegisterEvent,
-    info: JSON.parse(inInfo),
-    actionInfo: JSON.parse(inActionInfo),
+if (window.location.href.includes('?donate')) {
+  render();
+} else {
+  window.connectElgatoStreamDeckSocket = (
+    inPort,
+    inUUID,
+    inRegisterEvent,
+    inInfo,
+    inActionInfo,
+  ) => {
+    const registration = {
+      port: inPort,
+      uuid: inUUID,
+      registerEvent: inRegisterEvent,
+      info: JSON.parse(inInfo),
+      actionInfo: JSON.parse(inActionInfo),
+    };
+    render(registration);
   };
-  render(registration);
-};
+}

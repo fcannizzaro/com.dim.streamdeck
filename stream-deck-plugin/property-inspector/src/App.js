@@ -4,6 +4,7 @@ import { SettingsBox } from './components/SettingsBox';
 import { SettingBody, SettingsHeader } from './components/SettingsHeader';
 import { InfoBanner } from './components/DiscordBanner';
 import { SetupModal } from './components/SetupModal';
+import { DonatePage } from './components/DonatePage';
 
 function SimpleBox({ message }) {
   return (
@@ -76,4 +77,8 @@ function App() {
   );
 }
 
-export default App;
+const WrappedApp = ({ isDonate }) => {
+  return isDonate ? <DonatePage /> : <App />;
+};
+
+export default WrappedApp;
