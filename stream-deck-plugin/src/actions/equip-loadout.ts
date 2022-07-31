@@ -56,6 +56,18 @@ export class EquipLoadout extends BaseAction<LoadoutSettings> {
     sd.showOk(e.context);
   }
 
+  onDoubleTap(e: KeyEvent<LoadoutSettings>) {
+    e.payload.settings.character = 'vault'
+    sendToDIM('loadout', e.payload.settings);
+    sd.showOk(e.context);
+  }
+
+  onLongPress(e: KeyEvent<LoadoutSettings>) {
+    e.payload.settings.character = 'vault'
+    sendToDIM('loadout', e.payload.settings);
+    sd.showOk(e.context);
+  }
+
   onPluginSettingsChanged(e: PluginSettingsChanged<DimSettings>) {
     if (!this.pending || !e.changedKeys.includes('selection')) {
       return;

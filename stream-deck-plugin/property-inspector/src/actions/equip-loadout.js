@@ -24,6 +24,12 @@ export const EquipLoadout = () => {
       <div>
         <Gesture gesture='Single Tap' action='Equip the selected loadout' />
       </div>
+      <div>
+        <Gesture gesture='Double Tap' action='Send Loadout back to the Vault' />
+      </div>
+      <div>
+        <Gesture gesture='Long Press' action='Send Loadout back to the Vault' />
+      </div>
     </>
   );
 };
