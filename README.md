@@ -5,7 +5,7 @@ A Stream Deck plugin to interact with Destiny Item Manager
 [![](https://img.shields.io/badge/Stream%20Deck%20SDK-for%20Node.js-green)](https://github.com/stream-deck-for-node/sdk)
 
 # Outdated
-This project is outdated, the new project is [new repository](https://github.com/dim-stream-deck/com.dim.streamdeck).
+This project is outdated, the new one is [here](https://github.com/dim-stream-deck/com.dim.streamdeck).
 
 > More info soon
 
